@@ -6,3 +6,66 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 64ms (Views: 24.6ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:51:24 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 5684ms (Views: 5674.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:51:31 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 48ms (Views: 46.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:52:28 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 57ms (Views: 55.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:52:31 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 44ms (Views: 43.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:52:32 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 52ms (Views: 51.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:52:36 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 57ms (Views: 56.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:52:51 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 64ms (Views: 62.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:52:54 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 60ms (Views: 56.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-16 12:53:05 -0500
+Processing by PaginasController#inicio as HTML
+  Rendering paginas/inicio.html.erb within layouts/application
+  Rendered paginas/inicio.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 72ms (Views: 70.6ms | ActiveRecord: 0.0ms)
+
+
