@@ -32,3 +32,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Gemas Adicionales
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise', '~> 4.2'
+gem 'toastr-rails', '~> 1.0'
