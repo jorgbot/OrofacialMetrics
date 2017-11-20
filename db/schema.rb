@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120035124) do
+ActiveRecord::Schema.define(version: 20171120044231) do
 
   create_table "consentimientos", force: :cascade do |t|
     t.string   "nombre"
@@ -38,6 +38,38 @@ ActiveRecord::Schema.define(version: 20171120035124) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["usuario_id"], name: "index_consentimientos_on_usuario_id"
+  end
+
+  create_table "pacientes", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "genero"
+    t.string   "tipo_documento"
+    t.string   "documento"
+    t.date     "f_nacimiento"
+    t.string   "edad"
+    t.string   "pais_nacimiento"
+    t.string   "n_departamento"
+    t.string   "n_ciudad"
+    t.string   "aseguradora"
+    t.string   "raza"
+    t.string   "etnia"
+    t.string   "pais_residencia"
+    t.string   "r_departamento"
+    t.string   "r_ciudad"
+    t.string   "r_direccion"
+    t.string   "estado"
+    t.string   "pais_estancia"
+    t.string   "e_departamento"
+    t.string   "e_ciudad"
+    t.string   "religion"
+    t.string   "celular"
+    t.string   "telefono"
+    t.string   "correo"
+    t.integer  "usuario_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["usuario_id"], name: "index_pacientes_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|

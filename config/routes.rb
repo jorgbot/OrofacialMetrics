@@ -8,5 +8,6 @@ Rails.application.routes.draw do
              controllers: {registrations: 'registrations'}
 
   resources :consentimientos
+  resources :pacientes
 
 end

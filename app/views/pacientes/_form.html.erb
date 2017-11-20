@@ -1,0 +1,142 @@
+<%= form_for(paciente) do |f| %>
+  <% if paciente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(paciente.errors.count, "error") %> prohibited this paciente from being saved:</h2>
+
+      <ul>
+      <% paciente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= f.label :apellido %>
+    <%= f.text_field :apellido %>
+  </div>
+
+  <div class="field">
+    <%= f.label :genero %>
+    <%= f.text_field :genero %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo_documento %>
+    <%= f.text_field :tipo_documento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :documento %>
+    <%= f.text_field :documento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :f_nacimiento %>
+    <%= f.date_select :f_nacimiento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :edad %>
+    <%= f.text_field :edad %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pais_nacimiento %>
+    <%= f.text_field :pais_nacimiento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :n_departamento %>
+    <%= f.text_field :n_departamento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :n_ciudad %>
+    <%= f.text_field :n_ciudad %>
+  </div>
+
+  <div class="field">
+    <%= f.label :aseguradora %>
+    <%= f.text_field :aseguradora %>
+  </div>
+
+  <div class="field">
+    <%= f.label :raza %>
+    <%= f.text_field :raza %>
+  </div>
+
+  <div class="field">
+    <%= f.label :etnia %>
+    <%= f.text_field :etnia %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pais_residencia %>
+    <%= f.text_field :pais_residencia %>
+  </div>
+
+  <div class="field">
+    <%= f.label :r_departamento %>
+    <%= f.text_field :r_departamento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :r_ciudad %>
+    <%= f.text_field :r_ciudad %>
+  </div>
+
+  <div class="field">
+    <%= f.label :r_direccion %>
+    <%= f.text_field :r_direccion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :estado %>
+    <%= f.text_field :estado %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pais_estancia %>
+    <%= f.text_field :pais_estancia %>
+  </div>
+
+  <div class="field">
+    <%= f.label :e_departamento %>
+    <%= f.text_field :e_departamento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :e_ciudad %>
+    <%= f.text_field :e_ciudad %>
+  </div>
+
+  <div class="field">
+    <%= f.label :religion %>
+    <%= f.text_field :religion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :celular %>
+    <%= f.text_field :celular %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telefono %>
+    <%= f.text_field :telefono %>
+  </div>
+
+  <div class="field">
+    <%= f.label :correo %>
+    <%= f.text_field :correo %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
