@@ -1,0 +1,122 @@
+<%= form_for(consentimiento) do |f| %>
+  <% if consentimiento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(consentimiento.errors.count, "error") %> prohibited this consentimiento from being saved:</h2>
+
+      <ul>
+      <% consentimiento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= f.label :apellido %>
+    <%= f.text_field :apellido %>
+  </div>
+
+  <div class="field">
+    <%= f.label :f_nacimiento %>
+    <%= f.date_select :f_nacimiento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :c_menor %>
+    <%= f.text_field :c_menor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo_documento %>
+    <%= f.text_field :tipo_documento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :documento %>
+    <%= f.text_field :documento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :na_representante %>
+    <%= f.text_field :na_representante %>
+  </div>
+
+  <div class="field">
+    <%= f.label :r_tipo_documento %>
+    <%= f.text_field :r_tipo_documento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :r_documento %>
+    <%= f.text_field :r_documento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :direccion %>
+    <%= f.text_field :direccion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :v_contenido %>
+    <%= f.text_field :v_contenido %>
+  </div>
+
+  <div class="field">
+    <%= f.label :c_tipo1 %>
+    <%= f.text_field :c_tipo1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :c_tipo2 %>
+    <%= f.text_field :c_tipo2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :c_tipo3 %>
+    <%= f.text_field :c_tipo3 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :c_tipo4 %>
+    <%= f.text_field :c_tipo4 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :c_tipo %>
+    <%= f.text_field :c_tipo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :fecha %>
+  </div>
+
+  <div class="field">
+    <%= f.label :correo %>
+    <%= f.text_field :correo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telefono %>
+    <%= f.text_field :telefono %>
+  </div>
+
+  <div class="field">
+    <%= f.label :na_clinico %>
+    <%= f.text_field :na_clinico %>
+  </div>
+
+  <div class="field">
+    <%= f.label :correo_clinico %>
+    <%= f.text_field :correo_clinico %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

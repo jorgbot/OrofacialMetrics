@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Consentimientos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>F nacimiento</th>
+      <th>C menor</th>
+      <th>Tipo documento</th>
+      <th>Documento</th>
+      <th>Na representante</th>
+      <th>R tipo documento</th>
+      <th>R documento</th>
+      <th>Direccion</th>
+      <th>V contenido</th>
+      <th>C tipo1</th>
+      <th>C tipo2</th>
+      <th>C tipo3</th>
+      <th>C tipo4</th>
+      <th>C tipo</th>
+      <th>Fecha</th>
+      <th>Correo</th>
+      <th>Telefono</th>
+      <th>Na clinico</th>
+      <th>Correo clinico</th>
+      <th>Usuario</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @consentimientos.each do |consentimiento| %>
+      <tr>
+        <td><%= consentimiento.nombre %></td>
+        <td><%= consentimiento.apellido %></td>
+        <td><%= consentimiento.f_nacimiento %></td>
+        <td><%= consentimiento.c_menor %></td>
+        <td><%= consentimiento.tipo_documento %></td>
+        <td><%= consentimiento.documento %></td>
+        <td><%= consentimiento.na_representante %></td>
+        <td><%= consentimiento.r_tipo_documento %></td>
+        <td><%= consentimiento.r_documento %></td>
+        <td><%= consentimiento.direccion %></td>
+        <td><%= consentimiento.v_contenido %></td>
+        <td><%= consentimiento.c_tipo1 %></td>
+        <td><%= consentimiento.c_tipo2 %></td>
+        <td><%= consentimiento.c_tipo3 %></td>
+        <td><%= consentimiento.c_tipo4 %></td>
+        <td><%= consentimiento.c_tipo %></td>
+        <td><%= consentimiento.fecha %></td>
+        <td><%= consentimiento.correo %></td>
+        <td><%= consentimiento.telefono %></td>
+        <td><%= consentimiento.na_clinico %></td>
+        <td><%= consentimiento.correo_clinico %></td>
+        <td><%= consentimiento.usuario.nombres %></td>
+        <td><%= link_to 'Ver', consentimiento %></td>
+        <td><%= link_to 'Editar', edit_consentimiento_path(consentimiento) %></td>
+        <td><%= link_to 'Eliminar', consentimiento, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Consentimiento', new_consentimiento_path %>

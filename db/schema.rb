@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118055411) do
+ActiveRecord::Schema.define(version: 20171120035124) do
+
+  create_table "consentimientos", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.date     "f_nacimiento"
+    t.string   "c_menor"
+    t.string   "tipo_documento"
+    t.string   "documento"
+    t.string   "na_representante"
+    t.string   "r_tipo_documento"
+    t.string   "r_documento"
+    t.string   "direccion"
+    t.string   "v_contenido"
+    t.string   "c_tipo1"
+    t.string   "c_tipo2"
+    t.string   "c_tipo3"
+    t.string   "c_tipo4"
+    t.string   "c_tipo"
+    t.date     "fecha"
+    t.string   "correo"
+    t.string   "telefono"
+    t.string   "na_clinico"
+    t.string   "correo_clinico"
+    t.integer  "usuario_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["usuario_id"], name: "index_consentimientos_on_usuario_id"
+  end
 
   create_table "usuarios", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

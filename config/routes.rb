@@ -7,4 +7,6 @@ Rails.application.routes.draw do
              path_names: {sign_in: 'ingresar', sign_out: 'salir', edit: 'perfil', sign_up: 'registrar'},
              controllers: {registrations: 'registrations'}
 
+  resources :consentimientos
+
 end

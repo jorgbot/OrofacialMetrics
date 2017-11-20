@@ -7,4 +7,6 @@ class Usuario < ApplicationRecord
 
   validates :nombres, presence: true, length: {maximum: 50}
 
+  has_many :consentimientos
+
 end
