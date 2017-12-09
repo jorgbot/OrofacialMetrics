@@ -1,3 +1,51 @@
 // Place all the styles related to the Pacientes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.oro-help {
+  background-color: #2b8adc;
+  display: block;
+  position: absolute;
+  animation-duration: 2s;
+  animation-delay: 2s;
+  animation-fill-mode: both;
+}
+.oro-help__texto {
+  position: absolute;
+  right: 15px;
+  color: white;
+}
+
+.oro-help--nuevo-paciente {
+  width: 220px;
+  height: 170px;
+  top: -170px;
+  right: -150px;
+  border-bottom-left-radius: 100%;
+  animation-duration: .5s !important;
+  animation-delay: 1.3s !important;
+  animation-name: progress-nuevo-paciente;
+  animation-fill-mode: both;
+
+  .oro-help__texto {
+    bottom: 35px;
+    width: 100px;
+  }
+}
+
+@keyframes progress-nuevo-paciente {
+  0%
+  {
+    top: -170px;
+    right: -250px;
+  }
+  70%
+  {
+    top: -15px;
+    right: -15px;
+  }
+  100%
+  {
+    top: -25px;
+    right: -25px;
+  }
+}

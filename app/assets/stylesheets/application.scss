@@ -1,6 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "toastr";
+@import "pacientes";
+
+body, html {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fbfbfb;
+}
 
 .oro-btn--primary {
   background-color: #2b8adc;
@@ -15,6 +22,11 @@
     {
       width: 100%;
     }
+}
+
+.oro-main {
+  margin-top: -10px;
+  overflow-x: hidden;
 }
 
 .oro-panel--solid {
@@ -74,14 +86,13 @@
     margin-top: 0px;
   }
 
-
-
 }
 
 .oro-navbar {
   background-color: #2b8adc;
   color: #F7F7F7;
-  border: 0px;
+  border: 0;
+  margin-bottom: 0;
   border-radius: 0;
 
   &__brand-first
@@ -104,6 +115,31 @@
       color: #fff !important;
     }
   }
+}
+
+.oro-subnavbar {
+  background-color: white;
+  box-shadow: 0 0 1px #bbb;
+  z-index: 100;
+  position: relative;
+
+  &__nav {
+    float: none;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  &__link {
+    width: 33.3%;
+    text-align: center;
+    font-weight: bolder;
+
+    &--active a
+    {
+      color: #2b8adc !important;
+    }
+  }
+
 }
 
 .oro-login {
@@ -129,13 +165,32 @@
     padding: 25px 20px;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0px 0px 2px -2px, 0px 1px 2px -2px;
+    box-shadow: 0 0 2px -2px, 0 1px 2px -2px;
   }
 
   &__title {
     color: #fff;
     font-size: 35px;
   }
+}
+
+.oro-sidebar {
+  width: 215px;
+  display: inline-block;
+  background-color: #ffffff;
+  height: calc(100vh - 100px);
+  padding: 15px;
+
+  &--link a {
+    border-radius: 5px;
+  }
+}
+
+.oro-main-ui {
+  position: relative;
+  display: inline-block;
+  width: calc(100vw - 220px);
+  top: -50px;
 }
 
 

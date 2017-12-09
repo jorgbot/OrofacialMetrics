@@ -3,7 +3,7 @@
   <head>
     <title>OrofacialMetrics</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,7 +13,7 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/message' %>
 
-    <div class="main">
+    <div class="oro-main">
       <%= yield %>
     </div>
 
