@@ -12,6 +12,17 @@
   right: -15px;
 }
 
+.oro-form__check a i {
+  margin-right: 9px;
+  color: #eaeaea;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.oro-form__check--active a i {
+  color: #2b8adc;
+}
+
 .oro-form__breack {
   color: #777783;
   font-size: 15px;
