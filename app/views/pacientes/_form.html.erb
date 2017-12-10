@@ -218,9 +218,14 @@
   </div>
   <div class="col-md-4 oro-form__control">
     <ul class="nav navbar">
-      <li class="navbar-link oro-form__check oro-form__check--active"><a href="#basicos"><i class="glyphicon glyphicon-check"></i> Datos Basicos</a></li>
-      <li class="navbar-link oro-form__check"><a href="#demograficos"><i class="glyphicon glyphicon-check"></i> Datos Demograficos</a></li>
-      <li class="navbar-link oro-form__check"><a href="#contacto"><i class="glyphicon glyphicon-check"></i> Datos Contacto</a></li>
+      <li class="navbar-link oro-form__check"><a href="#basicos" onclick="return false"><i class="glyphicon glyphicon-check"></i> Datos Basicos</a></li>
+      <li class="navbar-link oro-form__check"><a href="#demograficos" onclick="return false"><i class="glyphicon glyphicon-check"></i> Datos Demograficos</a></li>
+      <li class="navbar-link oro-form__check"><a href="#contacto" onclick="return false"><i class="glyphicon glyphicon-check"></i> Datos Contacto</a></li>
     </ul>
   </div>
+  <script !src="">
+    $(document).ready(function(){
+        loadDatosBasicos();
+    })
+  </script>
 <% end %>
