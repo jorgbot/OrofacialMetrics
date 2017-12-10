@@ -10,133 +10,217 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :nombre %>
-    <%= f.text_field :nombre %>
+  <div class="col-md-8 oro-form__content">
+      <div class="container-fluid">
+        <div  id="basicos" class="oro-form__group">
+          <div class="row">
+            <h4 class="oro-form__breack">Datos Basicos</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :nombre, class: 'form-label' %>
+                <%= f.text_field :nombre , class: 'form-control'%>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :apellido, class: 'form-label' %>
+                <%= f.text_field :apellido, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :genero, class: 'form-label' %>
+                <%= f.text_field :genero, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :tipo_documento, class: 'form-label' %>
+                <%= f.text_field :tipo_documento, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :documento, class: 'form-label' %>
+                <%= f.text_field :documento, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :f_nacimiento, class: 'form-label' %>
+                <%= f.date_field :f_nacimiento, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <%= f.label :edad, class: 'form-label'  %>
+                <%= f.text_field :edad, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="demograficos" class="oro-form__group">
+          <div class="row">
+            <h4 class="oro-form__breack">Datos Demofraficos</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :pais_nacimiento, class: 'form-label' %>
+                <%= f.text_field :pais_nacimiento , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :n_departamento, class: 'form-label' %>
+                <%= f.text_field :n_departamento , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :n_ciudad, class: 'form-label' %>
+                <%= f.text_field :n_ciudad , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :aseguradora, class: 'form-label' %>
+                <%= f.text_field :aseguradora , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :raza, class: 'form-label' %>
+                <%= f.text_field :raza , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :etnia, class: 'form-label' %>
+                <%= f.text_field :etnia , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :pais_residencia, class: 'form-label' %>
+                <%= f.text_field :pais_residencia , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :r_departamento, class: 'form-label' %>
+                <%= f.text_field :r_departamento , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :r_ciudad, class: 'form-label' %>
+                <%= f.text_field :r_ciudad , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :r_direccion, class: 'form-label' %>
+                <%= f.text_field :r_direccion , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="contacto" class="oro-form__grop">
+          <div class="row">
+            <h4 class="oro-form__breack">Datos Contacto</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :estado, class: 'form-label' %>
+                <%= f.text_field :estado , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :pais_estancia, class: 'form-label' %>
+                <%= f.text_field :pais_estancia , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :e_departamento, class: 'form-label' %>
+                <%= f.text_field :e_departamento , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :e_ciudad, class: 'form-label' %>
+                <%= f.text_field :e_ciudad , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :religion, class: 'form-label' %>
+                <%= f.text_field :religion , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :celular, class: 'form-label' %>
+                <%= f.text_field :celular , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :telefono, class: 'form-label' %>
+                <%= f.text_field :telefono , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :correo, class: 'form-label' %>
+                <%= f.text_field :correo , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="actions">
+                  <input type="submit" class="btn btn-primary btn-block" value="Crear Paciente">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
-
-  <div class="field">
-    <%= f.label :apellido %>
-    <%= f.text_field :apellido %>
-  </div>
-
-  <div class="field">
-    <%= f.label :genero %>
-    <%= f.text_field :genero %>
-  </div>
-
-  <div class="field">
-    <%= f.label :tipo_documento %>
-    <%= f.text_field :tipo_documento %>
-  </div>
-
-  <div class="field">
-    <%= f.label :documento %>
-    <%= f.text_field :documento %>
-  </div>
-
-  <div class="field">
-    <%= f.label :f_nacimiento %>
-    <%= f.date_select :f_nacimiento %>
-  </div>
-
-  <div class="field">
-    <%= f.label :edad %>
-    <%= f.text_field :edad %>
-  </div>
-
-  <div class="field">
-    <%= f.label :pais_nacimiento %>
-    <%= f.text_field :pais_nacimiento %>
-  </div>
-
-  <div class="field">
-    <%= f.label :n_departamento %>
-    <%= f.text_field :n_departamento %>
-  </div>
-
-  <div class="field">
-    <%= f.label :n_ciudad %>
-    <%= f.text_field :n_ciudad %>
-  </div>
-
-  <div class="field">
-    <%= f.label :aseguradora %>
-    <%= f.text_field :aseguradora %>
-  </div>
-
-  <div class="field">
-    <%= f.label :raza %>
-    <%= f.text_field :raza %>
-  </div>
-
-  <div class="field">
-    <%= f.label :etnia %>
-    <%= f.text_field :etnia %>
-  </div>
-
-  <div class="field">
-    <%= f.label :pais_residencia %>
-    <%= f.text_field :pais_residencia %>
-  </div>
-
-  <div class="field">
-    <%= f.label :r_departamento %>
-    <%= f.text_field :r_departamento %>
-  </div>
-
-  <div class="field">
-    <%= f.label :r_ciudad %>
-    <%= f.text_field :r_ciudad %>
-  </div>
-
-  <div class="field">
-    <%= f.label :r_direccion %>
-    <%= f.text_field :r_direccion %>
-  </div>
-
-  <div class="field">
-    <%= f.label :estado %>
-    <%= f.text_field :estado %>
-  </div>
-
-  <div class="field">
-    <%= f.label :pais_estancia %>
-    <%= f.text_field :pais_estancia %>
-  </div>
-
-  <div class="field">
-    <%= f.label :e_departamento %>
-    <%= f.text_field :e_departamento %>
-  </div>
-
-  <div class="field">
-    <%= f.label :e_ciudad %>
-    <%= f.text_field :e_ciudad %>
-  </div>
-
-  <div class="field">
-    <%= f.label :religion %>
-    <%= f.text_field :religion %>
-  </div>
-
-  <div class="field">
-    <%= f.label :celular %>
-    <%= f.text_field :celular %>
-  </div>
-
-  <div class="field">
-    <%= f.label :telefono %>
-    <%= f.text_field :telefono %>
-  </div>
-
-  <div class="field">
-    <%= f.label :correo %>
-    <%= f.text_field :correo %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="col-md-4 oro-form__control">
+    <ul class="nav navbar">
+      <li class="navbar-link"><a href="#basicos">Datos Basicos</a></li>
+      <li class="navbar-link"><a href="#demograficos">Datos Demograficos</a></li>
+      <li class="navbar-link"><a href="#contacto">Datos Contacto</a></li>
+    </ul>
   </div>
 <% end %>

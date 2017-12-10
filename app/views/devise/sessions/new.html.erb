@@ -14,25 +14,24 @@
         <%= f.password_field :password, autocomplete: "off", placeholder: "Contraseña", class: "form-control" %>
       </div>
 
-      <div>
+      <div class="oro-login__remember">
         <% if devise_mapping.rememberable? -%>
           <span>
-          <%= f.check_box :remember_me, class: "oro-login__remember" %> Guardar sesión
+          <%= f.check_box :remember_me, class: "oro-login__remember" %> Recordarme
           </span>
         <% end %>
         <span class="pull-right oro-login__lost">
           <%= link_to "Olvidé mi contraseña", new_usuario_password_path %>
         </span>
       </div>
-
-      <div class="actions">
+      <div class="oro-login__action">
         <%= f.submit "Ingresar", class: "btn btn-primary btn-block oro-btn--primary oro-login__submit" %>
       </div>
     <% end %>
 
   </div>
   <div class="col-md-4 col-md-offset-4">
-      <h2 class="text-center ">No Tienes una cuenta orofacil</h2>
-      <span class="text-center ">Ingresa a: <a href="" class="btn">Crear Cuenta</a></span>
+      <h5 class="text-center ">¿ No Tienes una cuenta orofacil ? <span class="text-center ">Ingresa en <a href="" class="btn">Crear Cuenta</a></span>
+      </h5>
   </div>
 </div>

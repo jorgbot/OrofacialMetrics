@@ -1,6 +1,23 @@
 // Place all the styles related to the Pacientes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.oro-paciente__form {
+  padding-top: 34px;
+  padding-left: 34px;
+  background-color: white;
+}
+
+.oro-form__control {
+  position: fixed;
+  right: -15px;
+}
+
+.oro-form__breack {
+  color: #777783;
+  font-size: 15px;
+}
+
+
 .oro-help {
   background-color: #2b8adc;
   display: block;
