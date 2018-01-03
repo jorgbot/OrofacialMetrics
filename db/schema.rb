@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171120044231) do
 
-  create_table "consentimientos", force: :cascade do |t|
+  create_table "consentimientos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nombre"
     t.string   "apellido"
     t.date     "f_nacimiento"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20171120044231) do
     t.integer  "usuario_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["usuario_id"], name: "index_consentimientos_on_usuario_id"
+    t.index ["usuario_id"], name: "index_consentimientos_on_usuario_id", using: :btree
   end
 
-  create_table "pacientes", force: :cascade do |t|
+  create_table "pacientes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nombre"
     t.string   "apellido"
     t.string   "genero"
@@ -69,10 +69,10 @@ ActiveRecord::Schema.define(version: 20171120044231) do
     t.integer  "usuario_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["usuario_id"], name: "index_pacientes_on_usuario_id"
+    t.index ["usuario_id"], name: "index_pacientes_on_usuario_id", using: :btree
   end
 
-  create_table "usuarios", force: :cascade do |t|
+  create_table "usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -91,9 +91,11 @@ ActiveRecord::Schema.define(version: 20171120044231) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.index ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_usuarios_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+    t.index ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "consentimientos", "usuarios"
+  add_foreign_key "pacientes", "usuarios"
 end
