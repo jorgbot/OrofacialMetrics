@@ -1,0 +1,42 @@
+<%= form_for(foto) do |f| %>
+  <% if foto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(foto.errors.count, "error") %> prohibited this foto from being saved:</h2>
+
+      <ul>
+      <% foto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :img_frontal %>
+    <%= f.file_field :img_frontal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :img_lateral %>
+    <%= f.file_field :img_lateral %>
+  </div>
+
+  <div class="field">
+    <%= f.label :f_subida %>
+    <%= f.date_select :f_subida %>
+  </div>
+
+  <div class="field">
+    <%= f.label :foto_titulo %>
+    <%= f.text_field :foto_titulo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :paciente_id %>
+    <%= f.collection_select :paciente_id, Paciente.all, :id, :nombre %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

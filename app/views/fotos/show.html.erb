@@ -1,0 +1,22 @@
+<p>
+  <strong>F subida:</strong>
+  <%= @foto.f_subida %>
+</p>
+
+<p>
+  <strong>Foto titulo:</strong>
+  <%= @foto.foto_titulo %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @foto.usuario.nombres %>
+</p>
+
+<p>
+  <strong>Paciente:</strong>
+  <%= @foto.paciente.nombre %>
+</p>
+
+<%= link_to 'Editar', edit_foto_path(@foto) %> |
+<%= link_to 'Regresar', fotos_path %>

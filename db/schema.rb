@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120044231) do
+ActiveRecord::Schema.define(version: 20180113013120) do
 
-  create_table "consentimientos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "consentimientos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "nombre"
     t.string   "apellido"
     t.date     "f_nacimiento"
@@ -40,7 +40,26 @@ ActiveRecord::Schema.define(version: 20171120044231) do
     t.index ["usuario_id"], name: "index_consentimientos_on_usuario_id", using: :btree
   end
 
-  create_table "pacientes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fotos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.date     "f_subida"
+    t.string   "foto_titulo"
+    t.integer  "usuario_id"
+    t.integer  "paciente_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "img_frontal_file_name"
+    t.string   "img_frontal_content_type"
+    t.integer  "img_frontal_file_size"
+    t.datetime "img_frontal_updated_at"
+    t.string   "img_lateral_file_name"
+    t.string   "img_lateral_content_type"
+    t.integer  "img_lateral_file_size"
+    t.datetime "img_lateral_updated_at"
+    t.index ["paciente_id"], name: "index_fotos_on_paciente_id", using: :btree
+    t.index ["usuario_id"], name: "index_fotos_on_usuario_id", using: :btree
+  end
+
+  create_table "pacientes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "nombre"
     t.string   "apellido"
     t.string   "genero"
@@ -72,7 +91,7 @@ ActiveRecord::Schema.define(version: 20171120044231) do
     t.index ["usuario_id"], name: "index_pacientes_on_usuario_id", using: :btree
   end
 
-  create_table "usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -97,5 +116,7 @@ ActiveRecord::Schema.define(version: 20171120044231) do
   end
 
   add_foreign_key "consentimientos", "usuarios"
+  add_foreign_key "fotos", "pacientes"
+  add_foreign_key "fotos", "usuarios"
   add_foreign_key "pacientes", "usuarios"
 end

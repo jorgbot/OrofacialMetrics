@@ -33,4 +33,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise', '~> 4.2'
 gem 'toastr-rails', '~> 1.0'
-gem "mysql2"
+gem 'mysql2'
+gem 'paperclip', '~> 5.1.0'
