@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_grupo: MyString
+  nombre: MyString
+  valor: MyString
+  usuario: one
+  fotodiagnostico: one
+
+two:
+  tipo_grupo: MyString
+  nombre: MyString
+  valor: MyString
+  usuario: two
+  fotodiagnostico: two

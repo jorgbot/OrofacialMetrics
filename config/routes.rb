@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :pacientes
   resources :fotos
   resources :fotodiagnosticos
+  resources :campodiagnosticos
 
 end

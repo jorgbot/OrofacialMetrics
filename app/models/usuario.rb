@@ -11,5 +11,6 @@ class Usuario < ApplicationRecord
   has_many :pacientes
   has_many :fotos
   has_many :fotodiagnosticos
+  has_many :campodiagnosticos
 
 end

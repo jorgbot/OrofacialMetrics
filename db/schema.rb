@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180115131541) do
+ActiveRecord::Schema.define(version: 20180115134636) do
+
+  create_table "campodiagnosticos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "tipo_grupo"
+    t.string   "nombre"
+    t.string   "valor"
+    t.integer  "usuario_id"
+    t.integer  "fotodiagnostico_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["fotodiagnostico_id"], name: "index_campodiagnosticos_on_fotodiagnostico_id", using: :btree
+    t.index ["usuario_id"], name: "index_campodiagnosticos_on_usuario_id", using: :btree
+  end
 
   create_table "consentimientos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "nombre"
@@ -128,6 +140,8 @@ ActiveRecord::Schema.define(version: 20180115131541) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "campodiagnosticos", "fotodiagnosticos"
+  add_foreign_key "campodiagnosticos", "usuarios"
   add_foreign_key "consentimientos", "usuarios"
   add_foreign_key "fotodiagnosticos", "fotos"
   add_foreign_key "fotodiagnosticos", "pacientes"
