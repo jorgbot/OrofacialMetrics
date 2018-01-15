@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180115134636) do
+ActiveRecord::Schema.define(version: 20180115141300) do
 
   create_table "campodiagnosticos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "tipo_grupo"
@@ -116,6 +116,28 @@ ActiveRecord::Schema.define(version: 20180115134636) do
     t.index ["usuario_id"], name: "index_pacientes_on_usuario_id", using: :btree
   end
 
+  create_table "seguimientos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "n_tecnica"
+    t.string   "n_procedimiento"
+    t.string   "n_frecuencia_aplicacion"
+    t.string   "evolucion_foto"
+    t.string   "resultado"
+    t.integer  "usuario_id"
+    t.integer  "paciente_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "img_frontal_file_name"
+    t.string   "img_frontal_content_type"
+    t.integer  "img_frontal_file_size"
+    t.datetime "img_frontal_updated_at"
+    t.string   "img_lateral_file_name"
+    t.string   "img_lateral_content_type"
+    t.integer  "img_lateral_file_size"
+    t.datetime "img_lateral_updated_at"
+    t.index ["paciente_id"], name: "index_seguimientos_on_paciente_id", using: :btree
+    t.index ["usuario_id"], name: "index_seguimientos_on_usuario_id", using: :btree
+  end
+
   create_table "usuarios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -149,4 +171,6 @@ ActiveRecord::Schema.define(version: 20180115134636) do
   add_foreign_key "fotos", "pacientes"
   add_foreign_key "fotos", "usuarios"
   add_foreign_key "pacientes", "usuarios"
+  add_foreign_key "seguimientos", "pacientes"
+  add_foreign_key "seguimientos", "usuarios"
 end
