@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :consentimientos
   resources :pacientes
   resources :fotos
+  resources :fotodiagnosticos
 
 end

@@ -10,5 +10,6 @@ class Usuario < ApplicationRecord
   has_many :consentimientos
   has_many :pacientes
   has_many :fotos
+  has_many :fotodiagnosticos
 
 end

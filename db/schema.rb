@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113013120) do
+ActiveRecord::Schema.define(version: 20180115131541) do
 
   create_table "consentimientos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "nombre"
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(version: 20180113013120) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["usuario_id"], name: "index_consentimientos_on_usuario_id", using: :btree
+  end
+
+  create_table "fotodiagnosticos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.date     "f_evaluacion"
+    t.string   "id_evaluacion"
+    t.integer  "usuario_id"
+    t.integer  "foto_id"
+    t.integer  "paciente_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["foto_id"], name: "index_fotodiagnosticos_on_foto_id", using: :btree
+    t.index ["paciente_id"], name: "index_fotodiagnosticos_on_paciente_id", using: :btree
+    t.index ["usuario_id"], name: "index_fotodiagnosticos_on_usuario_id", using: :btree
   end
 
   create_table "fotos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -116,6 +129,9 @@ ActiveRecord::Schema.define(version: 20180113013120) do
   end
 
   add_foreign_key "consentimientos", "usuarios"
+  add_foreign_key "fotodiagnosticos", "fotos"
+  add_foreign_key "fotodiagnosticos", "pacientes"
+  add_foreign_key "fotodiagnosticos", "usuarios"
   add_foreign_key "fotos", "pacientes"
   add_foreign_key "fotos", "usuarios"
   add_foreign_key "pacientes", "usuarios"
