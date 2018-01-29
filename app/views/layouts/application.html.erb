@@ -13,7 +13,7 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/message' %>
 
-    <div class="oro-main">
+    <div class="oro-main"   <% if (!usuario_signed_in?) %> style="margin-top: 50px" <% end %> >
       <%= yield %>
     </div>
 

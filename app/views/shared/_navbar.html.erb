@@ -42,6 +42,7 @@
       </ul>
     </div>
   </div>
+  <% if (usuario_signed_in?) %>
   <div class="container-fluid oro-subnavbar">
     <ul class="nav navbar-nav oro-subnavbar__nav">
       <li class="oro-subnavbar__link oro-subnavbar__link--active"><a href="/pacientes">Pacientes</a></li>
@@ -49,4 +50,5 @@
       <li class="oro-subnavbar__link"><a href="/shop">Shop</a></li>
     </ul>
   </div>
+  <% end %>
 </nav>
