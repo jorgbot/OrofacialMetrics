@@ -9,7 +9,9 @@
           </p>
         </div>
       <% end %>
-      <a href="/pacientes/new" class="btn btn-default">Nuevo Paciente</a>
+      <form action="/pacientes/new" >
+        <input type="submit" value="Nuevo Paciente" class="btn btn-default">
+      </form>
     </div>
   </div>
 <%if @pacientes.count > 0 %>
@@ -115,5 +117,9 @@
     </div>
 <% end %>
 
+  <script type="text/javascript" charset="utf-8">
+      $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active')
+      $('#nav-pacientes').addClass('oro-subnavbar__link--active')
+  </script>
 <br>
 </div>

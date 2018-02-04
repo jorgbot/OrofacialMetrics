@@ -1,22 +1,44 @@
-<p>
-  <strong>F subida:</strong>
-  <%= @foto.f_subida %>
-</p>
+<div class="row">
+  <div class="col-md-9">
+    <div class="oro-metrics__marco">
+      <div class="oro-metrics__glass">
 
-<p>
-  <strong>Foto titulo:</strong>
-  <%= @foto.foto_titulo %>
-</p>
+      </div>
+      <div class="oro-metrics__media">
+        <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_lateral %>" alt="">
+      </div>
+      <div class="oro-metrics__media">
+        <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_frontal %>" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="oro-metrics__info">
+      <p>
+        <strong>F subida:</strong>
+        <%= @foto.f_subida %>
+      </p>
+      <p>
+        <strong>Foto titulo:</strong>
+        <%= @foto.foto_titulo %>
+      </p>
+      <p>
+        <strong>Usuario:</strong>
+        <%= @foto.usuario.nombres %>
+      </p>
+      <p>
+        <strong>Paciente:</strong>
+        <%= @foto.paciente.nombre %>
+      </p>
 
-<p>
-  <strong>Usuario:</strong>
-  <%= @foto.usuario.nombres %>
-</p>
+      <%= link_to 'Editar', edit_foto_path(@foto) %> |
+      <%= link_to 'Regresar', fotos_path %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active')
+    $('#nav-matrics').addClass('oro-subnavbar__link--active')
+</script>
 
-<p>
-  <strong>Paciente:</strong>
-  <%= @foto.paciente.nombre %>
-</p>
 
-<%= link_to 'Editar', edit_foto_path(@foto) %> |
-<%= link_to 'Regresar', fotos_path %>

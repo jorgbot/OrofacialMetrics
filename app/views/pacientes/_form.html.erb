@@ -34,13 +34,14 @@
             <div class="col-md-6">
               <div class="form-group">
                 <%= f.label :genero, class: 'form-label' %>
-                <%= f.text_field :genero, class: 'form-control' %>
+                <%= select_tag(:genero, options_for_select([['Masculino', 'masculino'], ['Femenino', 'femenino']],'femenino'), class: 'form-control')%>
+
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <%= f.label :tipo_documento, class: 'form-label' %>
-                <%= f.text_field :tipo_documento, class: 'form-control' %>
+                <%= select_tag(:tipo_documento, options_for_select([['Cedula Ciudadania', 'cedula ciudadania'], ['Tarjeta Identidad', 'tarjeta identidad'], ['Cedula Extrangeria', 'cedula extrangeria'], ['Partidad Nacimieno','partidad nacimiento']]), class: 'form-control')%>
               </div>
             </div>
           </div>
@@ -53,7 +54,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <%= f.label :f_nacimiento, class: 'form-label' %>
+                <%= f.label :'fecha nacimiento', class: 'form-label' %>
                 <%= f.date_field :f_nacimiento, class: 'form-control' %>
               </div>
             </div>
@@ -78,7 +79,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :n_departamento, class: 'form-label' %>
+                <%= f.label :'Departamento', class: 'form-label' %>
                 <%= f.text_field :n_departamento , class: 'form-control' %>
               </div>
             </div>
@@ -86,7 +87,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :n_ciudad, class: 'form-label' %>
+                <%= f.label :'Ciudad', class: 'form-label' %>
                 <%= f.text_field :n_ciudad , class: 'form-control' %>
               </div>
             </div>
@@ -111,16 +112,22 @@
               </div>
             </div>
           </div>
+
+        </div>
+        <div id="contacto" class="oro-form__group">
+          <div class="row">
+            <h4 class="oro-form__breack">Datos Contacto</h4>
+          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :pais_residencia, class: 'form-label' %>
+                <%= f.label :'Pais Recidencia', class: 'form-label' %>
                 <%= f.text_field :pais_residencia , class: 'form-control' %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :r_departamento, class: 'form-label' %>
+                <%= f.label :'Departamento Recidencia', class: 'form-label' %>
                 <%= f.text_field :r_departamento , class: 'form-control' %>
               </div>
             </div>
@@ -128,21 +135,16 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :r_ciudad, class: 'form-label' %>
+                <%= f.label :'Ciudad Recidencia', class: 'form-label' %>
                 <%= f.text_field :r_ciudad , class: 'form-control' %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :r_direccion, class: 'form-label' %>
+                <%= f.label :'Direccion Recidencia', class: 'form-label' %>
                 <%= f.text_field :r_direccion , class: 'form-control' %>
               </div>
             </div>
-          </div>
-        </div>
-        <div id="contacto" class="oro-form__group">
-          <div class="row">
-            <h4 class="oro-form__breack">Datos Contacto</h4>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -161,13 +163,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :e_departamento, class: 'form-label' %>
+                <%= f.label :'Departamento Estancia', class: 'form-label' %>
                 <%= f.text_field :e_departamento , class: 'form-control' %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :e_ciudad, class: 'form-label' %>
+                <%= f.label :'Ciudad de Estancia', class: 'form-label' %>
                 <%= f.text_field :e_ciudad , class: 'form-control' %>
               </div>
             </div>

@@ -1,3 +1,33 @@
 // Place all the styles related to the Fotos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.oro-metrics
+{
+  padding: 15px;
+}
+
+.oro-metrics__foto-min {
+  width: 80px;
+  padding: 5px;
+}
+
+.oro-metrics__marco {
+  position: relative;
+}
+
+.oro-metrics__glass
+{
+
+}
+.oro-metrics__media {
+  width: 100%;
+  overflow: hidden;
+}
+
+.oro-metrics__info
+{
+  padding: 15px;
+  background-color: white;
+  box-shadow: 1px 0 5px -3px, 0px 0px 1px -0.5px;
+}

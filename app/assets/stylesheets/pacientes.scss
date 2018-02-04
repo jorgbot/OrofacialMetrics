@@ -27,7 +27,21 @@
   color: #777783;
   font-size: 15px;
 }
+.oro-main__actions {
+  padding: 15px;
+  padding-left: 0px;
+}
 
+.oro-paciente__image {
+  margin: 0 auto;
+  display: block;
+  width: 100px;
+  line-height: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #fbfbfb;
+  margin-bottom: 15px;
+}
 
 .oro-help {
   background-color: #2b8adc;
@@ -59,6 +73,28 @@
     width: 100px;
   }
 }
+
+.oro-paciente__card {
+  margin-top: 40px;
+  background-color: white;
+  box-shadow: 0px 10px 10px -8px #bbb;
+  display: inline-block;
+  width: 250px;
+  border-radius: 5px;
+  min-height: 300px;
+  padding-bottom: 55px;
+  position: relative;
+  border: 1px solid #e0e0e0;
+
+  &--fluid {
+    width: 100%;
+    display: block;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 
 @keyframes progress-nuevo-paciente {
   0%
