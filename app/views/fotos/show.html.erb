@@ -5,6 +5,12 @@
 
       </div>
       <div class="oro-metrics__media">
+        <canvas class="oro-metrics__canvas" id="tutorial" width="150" height="150">
+          <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_lateral %>" alt="">
+        </canvas>
+      </div>
+
+      <div class="oro-metrics__media">
         <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_lateral %>" alt="">
       </div>
       <div class="oro-metrics__media">
@@ -39,6 +45,30 @@
 <script type="text/javascript" charset="utf-8">
     $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active')
     $('#nav-matrics').addClass('oro-subnavbar__link--active')
+    var ctx
+
+    $(document).ready(function(){
+        draw()
+    });
+
+    function draw(){
+        var canvas = document.getElementById('tutorial')
+        if (canvas.getContext){
+            ctx = canvas.getContext('2d')
+            drawFigureOne(ctx)
+        } else {
+            // canvas-unsupported code here
+        };
+    }
+
+    function  drawFigureOne(ctx) {
+        ctx.fillStyle = "rgb(200,0,0)";
+        ctx.fillRect (10, 10, 55, 50);
+
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.fillRect (30, 30, 55, 50);
+    }
+
 </script>
 
 
