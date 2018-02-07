@@ -34,9 +34,9 @@
           </div>
           <div class="oro-paciente__options">
             <div class="btn-group">
-              <div class="btn"><%= link_to 'Ver', paciente %></div>
-              <div class="btn"><%= link_to 'Editar', edit_paciente_path(paciente) %></div>
-              <div class="btn"><%= link_to 'Eliminar', paciente, method: :delete, data: { confirm: '¿Estás seguro?' } %></div>
+              <%= link_to 'Ver', paciente,class: 'btn'  %>
+              <%= link_to 'Editar', edit_paciente_path(paciente), class: 'btn' %>
+              <%= link_to 'Eliminar', paciente, method: :delete, data: { confirm: '¿Estás seguro?' },class: 'btn'  %>
             </div>
           </div>
         </div>

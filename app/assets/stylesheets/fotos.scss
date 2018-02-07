@@ -20,9 +20,24 @@
 {
 
 }
-.oro-metrics__media {
+
+%oro-media
+{
   width: 100%;
   overflow: hidden;
+}
+
+.oro-metrics__media {
+  @extend %oro-media;
+}
+
+.oro-metrics__media-upload {
+  @extend %oro-media;
+  border-radius: 15px;
+  border: 1px dashed #2b8adc;
+  background-color: white;
+  padding: 15px;
+  max-height: calc( 40vh - 100px);
 }
 
 .oro-metrics__info
@@ -30,4 +45,19 @@
   padding: 15px;
   background-color: white;
   box-shadow: 1px 0 5px -3px, 0px 0px 1px -0.5px;
+
+  table.table.table-responsive.table-hover {
+    margin-top: 35px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px -1px #bbb;
+  }
+
+  table.table.table-responsive.table-hover thead tr th {
+    padding: 15px;
+  }
+
 }
+
+
+

@@ -1,5 +1,9 @@
-<h1>Nuevo Foto</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="text-center">Nuevo Foto</h3>
+  </div>
+</div>
+<div class="row">
+  <%= render 'form', foto: @foto %>
+</div>
 
-<%= render 'form', foto: @foto %>
-
-<%= link_to 'Regresar', fotos_path %>
