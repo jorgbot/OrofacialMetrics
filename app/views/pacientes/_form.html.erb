@@ -34,14 +34,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <%= f.label :genero, class: 'form-label' %>
-                <%= select_tag(:genero, options_for_select([['Masculino', 'masculino'], ['Femenino', 'femenino']],'femenino'), class: 'form-control')%>
-
+                <%= f.select :genero, [["Masculino", "masculino"], ["Femenino", "femenino"]],{}, 'class': "form-control" %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <%= f.label :tipo_documento, class: 'form-label' %>
-                <%= select_tag(:tipo_documento, options_for_select([['Cedula Ciudadania', 'cedula ciudadania'], ['Tarjeta Identidad', 'tarjeta identidad'], ['Cedula Extrangeria', 'cedula extrangeria'], ['Partidad Nacimieno','partidad nacimiento']]), class: 'form-control')%>
+                <%= f.select :tipo_documento,[['Cedula Ciudadania', 'cedula ciudadania'], ['Tarjeta Identidad', 'tarjeta identidad'], ['Cedula Extrangeria', 'cedula extrangeria'], ['Partidad Nacimieno','partidad nacimiento'],['Pasaporte','pasaporte']], {},{ class: 'form-control'}  %>
               </div>
             </div>
           </div>
@@ -210,7 +209,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <div class="actions">
-                  <input type="submit" class="btn btn-primary btn-block" value="Crear Paciente">
+                  <input type="submit" class="btn btn-primary btn-block" value="Finalizar">
                 </div>
               </div>
             </div>
