@@ -57,6 +57,7 @@
         this.src = src;
         this.img = null;
         this.beginLoad = true;
+        this.eventsLoad = false;
         this.draw = function(){drawCanvas(this)};
         this.trichion = null;
     }
@@ -67,7 +68,7 @@
     });
 
     function drawCanvas(obj){
-        console.log(obj.id);
+        console.log("[drawCanvas] > "+ obj.id);
         obj.canvas = document.getElementById(obj.id);
         if (obj.canvas.getContext){
             obj.ctx = obj.canvas.getContext('2d');
@@ -79,10 +80,13 @@
         }
     }
 
-    function initEventsCanvas(obj){
-        obj.canvas.addEventListener("click",function(e){
-            drawPointActive(obj,e);
-        });
+    function initEventsCanvas(obj) {
+        if (obj.eventsLoad === false){
+            obj.canvas.addEventListener("click", function (e) {
+                drawPointActive(obj, e);
+            });
+            obj.eventsLoad = true;
+        }
     }
 
     function  insertImage(obj) {
@@ -139,7 +143,7 @@
         let position = getMousePos(obj,evt);
         let widthPoint = 12;
         let heightPoint = 12;
-        obj.ctx.fillRect(position.x - (widthPoint/2),position.y - (heightPoint/2) ,widthPoint,heightPoint);
+        //obj.ctx.fillRect(position.x - (widthPoint/2),position.y - (heightPoint/2) ,widthPoint,heightPoint);
 
         obj.trichion = {
             'position': position,
@@ -149,12 +153,17 @@
     }
 
     function drawPoints(obj){
-        console.log('reset point');
-        //obj.draw();
-        drawPoint(obj,obj.trichion);
+        let promise = new Promise((resolve, reject) => {
+            obj.draw();
+            setTimeout(()=>resolve(obj),200)
+        });
+        promise.then((obj) => {
+            drawPoint(obj,obj.trichion)
+        });
     }
 
     function drawPoint(obj,point){
+        console.log('[drawPoint]');
         obj.ctx.fillRect(point.position.x - (point.widthPoint/2),point.position.y - (point.heightPoint/2) ,point.widthPoint,point.heightPoint);
     }
 
