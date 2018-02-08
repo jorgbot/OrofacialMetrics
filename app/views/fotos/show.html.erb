@@ -40,27 +40,26 @@
     </div>
   </div>
 </div>
+<scirpt src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.0.0/fabric.min.js"></scirpt>
 <script type="text/javascript" charset="utf-8">
-    $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active')
-    $('#nav-matrics').addClass('oro-subnavbar__link--active')
-    var ctx;
+    $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active');
+    $('#nav-matrics').addClass('oro-subnavbar__link--active');
+    frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
+    lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
 
     function Canvas(id, src, parent){
         this.id = id;
         this.parent = parent;
         this.canvas = null;
+        this.width = 0;
+        this.height = 0;
         this.ctx = null;
         this.src = src;
         this.img = null;
         this.beginLoad = true;
         this.draw = function(){drawCanvas(this)};
-        this.points = [];
+        this.trichion = null;
     }
-
-    var frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
-    var lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
-    var firsLoad = true;
-    var pointActive = "";
 
     $(document).ready(function(){
         frontal.draw();
@@ -74,9 +73,10 @@
             obj.ctx = obj.canvas.getContext('2d');
             initEventsCanvas(obj);
             insertImage(obj);
+            obj.ctx.save();
         } else {
             // canvas-unsupported code here
-        };
+        }
     }
 
     function initEventsCanvas(obj){
@@ -93,27 +93,41 @@
                 resizeCanvasToImage(obj,obj.img);
                 obj.draw();
             }
-            obj.ctx.drawImage(obj.img, 0, 0, obj.img.width, obj.img.height);
+            obj.ctx.drawImage(obj.img, 0, 0, obj.canvas.width, obj.canvas.height);
         };
         obj.img.src = obj.src;
     }
 
     function resizeCanvasToImage(obj,img){
-        firsLoad  = false;
+        obj.beginLoad = false;
         obj.canvas.width = img.width;
         obj.canvas.height = img.height;
         // para validar maximo ancho
         let parent = '#'+obj.parent;
         console.log(parent);
         let maxWidth = $(parent).width();
-        if( img.width > maxWidth){
-            obj.canvas.width = img.maxWidth;
-            obj.canvas.height = img.height - (img.width - img.maxWidth);
+        if( img.width > maxWidth) {
+            resizeCanvasTo(maxWidth,obj);
+        }
+        //si el canvas es mas grande que el body
+        if( $('body').width() <  obj.canvas.width){
+            maxWidth = $('body').width() + (img.width/6);
+            if( img.width > maxWidth){
+                resizeCanvasTo(maxWidth,obj);
+            }
         }
     }
 
+    function resizeCanvasTo(widthResize,obj){
+        let porcent = (widthResize / obj.img.width) * 100;
+        let reduceWidth =  (obj.img.width  / 100) * porcent;
+        let reduceHeight =  (obj.img.height  / 100) * porcent;
+        obj.canvas.width = obj.img.width - reduceWidth;
+        obj.canvas.height = obj.img.height - reduceHeight;
+    }
+
     function getMousePos(obj, evt) {
-        var rect = obj.canvas.getBoundingClientRect();
+        let rect = obj.canvas.getBoundingClientRect();
         return {
             x: evt.clientX - rect.left,
             y: evt.clientY - rect.top
@@ -121,15 +135,27 @@
     }
 
     function drawPointActive(obj,evt){
+
         let position = getMousePos(obj,evt);
         let widthPoint = 12;
         let heightPoint = 12;
         obj.ctx.fillRect(position.x - (widthPoint/2),position.y - (heightPoint/2) ,widthPoint,heightPoint);
-        obj.points.push({
+
+        obj.trichion = {
             'position': position,
             'widthPoint' : widthPoint,
-            'heightPoint': heightPoint
-        })
+            'heightPoint': heightPoint };
+        drawPoints(obj);
+    }
+
+    function drawPoints(obj){
+        console.log('reset point');
+        //obj.draw();
+        drawPoint(obj,obj.trichion);
+    }
+
+    function drawPoint(obj,point){
+        obj.ctx.fillRect(point.position.x - (point.widthPoint/2),point.position.y - (point.heightPoint/2) ,point.widthPoint,point.heightPoint);
     }
 
 </script>
