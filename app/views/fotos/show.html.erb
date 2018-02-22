@@ -4,16 +4,72 @@
       <div class="oro-metrics__glass">
 
       </div>
-      <div class="oro-metrics__media" id="media_frontal">
-        <canvas class="oro-metrics__canvas center-block" id="canvas-frontal" width="150" height="150">
-          <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_frontal %>" alt="">
-        </canvas>
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">FRONTAL</a></li>
+        <li><a data-toggle="tab" href="#menu1">LATERAL</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <div class="oro-metrics__media" id="media_frontal">
+            <canvas class="oro-metrics__canvas center-block" id="canvas-frontal" width="150" height="150">
+              <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_frontal %>" alt="">
+            </canvas>
+            <div class="oro-metrics__nav">
+
+            </div>
+          </div>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+          <div class="oro-metrics__media" id="media_lateral">
+            <canvas class="oro-metrics__canvas center-block" id="canvas-lateral" width="150" height="150">
+              <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_lateral %>" alt="">
+            </canvas>
+          </div>
+        </div>
       </div>
-      <div class="oro-metrics__media" id="media_lateral">
-        <canvas class="oro-metrics__canvas center-block" id="canvas-lateral" width="150" height="150">
-          <img class="oro-matrics__foto img-responsive center-block" src="<%= @foto.img_lateral %>" alt="">
-        </canvas>
-      </div>
+    </div>
+    <div class="oro-metrics__nav col-md-9">
+      <ul class="oro-metrics__points row">
+        <li  tabindex="1" class="oro-metrics__point" data-toggle="tooltip" title="Trichion" data-point="trichion" onclick="lisentPoint('trichion');" onkeypress="lisentPointEnter(event,'trichion')">
+          <img src="<%= asset_path 'trichion.png' %>" alt="trichion" class="img-responsive center-block">
+        </li>
+        <li tabindex="2" class="oro-metrics__point" data-toggle="tooltip" title="Glabela" data-point="glabela" onclick="lisentPoint('glabela');" onkeypress="lisentPointEnter(event,'glabela')">
+          <img  alt="glabela" src="<%= asset_path 'glabela.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="3" class="oro-metrics__point" data-toggle="tooltip" title="Subnasal" data-point="subnasal" onclick="lisentPoint('subnasal');" onkeypress="lisentPointEnter(event,'subnasal')">
+          <img alt="subnasal" src="<%= asset_path 'subnasal.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="4" class="oro-metrics__point" data-toggle="tooltip" title="Pronasal" data-point="pronasal" onclick="lisentPoint('pronasal');" onkeypress="lisentPointEnter(event,'pronasal')">
+          <img alt="pronasal" src="<%= asset_path 'pronasal.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="5" class="oro-metrics__point" data-toggle="tooltip" title="Labiale Superior" data-point="labialesuperior" onclick="lisentPoint('labialesuperior');" onkeypress="lisentPointEnter(event,'labialesuperior')">
+          <img alt="labialesuperior" src="<%= asset_path 'labiale_superior.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="6" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Derecho" data-point="canto__externo-derecho" onclick="lisentPoint('canto__externo-derecho');" onkeypress="lisentPointEnter(event,'canto__externo-derecho')">
+          <img alt="canto__externo-derecho" src="<%= asset_path 'canto__externo-derecho.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="7" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Izquierdo" data-point="canto__externo-izquierdo" onclick="lisentPoint('canto__externo-izquierdo');" onkeypress="lisentPointEnter(event,'canto__externo-izquierdo')">
+          <img alt="canto__externo-izquierdo" src="<%= asset_path 'canto__externo-izquierdo.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="8" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Derecho" data-point="canto__interno-derecho" onclick="lisentPoint('canto__interno-derecho');" onkeypress="lisentPointEnter(event,'canto__interno-derecho')">
+          <img alt="canto__interno-derecho" src="<%= asset_path 'canto__interno-derecho.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="9" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Izquierdo"  data-point="canto__interno-izquierdo" onclick="lisentPoint('canto__interno-izquierdo');" onkeypress="lisentPointEnter(event,'canto__interno-izquierdo')">
+          <img alt="canto__interno-izquierdo" src="<%= asset_path 'canto__interno-izquierdo.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="10" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Derecho" data-point="cigomatica__derecho" onclick="lisentPoint('cigomatica__derecho');" onkeypress="lisentPointEnter(event,'cigomatica__derecho')">
+          <img alt="cigomatica__derecho" src="<%= asset_path 'cigomatica_derecha.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="11" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Izquierdo" data-point="cigomatica__izquierdo" onclick="lisentPoint('cigomatica__izquierdo');" onkeypress="lisentPointEnter(event,'cigomatica__izquierdo')">
+          <img alt="cigomatica__izquierdo" src="<%= asset_path 'cigomatica_izquierda.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="12" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Izquierdo" data-point="comisuralabial__izquierdo" onclick="lisentPoint('comisuralabial__izquierdo');" onkeypress="lisentPointEnter(event,'comisuralabial__izquierdo')">
+          <img alt="comisuralabial__izquierdo" src="<%= asset_path 'comisura_labial-izquierdo.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="13" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Derecho"  data-point="comisuralabial__derecho" onclick="lisentPoint('comisuralabial__derecho');" onkeypress="lisentPointEnter(event,'comisuralabial__derecho')">
+          <img alt="comisuralabial__derecho" src="<%= asset_path 'comisura_labial-derecho.png' %>"  class="img-responsive center-block">
+        </li>
+      </ul>
     </div>
   </div>
   <div class="col-md-3">
@@ -38,12 +94,42 @@
       <%= link_to 'Editar', edit_foto_path(@foto) %> |
       <%= link_to 'Regresar', fotos_path %>
     </div>
+    <div class="oro-metrics__info">
+      <div class="oro-metrics__info-point">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" >
+              <label class="form-label" for="point-name">Nombre Punto</label>
+              <input class="form-control" id="oro-metrics__nombre-punto" type="text" name="oro-metrics__nombre-punto" disabled>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group" >
+              <label class="form-label" for="eje-x">Eje X</label>
+              <input class="form-control" type="number" id="oro-metrics__eje-x" min="0.0" name="oro-metrics__eje-x">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label" for="eje-y">Eje Y</label>
+              <input class="form-control" id="oro-metrics__eje-y" type="number" min="0.0" name="oro-metrics__eje-y">
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
   </div>
 </div>
 <scirpt src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.0.0/fabric.min.js"></scirpt>
 <script type="text/javascript" charset="utf-8">
     $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active');
     $('#nav-matrics').addClass('oro-subnavbar__link--active');
+    widthParent =  360;
+    pointSelect =  'trichion';
     frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
     lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
 
@@ -60,13 +146,58 @@
         this.eventsLoad = false;
         this.draw = function(){drawCanvas(this)};
         this.trichion = null;
+        this.genatio = null;
+        this.glabela = null;
+        this.subnasal = null;
+        this.pronasal = null;
+        this.labialesuperior = null;
+        this.canto = {
+            externo : {
+                derecho : null,
+                izquierdo : null
+            },
+            interno : {
+                derecho : null,
+                izquierdo : null
+            }
+        };
+        this.cigomatica = {
+            derecho: null,
+            izquierdo: null
+        };
+        this.comisuralabial = {
+            derecha: null,
+            izquierdo : null
+        }
     }
 
     $(document).ready(function(){
+        widthParent =  $('body').width();
         frontal.draw();
         lateral.draw();
+        lisentPoint(pointSelect);
     });
 
+    function setCoordenadasPoint(x,y){
+        console.log('setCoordenadasPoint x:'+x+' y:'+y+'\n');
+        $($('#oro-metrics__eje-x')[0]).val(x);
+        $($('#oro-metrics__eje-y')[0]).val(y);
+    }
+
+    function lisentPoint(point){
+        pointSelect = point;
+        $('.oro-metrics__point').removeClass('oro-metrics__point--select');
+        $($('.oro-metrics__point[data-point='+point+']')[0]).addClass('oro-metrics__point--select');
+        $($('#oro-metrics__nombre-punto')[0]).val(point);
+        setCoordenadasPoint(0,0);
+    }
+
+
+    function lisentPointEnter(e,point){
+        if(e.keyCode === 13){
+            lisentPoint(point);
+        }
+    }
     function drawCanvas(obj){
         console.log("[drawCanvas] > "+ obj.id);
         obj.canvas = document.getElementById(obj.id);
@@ -97,7 +228,7 @@
                 resizeCanvasToImage(obj,obj.img);
                 obj.draw();
             }
-            obj.ctx.drawImage(obj.img, 0, 0, obj.canvas.width, obj.canvas.height);
+            obj.ctx.drawImage(obj.img, 0, 0, obj.canvas.width , obj.canvas.height);
         };
         obj.img.src = obj.src;
     }
@@ -108,13 +239,21 @@
         obj.canvas.height = img.height;
         // para validar maximo ancho
         let parent = '#'+obj.parent;
-        console.log(parent);
+
         let maxWidth = $(parent).width();
+        console.log(maxWidth);
+        console.log(img.width > maxWidth);
         if( img.width > maxWidth) {
+            if(maxWidth < 200){
+                maxWidth = widthParent;
+            }
             resizeCanvasTo(maxWidth,obj);
         }
+        widthParent = maxWidth;
         //si el canvas es mas grande que el body
-        if( $('body').width() <  obj.canvas.width){
+        let bodyWidth = $('body').width();
+
+        if( bodyWidth < 1000  &&  bodyWidth <  obj.canvas.width){
             maxWidth = $('body').width() + (img.width/6);
             if( img.width > maxWidth){
                 resizeCanvasTo(maxWidth,obj);
@@ -123,11 +262,14 @@
     }
 
     function resizeCanvasTo(widthResize,obj){
+        console.log( obj.parent + "> widthResize : "+ widthResize + "> obj.img.width :" + obj.img.width);
         let porcent = (widthResize / obj.img.width) * 100;
         let reduceWidth =  (obj.img.width  / 100) * porcent;
         let reduceHeight =  (obj.img.height  / 100) * porcent;
-        obj.canvas.width = obj.img.width - reduceWidth;
-        obj.canvas.height = obj.img.height - reduceHeight;
+        obj.canvas.width = widthResize;
+        obj.canvas.height =  reduceHeight;
+        console.log(obj.parent + ' > resizeCanvasTo > ' + 'obj.canvas.width : '+obj.canvas.width + ', obj.canvas.height: '+ obj.canvas.height );
+
     }
 
     function getMousePos(obj, evt) {
@@ -139,32 +281,154 @@
     }
 
     function drawPointActive(obj,evt){
-
         let position = getMousePos(obj,evt);
         let widthPoint = 12;
         let heightPoint = 12;
-        //obj.ctx.fillRect(position.x - (widthPoint/2),position.y - (heightPoint/2) ,widthPoint,heightPoint);
-
-        obj.trichion = {
-            'position': position,
-            'widthPoint' : widthPoint,
-            'heightPoint': heightPoint };
-        drawPoints(obj);
+        drawPoints(obj,position,widthPoint,heightPoint);
     }
 
-    function drawPoints(obj){
+    function drawPoints(obj,position,widthPoint,heightPoint){
         let promise = new Promise((resolve, reject) => {
             obj.draw();
             setTimeout(()=>resolve(obj),200)
         });
         promise.then((obj) => {
-            drawPoint(obj,obj.trichion)
+            if(pointSelect === 'trichion'){
+                obj.trichion = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.trichion);
+            }else if(obj.trichion != null){
+                drawPoint(obj,obj.trichion);
+            }
+            if(pointSelect === 'glabela'){
+                obj.glabela = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.glabela)
+            }else if(obj.glabela != null){
+                drawPoint(obj,obj.glabela)
+            }
+            if(pointSelect === 'subnasal' ){
+                obj.subnasal = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.subnasal)
+            }else if(obj.subnasal != null){
+                drawPoint(obj,obj.subnasal)
+            }
+            if(pointSelect === 'pronasal'){
+                obj.pronasal = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.pronasal)
+            }else if(obj.pronasal != null){
+                drawPoint(obj,obj.pronasal)
+            }
+            if(pointSelect === 'labialesuperior'){
+                obj.labialesuperior = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.labialesuperior)
+            }else if(obj.labialesuperior != null){
+                drawPoint(obj,obj.labialesuperior)
+            }
+            if(pointSelect === 'canto__externo-derecho'){
+                obj.canto.externo.derecho = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.canto.externo.derecho);
+            } else if(obj.canto.externo.derecho != null){
+                drawPoint(obj,obj.canto.externo.derecho);
+            }
+            if(pointSelect === 'canto__externo-izquierdo' ){
+                obj.canto.externo.izquierdo = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.canto.externo.izquierdo);
+            }else if(obj.canto.externo.izquierdo != null){
+                drawPoint(obj,obj.canto.externo.izquierdo);
+            }
+            if(pointSelect === 'canto__interno-derecho'){
+                obj.canto.interno.derecho = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.canto.interno.derecho );
+            }else if(obj.canto.interno.derecho != null){
+                drawPoint(obj,obj.canto.interno.derecho );
+            }
+            if(pointSelect === 'canto__interno-izquierdo'){
+                obj.canto.interno.izquierdo = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.canto.interno.izquierdo );
+            }else if( obj.canto.interno.izquierdo != null){
+                drawPoint(obj,obj.canto.interno.izquierdo );
+            }
+            if(pointSelect === 'cigomatica__derecho'){
+                obj.cigomatica.derecho = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.cigomatica.derecho )
+            }else if(obj.cigomatica.derecho != null){
+                drawPoint(obj,obj.cigomatica.derecho );
+            }
+            if(pointSelect === 'cigomatica__izquierdo' ){
+                obj.cigomatica.izquierdo = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.cigomatica.izquierdo )
+            }else if(obj.cigomatica.izquierdo != null){
+                drawPoint(obj,obj.cigomatica.izquierdo )
+            }
+            if(pointSelect === 'comisuralabial__izquierdo'){
+                obj.comisuralabial.izquierdo = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.comisuralabial.izquierdo )
+            }else if(obj.comisuralabial.izquierdo != null){
+                drawPoint(obj,obj.comisuralabial.izquierdo )
+            }
+            if(pointSelect === 'comisuralabial__derecho' ){
+                obj.comisuralabial.derecha = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.comisuralabial.derecha )
+            }else if(obj.comisuralabial.derecha != null){
+                drawPoint(obj,obj.comisuralabial.derecha )
+            }
         });
     }
 
     function drawPoint(obj,point){
         console.log('[drawPoint]');
-        obj.ctx.fillRect(point.position.x - (point.widthPoint/2),point.position.y - (point.heightPoint/2) ,point.widthPoint,point.heightPoint);
+        console.log(point);
+        setCoordenadasPoint(point.position.x,point.position.y);
+        obj.ctx.fillRect(point.position.x - (point.widthPoint/4),point.position.y - (point.heightPoint/4) ,point.widthPoint/2,point.heightPoint/2);
+
+        obj.ctx.beginPath();
+        let x = point.position.x; // x coordinate
+        let y = point.position.y; // y coordinate
+        let radius = point.widthPoint; // Arc radius
+        let startAngle = 0; // Starting point on circle
+        let endAngle = Math.PI * 2; // End point on circle
+        let anticlockwise = true; // clockwise or anticlockwise
+
+        obj.ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+        obj.ctx.stroke();
     }
 
 </script>
