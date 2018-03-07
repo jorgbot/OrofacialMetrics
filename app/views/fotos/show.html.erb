@@ -30,6 +30,10 @@
     </div>
     <div class="oro-metrics__nav col-md-9">
       <ul class="oro-metrics__points row">
+        <li  tabindex="0" class="oro-metrics__point" data-toggle="tooltip" title="Genatio" data-point="genatio" onclick="lisentPoint('genatio');" onkeypress="lisentPointEnter(event,'genatio')">
+          <span class="oro-metrics__point-info"></span>
+          <img src="<%= asset_path 'genatio.png' %>" alt="genatio" class="img-responsive center-block">
+        </li>
         <li  tabindex="1" class="oro-metrics__point" data-toggle="tooltip" title="Trichion" data-point="trichion" onclick="lisentPoint('trichion');" onkeypress="lisentPointEnter(event,'trichion')">
           <span class="oro-metrics__point-info"></span>
           <img src="<%= asset_path 'trichion.png' %>" alt="trichion" class="img-responsive center-block">
@@ -50,42 +54,74 @@
           <span class="oro-metrics__point-info"></span>
           <img alt="labialesuperior" src="<%= asset_path 'labiale_superior.png' %>"  class="img-responsive center-block">
         </li>
-        <li tabindex="6" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Izquierdo" data-point="canto__externo-izquierdo" onclick="lisentPoint('canto__externo-izquierdo');" onkeypress="lisentPointEnter(event,'canto__externo-izquierdo')">
-          <span class="oro-metrics__point-info"></span>
-          <img alt="canto__externo-izquierdo" src="<%= asset_path 'canto__externo-derecho.png' %>"  class="img-responsive center-block">
-        </li>
-        <li tabindex="7" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Derecho" data-point="canto__externo-derecho" onclick="lisentPoint('canto__externo-derecho');" onkeypress="lisentPointEnter(event,'canto__externo-derecho')">
-          <span class="oro-metrics__point-info"></span>
-          <img alt="canto__externo-derecho" src="<%= asset_path 'canto__externo-izquierdo.png' %>"  class="img-responsive center-block">
-        </li>
-        <li tabindex="8" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Derecho" data-point="canto__interno-derecho" onclick="lisentPoint('canto__interno-derecho');" onkeypress="lisentPointEnter(event,'canto__interno-derecho')">
-          <span class="oro-metrics__point-info"></span>
-          <img alt="canto__interno-derecho" src="<%= asset_path 'canto__interno-derecho.png' %>"  class="img-responsive center-block">
-        </li>
-        <li tabindex="9" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Izquierdo"  data-point="canto__interno-izquierdo" onclick="lisentPoint('canto__interno-izquierdo');" onkeypress="lisentPointEnter(event,'canto__interno-izquierdo')">
-          <span class="oro-metrics__point-info"></span>
-          <img alt="canto__interno-izquierdo" src="<%= asset_path 'canto__interno-izquierdo.png' %>"  class="img-responsive center-block">
-        </li>
-        <li tabindex="10" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Derecho" data-point="cigomatica__derecho" onclick="lisentPoint('cigomatica__derecho');" onkeypress="lisentPointEnter(event,'cigomatica__derecho')">
-          <span class="oro-metrics__point-info"></span>
-          <img alt="cigomatica__derecho" src="<%= asset_path 'cigomatica_derecha.png' %>"  class="img-responsive center-block">
-        </li>
-        <li tabindex="11" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Izquierdo" data-point="cigomatica__izquierdo" onclick="lisentPoint('cigomatica__izquierdo');" onkeypress="lisentPointEnter(event,'cigomatica__izquierdo')">
-          <span class="oro-metrics__point-info"></span>
-          <img alt="cigomatica__izquierdo" src="<%= asset_path 'cigomatica_izquierda.png' %>"  class="img-responsive center-block">
-        </li>
-        <li tabindex="12" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Izquierdo" data-point="comisuralabial__izquierdo" onclick="lisentPoint('comisuralabial__izquierdo');" onkeypress="lisentPointEnter(event,'comisuralabial__izquierdo')">
+        <li tabindex="6" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Izquierdo" data-point="comisuralabial__izquierdo" onclick="lisentPoint('comisuralabial__izquierdo');" onkeypress="lisentPointEnter(event,'comisuralabial__izquierdo')">
           <span class="oro-metrics__point-info"></span>
           <img alt="comisuralabial__izquierdo" src="<%= asset_path 'comisura_labial-izquierdo.png' %>"  class="img-responsive center-block">
         </li>
-        <li tabindex="13" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Derecho"  data-point="comisuralabial__derecho" onclick="lisentPoint('comisuralabial__derecho');" onkeypress="lisentPointEnter(event,'comisuralabial__derecho')">
+        <li tabindex="7" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Derecho"  data-point="comisuralabial__derecho" onclick="lisentPoint('comisuralabial__derecho');" onkeypress="lisentPointEnter(event,'comisuralabial__derecho')">
           <span class="oro-metrics__point-info"></span>
           <img alt="comisuralabial__derecho" src="<%= asset_path 'comisura_labial-derecho.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="8" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Derecho" data-point="canto__externo-derecho" onclick="lisentPoint('canto__externo-derecho');" onkeypress="lisentPointEnter(event,'canto__externo-derecho')">
+          <span class="oro-metrics__point-info"></span>
+          <img alt="canto__externo-derecho" src="<%= asset_path 'canto__externo-derecho.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="9" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Izquierdo" data-point="canto__externo-izquierdo" onclick="lisentPoint('canto__externo-izquierdo');" onkeypress="lisentPointEnter(event,'canto__externo-izquierdo')">
+          <span class="oro-metrics__point-info"></span>
+          <img alt="canto__externo-izquierdo" src="<%= asset_path 'canto__externo-izquierdo.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="10" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Derecho" data-point="canto__interno-derecho" onclick="lisentPoint('canto__interno-derecho');" onkeypress="lisentPointEnter(event,'canto__interno-derecho')">
+          <span class="oro-metrics__point-info"></span>
+          <img alt="canto__interno-derecho" src="<%= asset_path 'canto__interno-derecho.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="11" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Izquierdo"  data-point="canto__interno-izquierdo" onclick="lisentPoint('canto__interno-izquierdo');" onkeypress="lisentPointEnter(event,'canto__interno-izquierdo')">
+          <span class="oro-metrics__point-info"></span>
+          <img alt="canto__interno-izquierdo" src="<%= asset_path 'canto__interno-izquierdo.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="12" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Derecho" data-point="cigomatica__derecho" onclick="lisentPoint('cigomatica__derecho');" onkeypress="lisentPointEnter(event,'cigomatica__derecho')">
+          <span class="oro-metrics__point-info"></span>
+          <img alt="cigomatica__derecho" src="<%= asset_path 'cigomatica_derecha.png' %>"  class="img-responsive center-block">
+        </li>
+        <li tabindex="13" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Izquierdo" data-point="cigomatica__izquierdo" onclick="lisentPoint('cigomatica__izquierdo');" onkeypress="lisentPointEnter(event,'cigomatica__izquierdo')">
+          <span class="oro-metrics__point-info"></span>
+          <img alt="cigomatica__izquierdo" src="<%= asset_path 'cigomatica_izquierda.png' %>"  class="img-responsive center-block">
         </li>
       </ul>
     </div>
   </div>
   <div class="col-md-3">
+    <div class="oro-metrics__info">
+      <div class="oro-metrics__rule">
+          <details class="row">
+            <summary class="btn btn-primary" style="margin-left: 15px">Inicar Calibracion</summary>
+            <div class="col-md-12" style="padding:15px">
+              <small> <strong>Calibrar:</strong> marca punto inicial y punto final, luego establesca la medida entre esos puntos para calibrar la pantalla.</small>
+            </div>
+            <div class="col-md-12">
+              <img src="<%= asset_path 'rule.png' %>" alt="" class="center-block img-responsive">
+            </div>
+            <div class="col-md-3">
+              <div class="form-group" >
+                <label class="form-label text-center" for="oro-metrics__rule-init"><small>0.0</small></label>
+                <span class="btn btn-default btn-xs" id="oro-metrics__rule-init" data-point="oro-metrics__rule-init" onclick="lisentPoint('oro-metrics__rule-init');">MARCAR</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input class="form-control" id="oro-metrics__rule-large" type="text" name="oro-metrics__rule-large">
+                <label class="form-label" for="point-name">Media CM</label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="form-label text-center" for="oro-metrics__rule-end"><small>0.0</small></label>
+                <span class="btn btn-default btn-xs" id="oro-metrics__rule-end" data-point="oro-metrics__rule-end" onclick="lisentPoint('oro-metrics__rule-end');">MARCAR</span>
+              </div>
+            </div>
+          </details>
+
+      </div>
+    </div>
     <div class="oro-metrics__info">
       <p>
         <strong>F subida:</strong>
@@ -155,6 +191,10 @@
         this.beginLoad = true;
         this.eventsLoad = false;
         this.draw = function(){drawCanvas(this)};
+        this.rule ={
+            init: null,
+            end: null
+        };
         this.trichion = null;
         this.genatio = null;
         this.glabela = null;
@@ -201,12 +241,12 @@
         setCoordenadasPoint(0,0);
     }
 
-
     function lisentPointEnter(e,point){
         if(e.keyCode === 13){
             lisentPoint(point);
         }
     }
+
     function drawCanvas(obj){
         console.log("[drawCanvas] > "+ obj.id);
         obj.canvas = document.getElementById(obj.id);
@@ -304,6 +344,15 @@
             setTimeout(()=>resolve(obj),200)
         });
         promise.then((obj) => {
+            if(pointSelect === 'genatio'){
+                obj.genatio = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.genatio);
+            }else if(obj.genatio != null){
+                drawPoint(obj,obj.genatio);
+            }
             if(pointSelect === 'trichion'){
                 obj.trichion = {
                     'position': position,
@@ -421,8 +470,27 @@
             }else if(obj.comisuralabial.derecha != null){
                 drawPoint(obj,obj.comisuralabial.derecha )
             }
+            if(pointSelect === 'oro-metrics__rule-init' ){
+                obj.rule.init = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.rule.init )
+            }else if(obj.rule.init != null){
+                drawPoint(obj.rule.init)
+            }
+            if(pointSelect === 'oro-metrics__rule-end' ){
+                obj.rule.end = {
+                    'position': position,
+                    'widthPoint' : widthPoint,
+                    'heightPoint': heightPoint };
+                drawPoint(obj,obj.rule.end )
+            }else if(obj.rule.end != null){
+                drawPoint(obj.rule.end)
+            }
 
             enlazarCigomatica(obj);
+            enlazarAsimetriaFacial(obj);
         });
     }
 
@@ -453,9 +521,12 @@
     }
 
     function enlazarAsimetriaFacial(obj){
-        if(obj.canto != null){
-            if(obj.canto.externo.izquierdo != null && obj.cigomatica.derecho != null){
-                drawLine(obj,obj.cigomatica.izquierdo,obj.cigomatica.derecho,'#ff0000');
+        if(obj.canto != null && obj.comisuralabial != null){
+            if(obj.canto.externo.izquierdo != null && obj.comisuralabial.izquierdo != null){
+                drawLine(obj,obj.canto.externo.izquierdo,obj.comisuralabial.izquierdo,'#0000ff');
+            }
+            if(obj.canto.externo.derecho != null && obj.comisuralabial.derecha != null){
+                drawLine(obj,obj.canto.externo.derecho,obj.comisuralabial.derecha,'#0000ff');
             }
         }
     }
