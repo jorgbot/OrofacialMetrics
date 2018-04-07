@@ -145,5 +145,20 @@
   color: #333;
 }
 
+.oro-metrics__point-deleted {
+  position: absolute;
+  color: white;
+  bottom: 0;
+  right: 2px;
+  background-color: #2b8adc;
+  padding: 5px;
+  line-height: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.oro-metrics__point-deleted:hover {
+  background-color: #ff0023;
+}
 
 
