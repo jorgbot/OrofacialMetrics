@@ -132,6 +132,26 @@
   opacity: 1;
 }
 
+.oro-metrics__point--btn {
+  width: 100%;
+  max-width: 100px;
+  padding: 10px 5px;
+  display: inline;
+  padding-bottom: 25px;
+}
+
+.oro-metrics__point--btn .oro-metrics__point-deleted {
+  right: -1px;
+  border-radius: 2px;
+  background-color: white;
+  color: red;
+  border: 1px solid #bbb;
+  bottom: -1px;
+}
+.oro-metrics__point--btn .oro-metrics__point-deleted:hover {
+  color: white;
+}
+
 .oro-metrics__point-info {
   position: absolute;
   bottom: -5px;
@@ -161,4 +181,6 @@
   background-color: #ff0023;
 }
 
-
+.oro-metrics__info-icon {
+  color: #00000085;
+}

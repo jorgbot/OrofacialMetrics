@@ -106,32 +106,48 @@
   <div class="col-md-3">
     <div class="oro-metrics__info">
       <div class="oro-metrics__rule">
-          <details class="row">
+          <details>
             <summary class="btn btn-primary" style="margin-left: 15px">Inicar Calibracion</summary>
-            <div class="col-md-12" style="padding:15px">
-              <small> <strong>Calibrar:</strong> marca punto inicial y punto final, luego establesca la medida entre esos puntos para calibrar la pantalla.</small>
-            </div>
-            <div class="col-md-12">
-              <img src="<%= asset_path 'rule.png' %>" alt="" class="center-block img-responsive">
-            </div>
-            <div class="col-md-3">
-              <div class="form-group" >
-                <label class="form-label text-center" for="oro-metrics__rule-init"><small>0.0</small></label>
-                <span class="btn btn-default btn-xs" id="oro-metrics__rule-init" data-point="oro-metrics__rule-init" onclick="lisentPoint('oro-metrics__rule-init');">MARCAR</span>
+            <div class="row">
+              <div class="col-md-12" style="padding:15px">
+                <small> <i class="oro-metrics__info-icon glyphicon glyphicon-info-sign"> </i> <strong>Calibrar:</strong> marca punto inicial y punto final, luego establesca la medida entre esos puntos para calibrar la pantalla.</small>
+              </div>
+              <div class="col-md-12">
+                <img src="<%= asset_path 'rule.png' %>" alt="" class="center-block img-responsive">
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <input class="form-control" id="oro-metrics__rule-large" type="text" name="oro-metrics__rule-large">
-                <label class="form-label" for="point-name">Media CM</label>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group" >
+                  <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-init" data-point="oro-metrics__rule-init" onclick="lisentPoint('oro-metrics__rule-init');">
+                    <span class="oro-metrics__point-info"></span>
+                    <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+                    MARCAR
+                  </li>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" id="oro-metrics__rule-large" type="text" name="oro-metrics__rule-large">
+                  <label class="form-label" for="point-name">Media CM</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-end" data-point="oro-metrics__rule-end" onclick="lisentPoint('oro-metrics__rule-end');">
+                    <span class="oro-metrics__point-info"></span>
+                    <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+                    MARCAR
+                  </li>
+                </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="form-label text-center" for="oro-metrics__rule-end"><small>0.0</small></label>
-                <span class="btn btn-default btn-xs" id="oro-metrics__rule-end" data-point="oro-metrics__rule-end" onclick="lisentPoint('oro-metrics__rule-end');">MARCAR</span>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-primary">Aplicar Calibracion</button>
               </div>
             </div>
+
           </details>
 
       </div>
@@ -166,6 +182,22 @@
               <input class="form-control" id="oro-metrics__nombre-punto" type="text" name="oro-metrics__nombre-punto" disabled>
             </div>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group" >
+              <label class="form-label" for="eje-dx"><small>Eje X</small> - Distancia <span>cm</span></label>
+              <input class="form-control" type="number" id="oro-metrics__eje-dx" min="0.000" step="1" name="oro-metrics__eje-dx">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label" for="eje-dy"><small>Eje Y</small> - Distancia <span>cm</span></label>
+              <input class="form-control" id="oro-metrics__eje-dy" type="number" min="0.000" step="1" name="oro-metrics__eje-dy">
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-6">
             <div class="form-group" >
               <label class="form-label" for="eje-x">Eje X</label>
@@ -179,6 +211,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -198,9 +231,14 @@
         this.beginLoad = true;
         this.eventsLoad = false;
         this.draw = function(){drawCanvas(this)};
+        this.setRule = function(distance){setRule(this,distance)};
         this.rule ={
             init: null,
-            end: null
+            end: null,
+            medida: 0,
+            distanciaAbsoluta: 0,
+            distancia: 0,
+            unidad: 0
         };
         this.trichion = null;
         this.genatio = null;
@@ -229,23 +267,48 @@
     }
 
     function CanvasPoint(position,widthPoint,heightPoint){
-        this.position = position,
-        this.widthPoint = widthPoint,
-        this.heightPoint = heightPoint
+        this.position = position;
+        this.widthPoint = widthPoint;
+        this.heightPoint = heightPoint;
     }
 
-    function CanvasPosition(positionX,positionY){
-        this.x = positionX,
-        this.y = positionY
+    function CanvasPosition(positionX,positionY,rule){
+        this.x = positionX;
+        this.y = positionY;
+        if(rule != null){
+            this.dx = positionX / rule.unidad;
+            this.dy = positionY / rule.unidad;
+        }else{
+            this.dx = 0;
+            this.dy = 0;
+        }
+    }
+
+    function setRule(obj,medida){
+        console.log("setRule()");
+        if(obj.rule != null){
+            console.log("setRule() paso 2");
+            console.log(obj.rule);
+            if(obj.rule.init != null && obj.rule.end != null){
+                console.log("setRule() paso 3");
+                obj.rule.medida = medida;
+                obj.rule.distanciaAbsoluta = getDistanciaAbsoluta(obj.rule.init,obj.rule.end);
+                obj.rule.unidad = obj.rule.distanciaAbsoluta / obj.rule.medida;
+            }
+        }
+    }
+
+    function getDistanciaAbsoluta(pointInit,pointEnd){
+        return Math.sqrt(Math.pow(pointEnd.position.x - pointInit.position.x,2) + Math.pow(pointEnd.position.y-pointInit.position.y,2));
     }
 
     $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active');
     $('#nav-matrics').addClass('oro-subnavbar__link--active');
-    widthParent =  360;
-    pointSelect =  'trichion';
-    pointDelect = '';
-    frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
-    lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
+    var widthParent =  360;
+    var pointSelect =  'trichion';
+    var pointDelect = '';
+    var frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
+    var lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
 
     $(document).ready(function(){
         widthParent =  $('body').width();
@@ -254,10 +317,12 @@
         lisentPoint(pointSelect);
     });
 
-    function setCoordenadasPoint(x,y){
+    function setCoordenadasPoint(x,y,dx,dy){
         console.log('('+x+','+y+')');
         $($('#oro-metrics__eje-x')[0]).val(x);
         $($('#oro-metrics__eje-y')[0]).val(y);
+        $($('#oro-metrics__eje-dx')[0]).val(dx);
+        $($('#oro-metrics__eje-dy')[0]).val(dy);
     }
 
     function lisentPoint(point){
@@ -265,7 +330,7 @@
         $('.oro-metrics__point').removeClass('oro-metrics__point--select');
         $($('.oro-metrics__point[data-point='+point+']')[0]).addClass('oro-metrics__point--select');
         $($('#oro-metrics__nombre-punto')[0]).val(point);
-        setCoordenadasPoint(0,0);
+        setCoordenadasPoint(0,0,0,0);
     }
 
     function lisentPointEnter(e,point){
@@ -364,12 +429,17 @@
     }
 
     function drawPoints(obj,position,widthPoint,heightPoint){
-        position = new CanvasPosition(Math.round(position.x),Math.round(position.y));
+        position = new CanvasPosition(Math.round(position.x),Math.round(position.y),obj.rule);
         let promise = new Promise((resolve, reject) => {
             obj.draw();
             setTimeout(()=>resolve(obj),200)
         });
         promise.then((obj) => {
+            let large = $('#oro-metrics__rule-large').val();
+            if( large !== '' ){
+                obj.setRule(parseFloat(large));
+            }
+
             if(pointSelect === 'genatio'){
                 obj.genatio = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.genatio,pointSelect);
@@ -382,142 +452,110 @@
             }else if(obj.trichion != null){
                 drawPoint(obj,obj.trichion,'');
             }
-            if(pointSelect === 'glabela' && obj.glabela != null){
-                obj.glabela = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'glabela'){
+                obj.glabela = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.glabela,pointSelect)
             }else if(obj.glabela != null){
-                drawPoint(obj,obj.glabela,pointSelect)
+                drawPoint(obj,obj.glabela,'')
             }
-            if(pointSelect === 'subnasal' && obj.subnasal != null ){
-                obj.subnasal = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'subnasal'){
+                obj.subnasal = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.subnasal,pointSelect)
             }else if(obj.subnasal != null){
-                drawPoint(obj,obj.subnasal,pointSelect)
+                drawPoint(obj,obj.subnasal,'')
             }
-            if(pointSelect === 'pronasal' && obj.pronasal != null){
-                obj.pronasal = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'pronasal'){
+                obj.pronasal = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.pronasal,pointSelect)
             }else if(obj.pronasal != null){
-                drawPoint(obj,obj.pronasal,pointSelect)
+                drawPoint(obj,obj.pronasal,'')
             }
-            if(pointSelect === 'labialesuperior' && obj.labialesuperior != null){
-                obj.labialesuperior = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'labialesuperior'){
+                obj.labialesuperior = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.labialesuperior,pointSelect)
             }else if(obj.labialesuperior != null){
-                drawPoint(obj,obj.labialesuperior,pointSelect)
+                drawPoint(obj,obj.labialesuperior,'')
             }
-            if(pointSelect === 'canto__externo-derecho' && obj.canto.externo.derecho != null){
-                obj.canto.externo.derecho = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'canto__externo-derecho'){
+                obj.canto.externo.derecho = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.externo.derecho,pointSelect);
             } else if(obj.canto.externo.derecho != null){
-                drawPoint(obj,obj.canto.externo.derecho,pointSelect);
+                drawPoint(obj,obj.canto.externo.derecho,'');
             }
-            if(pointSelect === 'canto__externo-izquierdo' && obj.canto.externo.izquierdo != null ){
-                obj.canto.externo.izquierdo = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'canto__externo-izquierdo'){
+                obj.canto.externo.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.externo.izquierdo,pointSelect);
             }else if(obj.canto.externo.izquierdo != null){
-                drawPoint(obj,obj.canto.externo.izquierdo,pointSelect);
+                drawPoint(obj,obj.canto.externo.izquierdo,'');
             }
-            if(pointSelect === 'canto__interno-derecho' && obj.canto.interno.derecho != null){
-                obj.canto.interno.derecho = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'canto__interno-derecho'){
+                obj.canto.interno.derecho = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.interno.derecho,pointSelect );
             }else if(obj.canto.interno.derecho != null){
-                drawPoint(obj,obj.canto.interno.derecho,pointSelect );
+                drawPoint(obj,obj.canto.interno.derecho,'' );
             }
-            if(pointSelect === 'canto__interno-izquierdo' && obj.canto.interno.izquierdo != null){
-                obj.canto.interno.izquierdo = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'canto__interno-izquierdo'){
+                obj.canto.interno.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.interno.izquierdo,pointSelect );
             }else if( obj.canto.interno.izquierdo != null){
-                drawPoint(obj,obj.canto.interno.izquierdo,pointSelect );
+                drawPoint(obj,obj.canto.interno.izquierdo,'' );
             }
-            if(pointSelect === 'cigomatica__derecho' && obj.cigomatica.derecho != null){
-                obj.cigomatica.derecho = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'cigomatica__derecho'){
+                obj.cigomatica.derecho = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.cigomatica.derecho,pointSelect )
             }else if(obj.cigomatica.derecho != null){
-                drawPoint(obj,obj.cigomatica.derecho,pointSelect );
+                drawPoint(obj,obj.cigomatica.derecho,'' );
             }
-            if(pointSelect === 'cigomatica__izquierdo' && obj.cigomatica.izquierdo != null ){
-                obj.cigomatica.izquierdo = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'cigomatica__izquierdo' ){
+                obj.cigomatica.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.cigomatica.izquierdo,pointSelect)
             }else if(obj.cigomatica.izquierdo != null){
-                drawPoint(obj,obj.cigomatica.izquierdo,pointSelect )
+                drawPoint(obj,obj.cigomatica.izquierdo,'' )
             }
-            if(pointSelect === 'comisuralabial__izquierdo' && obj.comisuralabial.izquierdo != null){
-                obj.comisuralabial.izquierdo = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'comisuralabial__izquierdo'){
+                obj.comisuralabial.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.comisuralabial.izquierdo,pointSelect )
             }else if(obj.comisuralabial.izquierdo != null){
-                drawPoint(obj,obj.comisuralabial.izquierdo,pointSelect )
+                drawPoint(obj,obj.comisuralabial.izquierdo,'' )
             }
-            if(pointSelect === 'comisuralabial__derecho' && obj.comisuralabial.derecha != null){
-                obj.comisuralabial.derecha = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'comisuralabial__derecho'){
+                obj.comisuralabial.derecha = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.comisuralabial.derecha,pointSelect )
             }else if(obj.comisuralabial.derecha != null){
-                drawPoint(obj,obj.comisuralabial.derecha,pointSelect )
+                drawPoint(obj,obj.comisuralabial.derecha,'' )
             }
-            if(pointSelect === 'oro-metrics__rule-init' && obj.rule.init != null ){
-                obj.rule.init = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
+            if(pointSelect === 'oro-metrics__rule-init'){
+                obj.rule.init = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.rule.init,pointSelect )
             }else if(obj.rule.init != null){
-                drawPoint(obj.rule.init,pointSelect)
+                drawPoint(obj,obj.rule.init,'')
             }
-            if(pointSelect === 'oro-metrics__rule-end' && obj.rule.end != null ){
-                obj.rule.end = {
-                    'position': position,
-                    'widthPoint' : widthPoint,
-                    'heightPoint': heightPoint };
-                drawPoint(obj,obj.rule.end,pointSelect)
+            if(pointSelect === 'oro-metrics__rule-end'){
+                obj.rule.end = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.rule.end,pointSelect);
             }else if(obj.rule.end != null){
-                drawPoint(obj.rule.end,pointSelect)
+                drawPoint(obj,obj.rule.end,'')
             }
 
+            if( large !== '' ){
+                obj.setRule(parseFloat(large));
+            }
             enlazarCigomatica(obj);
+            enlazarCalibracion(obj);
             enlazarAsimetriaFacial(obj);
+
         });
     }
 
     function drawPoint(obj,point,currentPoint){
+        console.log(currentPoint);
+        console.log(point);
         if( (pointDelect !== '' && currentPoint === pointDelect ) || point == null ){
             if( point == null ){
-                point = new CanvasPoint( new CanvasPosition(0,0), 0,0);
+                point = new CanvasPoint( new CanvasPosition(0,0), 0,0, obj.rule);
+            }
+            if( currentPoint === pointDelect ){
+                pointDelect = '';
             }
             point.heightPoint= 0;
             point.widthPoint = 0;
@@ -525,12 +563,11 @@
             point.position.y = 0;
         }
         if( currentPoint === pointSelect ){
-            setCoordenadasPoint(point.position.x,point.position.y);
-        }
-        if ( currentPoint !== ''){
+            setCoordenadasPoint(point.position.x,point.position.y,point.position.dx,point.position.dy);
             $($('.oro-metrics__point[data-point='+currentPoint+']')[0]).addClass('oro-metrics__point--check');
             $($($('.oro-metrics__point[data-point='+currentPoint+']')[0]).find('.oro-metrics__point-info')[0])[0].innerHTML ='('+point.position.x+','+point.position.y+')';
         }
+
         obj.ctx.fillRect(point.position.x - (point.widthPoint/4),point.position.y - (point.heightPoint/4) ,point.widthPoint/2,point.heightPoint/2);
         obj.ctx.strokeStyle = "#333";
         obj.ctx.beginPath();
@@ -551,6 +588,14 @@
               drawLine(obj,obj.cigomatica.izquierdo,obj.cigomatica.derecho,'#ff0000');
           }
       }
+    }
+
+    function enlazarCalibracion(obj){
+        if(obj.rule != null){
+            if(obj.rule.init != null && obj.rule.end != null){
+                drawLine(obj,obj.rule.init,obj.rule.end,'#ff0000');
+            }
+        }
     }
 
     function enlazarAsimetriaFacial(obj){
@@ -574,6 +619,9 @@
 
     function deletedPoint(event,dataPoint){
         pointDelect = dataPoint;
+        pointSelect = dataPoint;
+        let position = new CanvasPosition(0,0,frontal.rule);
+        drawPoints(frontal,position,0,0);
     }
 
 </script>
