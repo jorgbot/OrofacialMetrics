@@ -302,6 +302,12 @@
         return Math.sqrt(Math.pow(pointEnd.position.x - pointInit.position.x,2) + Math.pow(pointEnd.position.y-pointInit.position.y,2));
     }
 
+    function getPuntoMedio(obj,pointInit,pointEnd){
+        let x = ( pointInit.position.x + pointEnd.position.x ) / 2;
+        let y = ( pointInit.position.y + pointEnd.position.y ) / 2;
+        return new CanvasPosition(x,y,obj.rule);
+    }
+
     $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active');
     $('#nav-matrics').addClass('oro-subnavbar__link--active');
     var widthParent =  360;
@@ -309,6 +315,7 @@
     var pointDelect = '';
     var frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
     var lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
+    var currentCanvas = frontal;
 
     $(document).ready(function(){
         widthParent =  $('body').width();
@@ -331,6 +338,16 @@
         $($('.oro-metrics__point[data-point='+point+']')[0]).addClass('oro-metrics__point--select');
         $($('#oro-metrics__nombre-punto')[0]).val(point);
         setCoordenadasPoint(0,0,0,0);
+        let widthPoint = 12;
+        let heightPoint = 12;
+        if(pointSelect === 'trichion'){
+            thisPoint = currentCanvas.trichion;
+        }else{
+            thisPoint = null;
+        }
+        if(thisPoint != null){
+            setCoordenadasPoint(thisPoint.position.x,thisPoint.position.y,thisPoint.position.dx,thisPoint.position.dy);
+        }
     }
 
     function lisentPointEnter(e,point){
@@ -568,6 +585,10 @@
             $($($('.oro-metrics__point[data-point='+currentPoint+']')[0]).find('.oro-metrics__point-info')[0])[0].innerHTML ='('+point.position.x+','+point.position.y+')';
         }
 
+        drawIndicator(obj,point);
+    }
+
+    function drawIndicator(obj,point){
         obj.ctx.fillRect(point.position.x - (point.widthPoint/4),point.position.y - (point.heightPoint/4) ,point.widthPoint/2,point.heightPoint/2);
         obj.ctx.strokeStyle = "#333";
         obj.ctx.beginPath();
@@ -582,10 +603,25 @@
         obj.ctx.stroke();
     }
 
+    function  drawTextIndicator(obj,point,text,aling = 'center', fontsize = '15', fontfamily = "Comic Sans MS") {
+        obj.ctx.font = fontsize+"px "+fontfamily;
+        obj.ctx.textAlign = aling;
+        obj.ctx.fillText(text, point.position.x+15, point.position.y-15);
+    }
+
     function enlazarCigomatica(obj){
       if(obj.cigomatica != null){
           if(obj.cigomatica.izquierdo != null && obj.cigomatica.derecho != null){
               drawLine(obj,obj.cigomatica.izquierdo,obj.cigomatica.derecho,'#ff0000');
+              console.log("Distancia Cigomaticas");
+              let posicionMedio = getPuntoMedio(obj,obj.cigomatica.izquierdo,obj.cigomatica.derecho);
+              console.log("Posicion Medio");
+              console.log(posicionMedio);
+              let punto = new CanvasPoint(posicionMedio,15,15);
+              console.log(punto);
+              drawIndicator(obj,punto);
+              drawTextIndicator(obj,punto,"Distancia Cigomaticas");
+              console.log(getDistanciaAbsoluta(obj.cigomatica.izquierdo,obj.cigomatica.derecho)/obj.rule.unidad)
           }
       }
     }
@@ -602,6 +638,8 @@
         if(obj.canto != null && obj.comisuralabial != null){
             if(obj.canto.externo.izquierdo != null && obj.comisuralabial.izquierdo != null){
                 drawLine(obj,obj.canto.externo.izquierdo,obj.comisuralabial.izquierdo,'#0000ff');
+                console.log("Distancia Asimetri Facial")
+                console.log(getDistanciaAbsoluta(obj.canto.externo.izquierdo,obj.comisuralabial.izquierdo)/obj.rule.unidad)
             }
             if(obj.canto.externo.derecho != null && obj.comisuralabial.derecha != null){
                 drawLine(obj,obj.canto.externo.derecho,obj.comisuralabial.derecha,'#0000ff');
