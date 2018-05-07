@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="oro-metrics__nav col-md-9">
-      <ul class="oro-metrics__points row">
+      <ul class="oro-metrics__points hidden row">
         <li  tabindex="0" class="oro-metrics__point" data-toggle="tooltip" title="Genatio" data-point="genatio" onclick="lisentPoint('genatio');" onkeypress="lisentPointEnter(event,'genatio')">
           <span class="oro-metrics__point-info"></span>
           <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
@@ -106,11 +106,16 @@
   <div class="col-md-3">
     <div class="oro-metrics__info">
       <div class="oro-metrics__rule">
+        <div class="row">
+          <div class="col-md-12"  style="margin-left: 15px;margin-bottom: 5px">
+            <small>Completa la calibracion para iniciar la ubicacion de puntos</strong></small>
+          </div>
+        </div>
           <details>
             <summary class="btn btn-primary" style="margin-left: 15px">Inicar Calibracion</summary>
             <div class="row">
               <div class="col-md-12" style="padding:15px">
-                <small> <i class="oro-metrics__info-icon glyphicon glyphicon-info-sign"> </i> <strong>Calibrar:</strong> marca punto inicial y punto final, luego establesca la medida entre esos puntos para calibrar la pantalla.</small>
+                <small> <i class="oro-metrics__info-icon glyphicon glyphicon-info-sign"> </i> <strong>Calibrar:</strong>Establece una medida entre dos puntos para calibrar la pantalla ( completa el campo <strong>Medida CM</strong>), luego marca punto <strong>inicial</strong> y punto <strong>final</strong>.</small>
               </div>
               <div class="col-md-12">
                 <img src="<%= asset_path 'rule.png' %>" alt="" class="center-block img-responsive">
@@ -122,7 +127,7 @@
                   <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-init" data-point="oro-metrics__rule-init" onclick="lisentPoint('oro-metrics__rule-init');">
                     <span class="oro-metrics__point-info"></span>
                     <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
-                    MARCAR
+                    INICIAL
                   </li>
                 </div>
               </div>
@@ -137,22 +142,22 @@
                   <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-end" data-point="oro-metrics__rule-end" onclick="lisentPoint('oro-metrics__rule-end');">
                     <span class="oro-metrics__point-info"></span>
                     <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
-                    MARCAR
+                    FINAL
                   </li>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <button class="btn btn-primary">Aplicar Calibracion</button>
+                <button class="btn btn-primary" onclick="validarCalibracion()">Aplicar Calibracion</button>
               </div>
             </div>
-
           </details>
-
       </div>
     </div>
     <div class="oro-metrics__info">
+      <details>
+        <summary class="btn btn-sm" style="margin-left: 15px">Informacion</summary>
       <p>
         <strong>F subida:</strong>
         <%= @foto.f_subida %>
@@ -172,8 +177,11 @@
 
       <%= link_to 'Editar', edit_foto_path(@foto) %> |
       <%= link_to 'Regresar', fotos_path %>
+      </details>
     </div>
     <div class="oro-metrics__info">
+      <details>
+        <summary class="btn btn-sm" style="margin-left: 15px">Informacion del Punto</summary>
       <div class="oro-metrics__info-point">
         <div class="row">
           <div class="col-md-12">
@@ -213,6 +221,39 @@
         </div>
 
       </div>
+    </details>
+    </div>
+    <div class="oro-metrics__info" style="background-color: #2b8adc21;">
+      <details>
+        <summary class="btn btn-sm" style="margin-left: 15px;">Calculos</summary>
+        <div class="row">
+          <div class="col-md-6">
+            Tipo de Rostro:
+          </div>
+          <div class="col-md-6">
+            <h4 id="tipo_rostro">Sin Resultado</h4>
+          </div>
+          <div class="col-md-12">
+            <small>Completa Cigomaticas, Glabela y Trichion para saber tipo de rostro</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            Simetria Facial:
+          </div>
+          <div class="col-md-6">
+            <h4 id="simetria">Sin Resultado</h4>
+          </div>
+          <div class="col-md-12">
+            <small>Completa Comisuras Labiales y Cantos para saber tipo de simetria facial</small>
+          </div>
+        </div>
+      </details>
     </div>
 
   </div>
@@ -333,12 +374,11 @@
     }
 
     function setRule(obj,medida){
-        console.log("setRule()");
+        //console.log("setRule()");
         if(obj.rule != null){
-            console.log("setRule() paso 2");
-            console.log(obj.rule);
+            //console.log("setRule() paso 2");
             if(obj.rule.init.canvasPoint != null && obj.rule.end.canvasPoint != null){
-                console.log("setRule() paso 3");
+                //console.log("setRule() paso 3");
                 obj.rule.medida = medida;
                 obj.rule.distanciaAbsoluta = getDistanciaAbsoluta(obj.rule.init.canvasPoint,obj.rule.end.canvasPoint);
                 obj.rule.unidad = obj.rule.distanciaAbsoluta / obj.rule.medida;
@@ -373,7 +413,6 @@
     });
 
     function setCoordenadasPoint(x,y,dx,dy){
-        console.log('('+x+','+y+')');
         $($('#oro-metrics__eje-x')[0]).val(x);
         $($('#oro-metrics__eje-y')[0]).val(y);
         $($('#oro-metrics__eje-dx')[0]).val(dx);
@@ -400,7 +439,7 @@
     }
 
     function drawCanvas(obj){
-        console.log("[drawCanvas] > "+ obj.id);
+        //console.log("[drawCanvas] > "+ obj.id);
         obj.canvas = document.getElementById(obj.id);
         if (obj.canvas.getContext){
             obj.ctx = obj.canvas.getContext('2d');
@@ -442,8 +481,7 @@
         let parent = '#'+obj.parent;
 
         let maxWidth = $(parent).width();
-        console.log(maxWidth);
-        console.log(img.width > maxWidth);
+        console.log('Ancho Maximo '+ maxWidth);
         if( img.width > maxWidth) {
             if(maxWidth < 200){
                 maxWidth = widthParent;
@@ -463,13 +501,13 @@
     }
 
     function resizeCanvasTo(widthResize,obj){
-        console.log( obj.parent + "> widthResize : "+ widthResize + "> obj.img.width :" + obj.img.width);
+        //console.log( obj.parent + "> widthResize : "+ widthResize + "> obj.img.width :" + obj.img.width);
         let porcent = (widthResize / obj.img.width) * 100;
         let reduceWidth =  (obj.img.width  / 100) * porcent;
         let reduceHeight =  (obj.img.height  / 100) * porcent;
         obj.canvas.width = widthResize;
         obj.canvas.height =  reduceHeight;
-        console.log(obj.parent + ' > resizeCanvasTo > ' + 'obj.canvas.width : '+obj.canvas.width + ', obj.canvas.height: '+ obj.canvas.height );
+        //console.log(obj.parent + ' > resizeCanvasTo > ' + 'obj.canvas.width : '+obj.canvas.width + ', obj.canvas.height: '+ obj.canvas.height );
 
     }
 
@@ -600,9 +638,11 @@
             if( large !== '' ){
                 obj.setRule(parseFloat(large));
             }
+
             enlazarCigomatica(obj);
             enlazarCalibracion(obj);
             enlazarAsimetriaFacial(obj);
+            calcularRostro(obj);
 
         });
     }
@@ -659,8 +699,6 @@
     }
 
     function drawPoint(obj,point,currentPointId){
-        console.log(currentPointId);
-        console.log(point);
         if( (pointDelect !== '' && currentPointId === pointDelect ) || point.canvasPoint == null ){
             if( point.canvasPoint == null ){
                 point.canvasPoint = new CanvasPoint( new CanvasPosition(0,0), 0,0, obj.rule);
@@ -706,20 +744,14 @@
     function enlazarCigomatica(obj){
       if(obj.cigomatica != null){
           if(obj.cigomatica.izquierdo.canvasPoint != null && obj.cigomatica.derecho.canvasPoint != null){
-              let izquierda = obj.cigomatica.izquierdo.canvasPoint;
-              console.log(" Cigomaticas Izq");
-              console.log(obj.cigomatica.izquierdo.canvasPoint);
-              let derecha = obj.cigomatica.derecho.canvasPoint;
-              drawLine(izquierda,derecha,'#ff0000');
-              console.log("Distancia Cigomaticas");
+              let izquierda = obj.cigomatica.izquierdo;
+              let derecha = obj.cigomatica.derecho;
               let posicionMedio = getPuntoMedio(obj,izquierda,derecha);
-              console.log("Posicion Medio");
-              console.log(posicionMedio);
               let punto = new CanvasPoint(posicionMedio,15,15);
-              console.log(punto);
+
               drawIndicator(obj,punto);
               drawTextIndicator(obj,punto,"Distancia Cigomaticas");
-              console.log(getDistanciaAbsoluta(izquierda,derecha)/obj.rule.unidad)
+              drawLine(obj,izquierda,derecha,'#ff0000');
           }
       }
     }
@@ -735,27 +767,100 @@
     function enlazarAsimetriaFacial(obj){
         if(obj.canto != null && obj.comisuralabial != null){
             if(obj.canto.externo.izquierdo.canvasPoint != null && obj.comisuralabial.izquierdo.canvasPoint != null){
-                let izquierdo = obj.canto.externo.izquierdo.canvasPoint;
-                let derecho = obj.comisuralabial.izquierdo.canvasPoint;
-                drawLine(obj,izquierdo,derecho,'#0000ff');
-                console.log("Distancia Asimetri Facial");
-                console.log(getDistanciaAbsoluta(izquierdo,derecho)/obj.rule.unidad)
+                drawLine(obj,obj.canto.externo.izquierdo,obj.comisuralabial.izquierdo,'#0000ff');
             }
             if(obj.canto.externo.derecho.canvasPoint != null && obj.comisuralabial.derecha.canvasPoint != null){
-                drawLine(obj,obj.canto.externo.derecho.canvasPoint,obj.comisuralabial.derecha.canvasPoint,'#0000ff');
+                drawLine(obj,obj.canto.externo.derecho,obj.comisuralabial.derecha,'#0000ff');
             }
         }
     }
 
+    /**
+     * Esta funcion calcular
+     * Distancia Prominencia Cigomatida izquierda y derecha que el
+     * largo del rosto, sobre el ancho del rosto que la distancia de Glabela y Genatio
+     */
+    function calcularRostro(obj){
+          console.log('Validar Calculo Rostro Paso 1')
+         let pointCigomaticaIzquierda = obj.cigomatica.izquierdo.canvasPoint;
+         let pointCigoamticaDerecha = obj.cigomatica.derecho.canvasPoint;
+         let pointGlabela = obj.glabela.canvasPoint;
+         let pointGenatio = obj.genatio.canvasPoint;
+
+         if(pointCigomaticaIzquierda != null && pointCigoamticaDerecha != null && pointGlabela != null && pointGenatio != null ){
+             console.log("CalcularRostro Paso 2");
+             let distanciaAbsolutaAncho = getDistanciaAbsoluta(pointCigomaticaIzquierda,pointCigoamticaDerecha);
+             let distanciaAbsolutaLargo = getDistanciaAbsoluta(pointGlabela,pointGenatio);
+
+             console.log('distanciaAbsolutaLargo : ' + distanciaAbsolutaLargo);
+             console.log('distanciaAbsolutaAncho : ' + distanciaAbsolutaAncho);
+             let distanciaLargo = distanciaAbsolutaLargo / obj.rule.unidad;
+             let distanciaAncho = distanciaAbsolutaAncho / obj.rule.unidad;
+             let resultado = 0;
+             if(distanciaLargo > distanciaAncho){
+                 resultado = distanciaLargo - distanciaAncho;
+             }else{
+                 resultado = distanciaAncho - distanciaLargo;
+             }
+             calcularRostroNormal(resultado);
+             calcularRostroAlargado(resultado);
+             calcularRostroAcortado(resultado);
+         }
+    }
+
+    /**
+     * PCI - PCD / GB - GN == 0 hasta 3 milimetros
+     */
+    function calcularRostroNormal(resultado){
+        if( resultado > 0 && resultado <= 3 ){
+            console.log('Rostro Normal');
+            tipo_rostro.innerText = 'Rostro Normal';
+            return 'Rostro Normal';
+        }
+    }
+
+    /**
+     * PCI - PCD / GB - GN == >3 hasta 8 milimetros
+     */
+    function calcularRostroAlargado(resultado){
+        if( resultado > 3 && resultado <= 8 ){
+            console.log('Rostro Alargado');
+            tipo_rostro.innerText = 'Rostro Alargado';
+            return 'Rostro Alargado'
+        }
+    }
+
+    /**
+     * PCI - PCD / GB - GN == >8 hasta 9 milimetros
+     */
+    function calcularRostroAcortado(resultado){
+        if( resultado > 8 && resultado <= 9 ){
+            console.log('Rostro Acortado');
+            tipo_rostro.innerText = 'Rostro Acortado';
+            return 'Rostro Acortado';
+        }
+    }
+
+    /**
+     *
+     * @param obj
+     * @param since
+     * @param until
+     * @param style
+     */
     function drawLine(obj,since,until,style){
-        console.log('Enlazando '+since.name+' con '+until.name);
-        console.log(since);
-        console.log(until);
-        obj.ctx.beginPath();
-        obj.ctx.moveTo(since.canvasPoint.position.x, since.canvasPoint.position.y);
-        obj.ctx.lineTo(until.canvasPoint.position.x, until.canvasPoint.position.y);
-        obj.ctx.strokeStyle = style;
-        obj.ctx.stroke();
+        try {
+            obj.ctx.beginPath();
+            obj.ctx.moveTo(since.canvasPoint.position.x, since.canvasPoint.position.y);
+            obj.ctx.lineTo(until.canvasPoint.position.x, until.canvasPoint.position.y);
+            obj.ctx.strokeStyle = style;
+            obj.ctx.stroke();
+        }
+        catch(err) {
+            console.log( 'err.message :' + err.message);
+            err.emit();
+        }
+
     }
 
     function deletedPoint(event,dataPoint){
@@ -763,6 +868,13 @@
         pointSelectId = dataPoint;
         let position = new CanvasPosition(0,0,frontal.rule);
         drawPoints(frontal,position,0,0);
+    }
+
+    function validarCalibracion(){
+        if(currentCanvas.rule.unidad > 0){
+            $('.oro-metrics__points').removeClass('hidden');
+            $('li[data-point=genatio]').click();
+        }
     }
 
 </script>

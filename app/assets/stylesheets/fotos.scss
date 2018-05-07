@@ -152,6 +152,10 @@
   color: white;
 }
 
+.oro-metrics__point:hover {
+  border-radius: 5px;
+}
+
 .oro-metrics__point-info {
   position: absolute;
   bottom: -5px;
