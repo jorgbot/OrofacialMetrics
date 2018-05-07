@@ -233,36 +233,84 @@
         this.draw = function(){drawCanvas(this)};
         this.setRule = function(distance){setRule(this,distance)};
         this.rule ={
-            init: null,
-            end: null,
+            init: {
+                name: 'Punto Inicial',
+                canvasPoint: null
+            },
+            end: {
+                name: 'Punto Final',
+                canvasPoint: null
+            },
             medida: 0,
             distanciaAbsoluta: 0,
             distancia: 0,
             unidad: 0
         };
-        this.trichion = null;
-        this.genatio = null;
-        this.glabela = null;
-        this.subnasal = null;
-        this.pronasal = null;
-        this.labialesuperior = null;
+        this.trichion = {
+            name: 'Trichion',
+            canvasPoint: null
+        };
+        this.genatio = {
+            name: 'Genatio',
+            canvasPoint: null
+        };
+        this.glabela = {
+            name: 'Glabela',
+            canvasPoint: null
+        };
+        this.subnasal = {
+            name: 'Subnasal',
+            canvasPoint: null
+        };
+        this.pronasal = {
+            name: 'Pronasal',
+            canvasPoint: null
+        };
+        this.labialesuperior = {
+            name: 'Labial Superior',
+            canvasPoint: null
+        };
         this.canto = {
             externo : {
-                derecho : null,
-                izquierdo : null
+                derecho : {
+                    name: 'Canto Externo Derecho',
+                    canvasPoint: null
+                },
+                izquierdo : {
+                    name: 'Canto Externo Izquierdo',
+                    canvasPoint: null
+                }
             },
             interno : {
-                derecho : null,
-                izquierdo : null
+                derecho  : {
+                    name: 'Canto Interno Derecho',
+                    canvasPoint: null
+                },
+                izquierdo  : {
+                    name: 'Canto Interno Izquierdo',
+                    canvasPoint: null
+                }
             }
         };
         this.cigomatica = {
-            derecho: null,
-            izquierdo: null
+            derecho : {
+                name: 'Cigomatica Derecha',
+                canvasPoint: null
+            },
+            izquierdo : {
+                name: 'Cigomatica Izquierda',
+                canvasPoint: null
+            }
         };
         this.comisuralabial = {
-            derecha: null,
-            izquierdo : null
+            derecha : {
+                name: 'Comisura Labial Derecha',
+                canvasPoint: null
+            },
+            izquierdo : {
+                name: 'Comisura Labial Izquierda',
+                canvasPoint: null
+            }
         }
     }
 
@@ -275,7 +323,7 @@
     function CanvasPosition(positionX,positionY,rule){
         this.x = positionX;
         this.y = positionY;
-        if(rule != null){
+        if(rule != null && rule.unidad > 0){
             this.dx = positionX / rule.unidad;
             this.dy = positionY / rule.unidad;
         }else{
@@ -289,10 +337,10 @@
         if(obj.rule != null){
             console.log("setRule() paso 2");
             console.log(obj.rule);
-            if(obj.rule.init != null && obj.rule.end != null){
+            if(obj.rule.init.canvasPoint != null && obj.rule.end.canvasPoint != null){
                 console.log("setRule() paso 3");
                 obj.rule.medida = medida;
-                obj.rule.distanciaAbsoluta = getDistanciaAbsoluta(obj.rule.init,obj.rule.end);
+                obj.rule.distanciaAbsoluta = getDistanciaAbsoluta(obj.rule.init.canvasPoint,obj.rule.end.canvasPoint);
                 obj.rule.unidad = obj.rule.distanciaAbsoluta / obj.rule.medida;
             }
         }
@@ -303,15 +351,15 @@
     }
 
     function getPuntoMedio(obj,pointInit,pointEnd){
-        let x = ( pointInit.position.x + pointEnd.position.x ) / 2;
-        let y = ( pointInit.position.y + pointEnd.position.y ) / 2;
+        let x = ( pointInit.canvasPoint.position.x + pointEnd.canvasPoint.position.x ) / 2;
+        let y = ( pointInit.canvasPoint.position.y + pointEnd.canvasPoint.position.y ) / 2;
         return new CanvasPosition(x,y,obj.rule);
     }
 
     $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active');
     $('#nav-matrics').addClass('oro-subnavbar__link--active');
     var widthParent =  360;
-    var pointSelect =  'trichion';
+    var pointSelectId =  'trichion';
     var pointDelect = '';
     var frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
     var lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
@@ -321,7 +369,7 @@
         widthParent =  $('body').width();
         frontal.draw();
         lateral.draw();
-        lisentPoint(pointSelect);
+        lisentPoint(pointSelectId);
     });
 
     function setCoordenadasPoint(x,y,dx,dy){
@@ -332,21 +380,16 @@
         $($('#oro-metrics__eje-dy')[0]).val(dy);
     }
 
-    function lisentPoint(point){
-        pointSelect = point;
+    function lisentPoint(pointId){
+        pointSelectId = pointId;
+        thisPoint = getPoint(currentCanvas,pointSelectId);
         $('.oro-metrics__point').removeClass('oro-metrics__point--select');
-        $($('.oro-metrics__point[data-point='+point+']')[0]).addClass('oro-metrics__point--select');
-        $($('#oro-metrics__nombre-punto')[0]).val(point);
-        setCoordenadasPoint(0,0,0,0);
-        let widthPoint = 12;
-        let heightPoint = 12;
-        if(pointSelect === 'trichion'){
-            thisPoint = currentCanvas.trichion;
+        $($('.oro-metrics__point[data-point='+pointId+']')[0]).addClass('oro-metrics__point--select');
+        $($('#oro-metrics__nombre-punto')[0]).val(thisPoint.name);
+        if(thisPoint.canvasPoint != null){
+            setCoordenadasPoint(thisPoint.canvasPoint.position.x,thisPoint.canvasPoint.position.y,thisPoint.canvasPoint.position.dx,thisPoint.canvasPoint.position.dy);
         }else{
-            thisPoint = null;
-        }
-        if(thisPoint != null){
-            setCoordenadasPoint(thisPoint.position.x,thisPoint.position.y,thisPoint.position.dx,thisPoint.position.dy);
+            setCoordenadasPoint(0,0,0,0);
         }
     }
 
@@ -457,100 +500,100 @@
                 obj.setRule(parseFloat(large));
             }
 
-            if(pointSelect === 'genatio'){
-                obj.genatio = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.genatio,pointSelect);
-            }else {
+            if(pointSelectId === 'genatio'){
+                obj.genatio.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.genatio,pointSelectId);
+            }else if(obj.genatio.canvasPoint != null) {
                 drawPoint(obj,obj.genatio,'');
             }
-            if(pointSelect === 'trichion'){
-                obj.trichion = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.trichion,pointSelect);
-            }else if(obj.trichion != null){
+            if(pointSelectId === 'trichion'){
+                obj.trichion.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.trichion,pointSelectId);
+            }else if(obj.trichion.canvasPoint != null){
                 drawPoint(obj,obj.trichion,'');
             }
-            if(pointSelect === 'glabela'){
-                obj.glabela = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.glabela,pointSelect)
-            }else if(obj.glabela != null){
+            if(pointSelectId === 'glabela'){
+                obj.glabela.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.glabela,pointSelectId)
+            }else if(obj.glabela.canvasPoint != null){
                 drawPoint(obj,obj.glabela,'')
             }
-            if(pointSelect === 'subnasal'){
-                obj.subnasal = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.subnasal,pointSelect)
-            }else if(obj.subnasal != null){
+            if(pointSelectId === 'subnasal'){
+                obj.subnasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.subnasal,pointSelectId)
+            }else if(obj.subnasal.canvasPoint != null){
                 drawPoint(obj,obj.subnasal,'')
             }
-            if(pointSelect === 'pronasal'){
-                obj.pronasal = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.pronasal,pointSelect)
-            }else if(obj.pronasal != null){
+            if(pointSelectId === 'pronasal'){
+                obj.pronasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.pronasal,pointSelectId)
+            }else if(obj.pronasal.canvasPoint != null){
                 drawPoint(obj,obj.pronasal,'')
             }
-            if(pointSelect === 'labialesuperior'){
-                obj.labialesuperior = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.labialesuperior,pointSelect)
-            }else if(obj.labialesuperior != null){
+            if(pointSelectId === 'labialesuperior'){
+                obj.labialesuperior.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.labialesuperior,pointSelectId)
+            }else if(obj.labialesuperior.canvasPoint != null){
                 drawPoint(obj,obj.labialesuperior,'')
             }
-            if(pointSelect === 'canto__externo-derecho'){
-                obj.canto.externo.derecho = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.externo.derecho,pointSelect);
-            } else if(obj.canto.externo.derecho != null){
+            if(pointSelectId === 'canto__externo-derecho'){
+                obj.canto.externo.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.canto.externo.derecho,pointSelectId);
+            } else if(obj.canto.externo.derecho.canvasPoint != null){
                 drawPoint(obj,obj.canto.externo.derecho,'');
             }
-            if(pointSelect === 'canto__externo-izquierdo'){
-                obj.canto.externo.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.externo.izquierdo,pointSelect);
-            }else if(obj.canto.externo.izquierdo != null){
+            if(pointSelectId === 'canto__externo-izquierdo'){
+                obj.canto.externo.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.canto.externo.izquierdo,pointSelectId);
+            }else if(obj.canto.externo.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.canto.externo.izquierdo,'');
             }
-            if(pointSelect === 'canto__interno-derecho'){
-                obj.canto.interno.derecho = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.interno.derecho,pointSelect );
-            }else if(obj.canto.interno.derecho != null){
+            if(pointSelectId === 'canto__interno-derecho'){
+                obj.canto.interno.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.canto.interno.derecho,pointSelectId );
+            }else if(obj.canto.interno.derecho.canvasPoint != null){
                 drawPoint(obj,obj.canto.interno.derecho,'' );
             }
-            if(pointSelect === 'canto__interno-izquierdo'){
-                obj.canto.interno.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.interno.izquierdo,pointSelect );
-            }else if( obj.canto.interno.izquierdo != null){
+            if(pointSelectId === 'canto__interno-izquierdo'){
+                obj.canto.interno.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.canto.interno.izquierdo,pointSelectId );
+            }else if( obj.canto.interno.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.canto.interno.izquierdo,'' );
             }
-            if(pointSelect === 'cigomatica__derecho'){
-                obj.cigomatica.derecho = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.cigomatica.derecho,pointSelect )
-            }else if(obj.cigomatica.derecho != null){
+            if(pointSelectId === 'cigomatica__derecho'){
+                obj.cigomatica.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.cigomatica.derecho,pointSelectId )
+            }else if(obj.cigomatica.derecho.canvasPoint != null){
                 drawPoint(obj,obj.cigomatica.derecho,'' );
             }
-            if(pointSelect === 'cigomatica__izquierdo' ){
-                obj.cigomatica.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.cigomatica.izquierdo,pointSelect)
-            }else if(obj.cigomatica.izquierdo != null){
+            if(pointSelectId === 'cigomatica__izquierdo' ){
+                obj.cigomatica.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.cigomatica.izquierdo,pointSelectId)
+            }else if(obj.cigomatica.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.cigomatica.izquierdo,'' )
             }
-            if(pointSelect === 'comisuralabial__izquierdo'){
-                obj.comisuralabial.izquierdo = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.comisuralabial.izquierdo,pointSelect )
-            }else if(obj.comisuralabial.izquierdo != null){
+            if(pointSelectId === 'comisuralabial__izquierdo'){
+                obj.comisuralabial.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.comisuralabial.izquierdo,pointSelectId )
+            }else if(obj.comisuralabial.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.comisuralabial.izquierdo,'' )
             }
-            if(pointSelect === 'comisuralabial__derecho'){
-                obj.comisuralabial.derecha = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.comisuralabial.derecha,pointSelect )
-            }else if(obj.comisuralabial.derecha != null){
+            if(pointSelectId === 'comisuralabial__derecho'){
+                obj.comisuralabial.derecha.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.comisuralabial.derecha,pointSelectId )
+            }else if(obj.comisuralabial.derecha.canvasPoint != null){
                 drawPoint(obj,obj.comisuralabial.derecha,'' )
             }
-            if(pointSelect === 'oro-metrics__rule-init'){
-                obj.rule.init = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.rule.init,pointSelect )
-            }else if(obj.rule.init != null){
+            if(pointSelectId === 'oro-metrics__rule-init'){
+                obj.rule.init.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.rule.init,pointSelectId )
+            }else if(obj.rule.init.canvasPoint != null){
                 drawPoint(obj,obj.rule.init,'')
             }
-            if(pointSelect === 'oro-metrics__rule-end'){
-                obj.rule.end = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.rule.end,pointSelect);
-            }else if(obj.rule.end != null){
+            if(pointSelectId === 'oro-metrics__rule-end'){
+                obj.rule.end.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.rule.end,pointSelectId);
+            }else if(obj.rule.end.canvasPoint != null){
                 drawPoint(obj,obj.rule.end,'')
             }
 
@@ -564,37 +607,88 @@
         });
     }
 
-    function drawPoint(obj,point,currentPoint){
-        console.log(currentPoint);
-        console.log(point);
-        if( (pointDelect !== '' && currentPoint === pointDelect ) || point == null ){
-            if( point == null ){
-                point = new CanvasPoint( new CanvasPosition(0,0), 0,0, obj.rule);
-            }
-            if( currentPoint === pointDelect ){
-                pointDelect = '';
-            }
-            point.heightPoint= 0;
-            point.widthPoint = 0;
-            point.position.x = 0;
-            point.position.y = 0;
+    function getPoint(obj,pointSelect){
+        if(pointSelect === 'genatio'){
+            return obj.genatio;
         }
-        if( currentPoint === pointSelect ){
-            setCoordenadasPoint(point.position.x,point.position.y,point.position.dx,point.position.dy);
-            $($('.oro-metrics__point[data-point='+currentPoint+']')[0]).addClass('oro-metrics__point--check');
-            $($($('.oro-metrics__point[data-point='+currentPoint+']')[0]).find('.oro-metrics__point-info')[0])[0].innerHTML ='('+point.position.x+','+point.position.y+')';
+        if(pointSelect === 'trichion'){
+            return obj.trichion;
         }
-
-        drawIndicator(obj,point);
+        if(pointSelect === 'glabela'){
+            return obj.glabela;
+        }
+        if(pointSelect === 'subnasal'){
+            return obj.subnasal;
+        }
+        if(pointSelect === 'pronasal'){
+            return obj.pronasal;
+        }
+        if(pointSelect === 'labialesuperior'){
+            return obj.labialesuperior;
+        }
+        if(pointSelect === 'canto__externo-derecho'){
+            return obj.canto.externo.derecho;
+        }
+        if(pointSelect === 'canto__externo-izquierdo'){
+            return obj.canto.externo.izquierdo;
+        }
+        if(pointSelect === 'canto__interno-derecho'){
+            return obj.canto.interno.derecho;
+        }
+        if(pointSelect === 'canto__interno-izquierdo'){
+            return obj.canto.interno.izquierdo;
+        }
+        if(pointSelect === 'cigomatica__derecho'){
+            return obj.cigomatica.derecho;
+        }
+        if(pointSelect === 'cigomatica__izquierdo' ){
+            return obj.cigomatica.izquierdo;
+        }
+        if(pointSelect === 'comisuralabial__izquierdo'){
+            return obj.comisuralabial.izquierdo;
+        }
+        if(pointSelect === 'comisuralabial__derecho'){
+            return obj.comisuralabial.derecha;
+        }
+        if(pointSelect === 'oro-metrics__rule-init'){
+            return obj.rule.init;
+        }
+        if(pointSelect === 'oro-metrics__rule-end'){
+            return obj.rule.end;
+        }
     }
 
-    function drawIndicator(obj,point){
-        obj.ctx.fillRect(point.position.x - (point.widthPoint/4),point.position.y - (point.heightPoint/4) ,point.widthPoint/2,point.heightPoint/2);
+    function drawPoint(obj,point,currentPointId){
+        console.log(currentPointId);
+        console.log(point);
+        if( (pointDelect !== '' && currentPointId === pointDelect ) || point.canvasPoint == null ){
+            if( point.canvasPoint == null ){
+                point.canvasPoint = new CanvasPoint( new CanvasPosition(0,0), 0,0, obj.rule);
+            }
+            if( currentPointId === pointDelect ){
+                pointDelect = '';
+            }
+            point.canvasPoint.heightPoint= 0;
+            point.canvasPoint.widthPoint = 0;
+            point.canvasPoint.position.x = 0;
+            point.canvasPoint.position.y = 0;
+        }
+        if( currentPointId === pointSelectId ){
+            setCoordenadasPoint(point.canvasPoint.position.x,point.canvasPoint.position.y,point.canvasPoint.position.dx,point.canvasPoint.position.dy);
+            $($('.oro-metrics__point[data-point='+currentPointId+']')[0]).addClass('oro-metrics__point--check');
+            $($($('.oro-metrics__point[data-point='+currentPointId+']')[0]).find('.oro-metrics__point-info')[0])[0].innerHTML ='('+point.canvasPoint.position.x+','+point.canvasPoint.position.y+')';
+        }
+
+        drawIndicator(obj,point.canvasPoint);
+    }
+
+    function drawIndicator(obj,canvasPoint){
+        obj.ctx.fillRect(canvasPoint.position.x - (canvasPoint.widthPoint/4),canvasPoint.position.y - (canvasPoint.heightPoint/4) ,canvasPoint.widthPoint/2,canvasPoint.heightPoint/2);
         obj.ctx.strokeStyle = "#333";
         obj.ctx.beginPath();
-        let x = point.position.x; // x coordinate
-        let y = point.position.y; // y coordinate
-        let radius = point.widthPoint; // Arc radius
+        let x = canvasPoint.position.x; // x coordinate
+        let y = canvasPoint.position.y; // y coordinate
+        let radius = canvasPoint.widthPoint; // Arc radius
         let startAngle = 0; // Starting point on circle
         let endAngle = Math.PI * 2; // End point on circle
         let anticlockwise = true; // clockwise or anticlockwise
@@ -611,24 +705,28 @@
 
     function enlazarCigomatica(obj){
       if(obj.cigomatica != null){
-          if(obj.cigomatica.izquierdo != null && obj.cigomatica.derecho != null){
-              drawLine(obj,obj.cigomatica.izquierdo,obj.cigomatica.derecho,'#ff0000');
+          if(obj.cigomatica.izquierdo.canvasPoint != null && obj.cigomatica.derecho.canvasPoint != null){
+              let izquierda = obj.cigomatica.izquierdo.canvasPoint;
+              console.log(" Cigomaticas Izq");
+              console.log(obj.cigomatica.izquierdo.canvasPoint);
+              let derecha = obj.cigomatica.derecho.canvasPoint;
+              drawLine(izquierda,derecha,'#ff0000');
               console.log("Distancia Cigomaticas");
-              let posicionMedio = getPuntoMedio(obj,obj.cigomatica.izquierdo,obj.cigomatica.derecho);
+              let posicionMedio = getPuntoMedio(obj,izquierda,derecha);
               console.log("Posicion Medio");
               console.log(posicionMedio);
               let punto = new CanvasPoint(posicionMedio,15,15);
               console.log(punto);
               drawIndicator(obj,punto);
               drawTextIndicator(obj,punto,"Distancia Cigomaticas");
-              console.log(getDistanciaAbsoluta(obj.cigomatica.izquierdo,obj.cigomatica.derecho)/obj.rule.unidad)
+              console.log(getDistanciaAbsoluta(izquierda,derecha)/obj.rule.unidad)
           }
       }
     }
 
     function enlazarCalibracion(obj){
         if(obj.rule != null){
-            if(obj.rule.init != null && obj.rule.end != null){
+            if(obj.rule.init.canvasPoint != null && obj.rule.end.canvasPoint != null){
                 drawLine(obj,obj.rule.init,obj.rule.end,'#ff0000');
             }
         }
@@ -636,28 +734,33 @@
 
     function enlazarAsimetriaFacial(obj){
         if(obj.canto != null && obj.comisuralabial != null){
-            if(obj.canto.externo.izquierdo != null && obj.comisuralabial.izquierdo != null){
-                drawLine(obj,obj.canto.externo.izquierdo,obj.comisuralabial.izquierdo,'#0000ff');
-                console.log("Distancia Asimetri Facial")
-                console.log(getDistanciaAbsoluta(obj.canto.externo.izquierdo,obj.comisuralabial.izquierdo)/obj.rule.unidad)
+            if(obj.canto.externo.izquierdo.canvasPoint != null && obj.comisuralabial.izquierdo.canvasPoint != null){
+                let izquierdo = obj.canto.externo.izquierdo.canvasPoint;
+                let derecho = obj.comisuralabial.izquierdo.canvasPoint;
+                drawLine(obj,izquierdo,derecho,'#0000ff');
+                console.log("Distancia Asimetri Facial");
+                console.log(getDistanciaAbsoluta(izquierdo,derecho)/obj.rule.unidad)
             }
-            if(obj.canto.externo.derecho != null && obj.comisuralabial.derecha != null){
-                drawLine(obj,obj.canto.externo.derecho,obj.comisuralabial.derecha,'#0000ff');
+            if(obj.canto.externo.derecho.canvasPoint != null && obj.comisuralabial.derecha.canvasPoint != null){
+                drawLine(obj,obj.canto.externo.derecho.canvasPoint,obj.comisuralabial.derecha.canvasPoint,'#0000ff');
             }
         }
     }
 
     function drawLine(obj,since,until,style){
+        console.log('Enlazando '+since.name+' con '+until.name);
+        console.log(since);
+        console.log(until);
         obj.ctx.beginPath();
-        obj.ctx.moveTo(since.position.x, since.position.y);
-        obj.ctx.lineTo(until.position.x, until.position.y);
+        obj.ctx.moveTo(since.canvasPoint.position.x, since.canvasPoint.position.y);
+        obj.ctx.lineTo(until.canvasPoint.position.x, until.canvasPoint.position.y);
         obj.ctx.strokeStyle = style;
         obj.ctx.stroke();
     }
 
     function deletedPoint(event,dataPoint){
         pointDelect = dataPoint;
-        pointSelect = dataPoint;
+        pointSelectId = dataPoint;
         let position = new CanvasPosition(0,0,frontal.rule);
         drawPoints(frontal,position,0,0);
     }
