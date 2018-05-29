@@ -83,4 +83,29 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    enable_starttls_auto: true,
+    authentication: 'plain',
+    user_name: 'WebOrofacialMetrics@gmail.com',
+    password: 'WebOrofacialMetrics2017'
+   }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    path: ':class/:attachment/:id/:style/:filename',
+    s3_host_name: 's3.us-east-1.amazonaws.com',
+    s3_credentials: {
+      bucket: 'orofacialmetrics',
+      access_key_id: 'AKIAJY4MAES2J5HYF3VA',
+      secret_access_key: '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',
+      s3_region: 'us-east-1'
+    }
+  }
+
 end
