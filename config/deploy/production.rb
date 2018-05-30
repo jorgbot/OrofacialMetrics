@@ -1,3 +1,4 @@
+set :stage, :production
 server '206.81.9.1', user: 'deploy', roles: %w{app db web}
 # server-based syntax
 # ======================
