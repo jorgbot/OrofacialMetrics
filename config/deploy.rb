@@ -3,7 +3,7 @@ lock "~> 3.10.2"
 
 set :application, "OrofacialMetrics"
 set :repo_url, "git@github.com:jorgbot/OrofacialMetrics.git"
-
+set :branch, "desarrollo"
 set :deploy_to, '/home/deploy/OrofacialMetrics'
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
