@@ -108,7 +108,7 @@
       <div class="oro-metrics__rule">
         <div class="row">
           <div class="col-md-12"  style="margin-left: 15px;margin-bottom: 5px">
-            <small>Completa la calibracion para iniciar la ubicacion de puntos</strong></small>
+            <small><strong>Completa la calibracion para iniciar la ubicacion de puntos</strong></small>
           </div>
         </div>
           <details>
@@ -269,6 +269,7 @@
         this.ctx = null;
         this.src = src;
         this.img = null;
+        this.tipo = '';
         this.beginLoad = true;
         this.eventsLoad = false;
         this.draw = function(){drawCanvas(this)};
@@ -276,10 +277,12 @@
         this.rule ={
             init: {
                 name: 'Punto Inicial',
+                id: null,
                 canvasPoint: null
             },
             end: {
                 name: 'Punto Final',
+                id: null,
                 canvasPoint: null
             },
             medida: 0,
@@ -289,46 +292,56 @@
         };
         this.trichion = {
             name: 'Trichion',
+            id: null,
             canvasPoint: null
         };
         this.genatio = {
             name: 'Genatio',
+            id: null,
             canvasPoint: null
         };
         this.glabela = {
             name: 'Glabela',
+            id: null,
             canvasPoint: null
         };
         this.subnasal = {
             name: 'Subnasal',
+            id: null,
             canvasPoint: null
         };
         this.pronasal = {
             name: 'Pronasal',
+            id: null,
             canvasPoint: null
         };
         this.labialesuperior = {
             name: 'Labial Superior',
+            id: null,
             canvasPoint: null
         };
         this.canto = {
             externo : {
                 derecho : {
                     name: 'Canto Externo Derecho',
+                    id: null,
                     canvasPoint: null
                 },
                 izquierdo : {
                     name: 'Canto Externo Izquierdo',
+                    id: null,
                     canvasPoint: null
                 }
             },
             interno : {
                 derecho  : {
                     name: 'Canto Interno Derecho',
+                    id: null,
                     canvasPoint: null
                 },
                 izquierdo  : {
                     name: 'Canto Interno Izquierdo',
+                    id: null,
                     canvasPoint: null
                 }
             }
@@ -336,20 +349,24 @@
         this.cigomatica = {
             derecho : {
                 name: 'Cigomatica Derecha',
+                id: null,
                 canvasPoint: null
             },
             izquierdo : {
                 name: 'Cigomatica Izquierda',
+                id: null,
                 canvasPoint: null
             }
         };
         this.comisuralabial = {
             derecha : {
                 name: 'Comisura Labial Derecha',
+                id: null,
                 canvasPoint: null
             },
             izquierdo : {
                 name: 'Comisura Labial Izquierda',
+                id: null,
                 canvasPoint: null
             }
         }
@@ -402,8 +419,11 @@
     var pointSelectId =  'trichion';
     var pointDelect = '';
     var frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
+    frontal.tipo = 'frontal';
     var lateral = new Canvas('canvas-lateral','<%= @foto.img_lateral %>', 'media_lateral');
+    lateral.tipo = 'lateral';
     var currentCanvas = frontal;
+    var fotodiagnostico_id = '';
 
     $(document).ready(function(){
         widthParent =  $('body').width();
@@ -541,96 +561,112 @@
             if(pointSelectId === 'genatio'){
                 obj.genatio.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.genatio,pointSelectId);
+                obj.genatio.id = uploadPoint(pointSelectId,obj,obj.genatio.canvasPoint);
             }else if(obj.genatio.canvasPoint != null) {
                 drawPoint(obj,obj.genatio,'');
             }
             if(pointSelectId === 'trichion'){
                 obj.trichion.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.trichion,pointSelectId);
+                obj.trichion.id = uploadPoint(pointSelectId,obj,obj.trichion.canvasPoint);
             }else if(obj.trichion.canvasPoint != null){
                 drawPoint(obj,obj.trichion,'');
             }
             if(pointSelectId === 'glabela'){
                 obj.glabela.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.glabela,pointSelectId)
+                obj.glabela.id = uploadPoint(pointSelectId,obj,obj.glabela.canvasPoint);
             }else if(obj.glabela.canvasPoint != null){
                 drawPoint(obj,obj.glabela,'')
             }
             if(pointSelectId === 'subnasal'){
                 obj.subnasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.subnasal,pointSelectId)
+                obj.subnasal.id = uploadPoint(pointSelectId,obj,obj.subnasal.canvasPoint);
             }else if(obj.subnasal.canvasPoint != null){
                 drawPoint(obj,obj.subnasal,'')
             }
             if(pointSelectId === 'pronasal'){
                 obj.pronasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.pronasal,pointSelectId)
+                obj.pronasal.id = uploadPoint(pointSelectId,obj,obj.pronasal.canvasPoint);
             }else if(obj.pronasal.canvasPoint != null){
                 drawPoint(obj,obj.pronasal,'')
             }
             if(pointSelectId === 'labialesuperior'){
                 obj.labialesuperior.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.labialesuperior,pointSelectId)
+                obj.labialesuperior.id = uploadPoint(pointSelectId,obj,obj.labialesuperior.canvasPoint);
             }else if(obj.labialesuperior.canvasPoint != null){
                 drawPoint(obj,obj.labialesuperior,'')
             }
             if(pointSelectId === 'canto__externo-derecho'){
                 obj.canto.externo.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.externo.derecho,pointSelectId);
+                obj.canto.externo.derecho.id = uploadPoint(pointSelectId,obj,obj.canto.externo.derecho.canvasPoint);
             } else if(obj.canto.externo.derecho.canvasPoint != null){
                 drawPoint(obj,obj.canto.externo.derecho,'');
             }
             if(pointSelectId === 'canto__externo-izquierdo'){
                 obj.canto.externo.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.externo.izquierdo,pointSelectId);
+                obj.canto.externo.izquierdo.id = uploadPoint(pointSelectId,obj,obj.canto.externo.izquierdo.canvasPoint);
             }else if(obj.canto.externo.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.canto.externo.izquierdo,'');
             }
             if(pointSelectId === 'canto__interno-derecho'){
                 obj.canto.interno.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.interno.derecho,pointSelectId );
+                obj.canto.interno.derecho.id = uploadPoint(pointSelectId,obj,obj.canto.interno.derecho.canvasPoint);
             }else if(obj.canto.interno.derecho.canvasPoint != null){
                 drawPoint(obj,obj.canto.interno.derecho,'' );
             }
             if(pointSelectId === 'canto__interno-izquierdo'){
                 obj.canto.interno.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.canto.interno.izquierdo,pointSelectId );
+                obj.canto.interno.izquierdo.id = uploadPoint(pointSelectId,obj,obj.canto.interno.izquierdo.canvasPoint);
             }else if( obj.canto.interno.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.canto.interno.izquierdo,'' );
             }
             if(pointSelectId === 'cigomatica__derecho'){
                 obj.cigomatica.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.cigomatica.derecho,pointSelectId )
+                obj.cigomatica.derecho.id = uploadPoint(pointSelectId,obj,obj.cigomatica.derecho.canvasPoint);
             }else if(obj.cigomatica.derecho.canvasPoint != null){
                 drawPoint(obj,obj.cigomatica.derecho,'' );
             }
             if(pointSelectId === 'cigomatica__izquierdo' ){
                 obj.cigomatica.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.cigomatica.izquierdo,pointSelectId)
+                obj.cigomatica.izquierdo.id = uploadPoint(pointSelectId,obj,obj.cigomatica.izquierdo.canvasPoint);
             }else if(obj.cigomatica.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.cigomatica.izquierdo,'' )
             }
             if(pointSelectId === 'comisuralabial__izquierdo'){
                 obj.comisuralabial.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.comisuralabial.izquierdo,pointSelectId )
+                obj.comisuralabial.izquierdo.id = uploadPoint(pointSelectId,obj,obj.comisuralabial.izquierdo.canvasPoint);
             }else if(obj.comisuralabial.izquierdo.canvasPoint != null){
                 drawPoint(obj,obj.comisuralabial.izquierdo,'' )
             }
             if(pointSelectId === 'comisuralabial__derecho'){
                 obj.comisuralabial.derecha.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.comisuralabial.derecha,pointSelectId )
+                obj.comisuralabial.derecha.id = uploadPoint(pointSelectId,obj,obj.comisuralabial.derecha.canvasPoint);
             }else if(obj.comisuralabial.derecha.canvasPoint != null){
                 drawPoint(obj,obj.comisuralabial.derecha,'' )
             }
             if(pointSelectId === 'oro-metrics__rule-init'){
                 obj.rule.init.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.rule.init,pointSelectId )
+                obj.rule.init.id = uploadPoint(pointSelectId,obj,obj.rule.init.canvasPoint);
             }else if(obj.rule.init.canvasPoint != null){
                 drawPoint(obj,obj.rule.init,'')
             }
             if(pointSelectId === 'oro-metrics__rule-end'){
                 obj.rule.end.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
                 drawPoint(obj,obj.rule.end,pointSelectId);
+                obj.rule.end.id = uploadPoint(pointSelectId,obj,obj.rule.end.canvasPoint);
             }else if(obj.rule.end.canvasPoint != null){
                 drawPoint(obj,obj.rule.end,'')
             }
@@ -877,6 +913,97 @@
         }
     }
 
+
+
+    function uploadPoint(name,obj,canvasPoint ){
+        <% if (usuario_signed_in?) %>
+          let tipo_grupo = obj.tipo;
+          let nombre = name;
+          let valor =  JSON.stringify(canvasPoint);
+          let id_foto = "";
+          id_foto = <%= @foto.id %>;
+          let id_usuario = "";
+          id_usuario = <%= @foto.usuario_id %>;
+
+          $.ajax({
+              url: '/fotodiagnosticos.json',
+              type: 'GET',
+              contentType: "application/json",
+              data: JSON.stringify( {
+                  'foto_id': id_foto
+              }),
+              success: function(data){
+                  console.log('buscando diagnosticos');
+                  console.log(data);
+                  let diagnosticoExist = false;
+                  for (let i in data){
+                      if(data[i].foto_id == id_foto){
+                          fotodiagnostico_id = data[i].id;
+                          diagnosticoExist = true;
+                      }
+                  }
+                  if(!diagnosticoExist){
+                      createFotoDiagnostico(tipo_grupo,0);
+                  }
+                  createCampoDiagnostico(obj,tipo_grupo,nombre,id_usuario,fotodiagnostico_id,valor);
+              }
+          });
+        <% end %>
+        return null;
+    }
+
+    function createCampoDiagnostico(obj,tipo_grupo,nombre,id_usuario,fotodiagnostico_id,valor){
+        $.ajax({
+            url: '/campodiagnosticos.json',
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify( {
+                'tipo_grupo': tipo_grupo,
+                'nombre': nombre,
+                'usuario_id': id_usuario,
+                'fotodiagnostico_id': fotodiagnostico_id,
+                'valor': valor
+            }),
+            success: function(data){
+                console.log('subido al servidor  el punto ['+nombre+']');
+                console.log(data);
+                console.log(getPoint(obj,nombre));
+                console.log(obj);
+                getPoint(obj,nombre).id = data.id;
+            }
+        });
+    }
+
+    function createFotoDiagnostico(tipo_campo,count){
+        let usuario_id = <%= @foto.usuario_id %>;
+        let paciente_id = <%= @foto.paciente_id %>;
+        let foto_id = <%= @foto.id %>;
+        let date = new Date();
+        let f_evaluacion =  date.toDateString();
+        let id_evaluacion = tipo_campo+"-"+date.getTime()+"-"+count;
+
+        $.ajax({
+            url: '/fotodiagnosticos.json',
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify( {
+                'f_evaluacion': f_evaluacion,
+                'paciente_id': paciente_id,
+                'usuario_id': usuario_id,
+                'foto_id': foto_id,
+                'id_evaluacion': id_evaluacion
+            }),
+            success: function(data){
+                console.log('SUBIDO FOTO DIAGNOSTIVO ['+id_evaluacion+']');
+                console.log(data);
+                fotodiagnostico_id = data[0].id;
+            }
+        });
+    }
+
+    function downloadPoint(){
+
+    }
 </script>
 
 

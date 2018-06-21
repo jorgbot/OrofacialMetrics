@@ -15,12 +15,12 @@
 
 <p>
   <strong>Usuario:</strong>
-  <%= @campodiagnostico.usuario %>
+  <%= @campodiagnostico.usuario.nombres %>
 </p>
 
 <p>
   <strong>Fotodiagnostico:</strong>
-  <%= @campodiagnostico.fotodiagnostico %>
+  <%= @campodiagnostico.fotodiagnostico.id_evaluacion%>
 </p>
 
 <%= link_to 'Editar', edit_campodiagnostico_path(@campodiagnostico) %> |
