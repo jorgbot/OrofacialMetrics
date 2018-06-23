@@ -14,8 +14,9 @@
       </form>
     </div>
   </div>
+  <br>
 <%if @pacientes.count > 0 %>
-    <div class="oro-paciente__list">
+    <div class="oro-paciente__list hidden">
       <% @pacientes.each do |paciente| %>
         <div class="oro-paciente__card">
           <div class="oro-paciente__perfil">
@@ -42,37 +43,17 @@
         </div>
       <% end %>
     </div>
-    <div class="oro-paciente__list oro-paciente__list--table hidden">
+    <div class="oro-paciente__list oro-paciente__list--table">
       <div class="table-resposive">
         <table class="table">
           <thead>
           <tr>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Genero</th>
-            <th>Tipo documento</th>
             <th>Documento</th>
-            <th>F nacimiento</th>
-            <th>Edad</th>
-            <th>Pais nacimiento</th>
-            <th>N departamento</th>
-            <th>N ciudad</th>
-            <th>Aseguradora</th>
-            <th>Raza</th>
-            <th>Etnia</th>
-            <th>Pais residencia</th>
-            <th>R departamento</th>
-            <th>R ciudad</th>
-            <th>R direccion</th>
-            <th>Estado</th>
-            <th>Pais estancia</th>
-            <th>E departamento</th>
-            <th>E ciudad</th>
-            <th>Religion</th>
             <th>Celular</th>
             <th>Telefono</th>
             <th>Correo</th>
-            <th>Usuario</th>
             <th colspan="3"></th>
           </tr>
           </thead>
@@ -82,30 +63,10 @@
             <tr>
               <td><%= paciente.nombre %></td>
               <td><%= paciente.apellido %></td>
-              <td><%= paciente.genero %></td>
-              <td><%= paciente.tipo_documento %></td>
               <td><%= paciente.documento %></td>
-              <td><%= paciente.f_nacimiento %></td>
-              <td><%= paciente.edad %></td>
-              <td><%= paciente.pais_nacimiento %></td>
-              <td><%= paciente.n_departamento %></td>
-              <td><%= paciente.n_ciudad %></td>
-              <td><%= paciente.aseguradora %></td>
-              <td><%= paciente.raza %></td>
-              <td><%= paciente.etnia %></td>
-              <td><%= paciente.pais_residencia %></td>
-              <td><%= paciente.r_departamento %></td>
-              <td><%= paciente.r_ciudad %></td>
-              <td><%= paciente.r_direccion %></td>
-              <td><%= paciente.estado %></td>
-              <td><%= paciente.pais_estancia %></td>
-              <td><%= paciente.e_departamento %></td>
-              <td><%= paciente.e_ciudad %></td>
-              <td><%= paciente.religion %></td>
               <td><%= paciente.celular %></td>
               <td><%= paciente.telefono %></td>
               <td><%= paciente.correo %></td>
-              <td><%= paciente.usuario.nombres %></td>
               <td><%= link_to 'Ver', paciente %></td>
               <td><%= link_to 'Editar', edit_paciente_path(paciente) %></td>
               <td><%= link_to 'Eliminar', paciente, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>

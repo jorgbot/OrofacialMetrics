@@ -4,9 +4,9 @@
       <div class="oro-metrics__glass">
 
       </div>
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">FRONTAL</a></li>
-        <li><a data-toggle="tab" href="#menu1">LATERAL</a></li>
+      <ul class="nav nav-tabs" id="js_tabs_canvas">
+        <li class="active" data-tipo="frontal"><a data-toggle="tab" href="#home">FRONTAL</a></li>
+        <li data-tipo="lateral"><a data-toggle="tab" href="#menu1">LATERAL</a></li>
       </ul>
       <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
@@ -133,7 +133,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input class="form-control" id="oro-metrics__rule-large" type="text" name="oro-metrics__rule-large">
+                    <input class="form-control" id="oro-metrics__rule-large" type="text" name="oro-metrics__rule-large">
                   <label class="form-label" for="point-name">Media CM</label>
                 </div>
               </div>
@@ -255,11 +255,148 @@
         </div>
       </details>
     </div>
+    <div class="oro-metrics__info" style="background-color: #2b8adc21;">
+      <details>
+        <summary class="btn btn-sm" style="margin-left: 15px;">Diagnosticos</summary>
+        <div class="row">
+          <div class="btn-group">
+            <a class="btn btn-sm pull-right" onclick="nuevoCampoDiagnostico()"> <i class="glyphicon glyphicon-plus"></i>Nuevo Dignostico</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <thead>
+              <th>Fecha</th>
+              <th>Opciones</th>
+              </thead>
+              <tbody id="diagnosticos">
 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
   </div>
 </div>
 <scirpt src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.0.0/fabric.min.js"></scirpt>
 <script type="text/javascript" charset="utf-8">
+    function Points(){
+        this.rule = {
+            init: {
+                name: 'Punto Inicial',
+                codigo: 'oro-metrics__rule-init',
+                id: null,
+                canvasPoint: null
+            },
+            end: {
+                name: 'Punto Final',
+                codigo: 'oro-metrics__rule-end',
+                id: null,
+                canvasPoint: null
+            },
+            medida: 0,
+            distanciaAbsoluta: 0,
+            distancia: 0,
+            unidad: 0
+        };
+        this.trichion = {
+            name: 'Trichion',
+            codigo: 'trichion',
+            id: null,
+            canvasPoint: null
+        };
+        this.genatio = {
+            name: 'Genatio',
+            codigo: 'genatio',
+            id: null,
+            canvasPoint: null
+        };
+        this.glabela = {
+            name: 'Glabela',
+            codigo: 'glabela',
+            id: null,
+            canvasPoint: null
+        };
+        this.subnasal = {
+            name: 'Subnasal',
+            codigo: 'subnasal',
+            id: null,
+            canvasPoint: null
+        };
+        this.pronasal = {
+            name: 'Pronasal',
+            codigo: 'pronasal',
+            id: null,
+            canvasPoint: null
+        };
+        this.labialesuperior = {
+            name: 'Labial Superior',
+            codigo: 'labialesuperior',
+            id: null,
+            canvasPoint: null
+        };
+        this.canto = {
+            externo : {
+                derecho : {
+                    name: 'Canto Externo Derecho',
+                    codigo: 'canto__externo-derecho',
+                    id: null,
+                    canvasPoint: null
+                },
+                izquierdo : {
+                    name: 'Canto Externo Izquierdo',
+                    codigo: 'canto__externo-izquierdo',
+                    id: null,
+                    canvasPoint: null
+                }
+            },
+            interno : {
+                derecho  : {
+                    name: 'Canto Interno Derecho',
+                    codigo: 'canto__interno-derecho',
+                    id: null,
+                    canvasPoint: null
+                },
+                izquierdo  : {
+                    name: 'Canto Interno Izquierdo',
+                    codigo: 'canto__externo-izquierdo',
+                    id: null,
+                    canvasPoint: null
+                }
+            }
+        };
+        this.cigomatica = {
+            derecho : {
+                name: 'Cigomatica Derecha',
+                codigo: 'cigomatica__derecho',
+                id: null,
+                canvasPoint: null
+            },
+            izquierdo : {
+                name: 'Cigomatica Izquierda',
+                codigo: 'cigomatica__izquierdo',
+                id: null,
+                canvasPoint: null
+            }
+        };
+        this.comisuralabial = {
+            derecha : {
+                name: 'Comisura Labial Derecha',
+                codigo: 'comisuralabial__derecho',
+                id: null,
+                canvasPoint: null
+            },
+            izquierdo : {
+                name: 'Comisura Labial Izquierda',
+                codigo: 'comisuralabial__izquierdo',
+                id: null,
+                canvasPoint: null
+            }
+        }
+    }
+
     function Canvas(id, src, parent){
         this.id = id;
         this.parent = parent;
@@ -274,108 +411,14 @@
         this.eventsLoad = false;
         this.draw = function(){drawCanvas(this)};
         this.setRule = function(distance){setRule(this,distance)};
-        this.rule ={
-            init: {
-                name: 'Punto Inicial',
-                id: null,
-                canvasPoint: null
-            },
-            end: {
-                name: 'Punto Final',
-                id: null,
-                canvasPoint: null
-            },
-            medida: 0,
-            distanciaAbsoluta: 0,
-            distancia: 0,
-            unidad: 0
-        };
-        this.trichion = {
-            name: 'Trichion',
-            id: null,
-            canvasPoint: null
-        };
-        this.genatio = {
-            name: 'Genatio',
-            id: null,
-            canvasPoint: null
-        };
-        this.glabela = {
-            name: 'Glabela',
-            id: null,
-            canvasPoint: null
-        };
-        this.subnasal = {
-            name: 'Subnasal',
-            id: null,
-            canvasPoint: null
-        };
-        this.pronasal = {
-            name: 'Pronasal',
-            id: null,
-            canvasPoint: null
-        };
-        this.labialesuperior = {
-            name: 'Labial Superior',
-            id: null,
-            canvasPoint: null
-        };
-        this.canto = {
-            externo : {
-                derecho : {
-                    name: 'Canto Externo Derecho',
-                    id: null,
-                    canvasPoint: null
-                },
-                izquierdo : {
-                    name: 'Canto Externo Izquierdo',
-                    id: null,
-                    canvasPoint: null
-                }
-            },
-            interno : {
-                derecho  : {
-                    name: 'Canto Interno Derecho',
-                    id: null,
-                    canvasPoint: null
-                },
-                izquierdo  : {
-                    name: 'Canto Interno Izquierdo',
-                    id: null,
-                    canvasPoint: null
-                }
-            }
-        };
-        this.cigomatica = {
-            derecho : {
-                name: 'Cigomatica Derecha',
-                id: null,
-                canvasPoint: null
-            },
-            izquierdo : {
-                name: 'Cigomatica Izquierda',
-                id: null,
-                canvasPoint: null
-            }
-        };
-        this.comisuralabial = {
-            derecha : {
-                name: 'Comisura Labial Derecha',
-                id: null,
-                canvasPoint: null
-            },
-            izquierdo : {
-                name: 'Comisura Labial Izquierda',
-                id: null,
-                canvasPoint: null
-            }
-        }
+        this.points = new Points();
     }
 
     function CanvasPoint(position,widthPoint,heightPoint){
         this.position = position;
         this.widthPoint = widthPoint;
         this.heightPoint = heightPoint;
+        this.large = null;
     }
 
     function CanvasPosition(positionX,positionY,rule){
@@ -392,13 +435,13 @@
 
     function setRule(obj,medida){
         //console.log("setRule()");
-        if(obj.rule != null){
+        if(obj.points.rule != null){
             //console.log("setRule() paso 2");
-            if(obj.rule.init.canvasPoint != null && obj.rule.end.canvasPoint != null){
+            if(obj.points.rule.init.canvasPoint != null && obj.points.rule.end.canvasPoint != null){
                 //console.log("setRule() paso 3");
-                obj.rule.medida = medida;
-                obj.rule.distanciaAbsoluta = getDistanciaAbsoluta(obj.rule.init.canvasPoint,obj.rule.end.canvasPoint);
-                obj.rule.unidad = obj.rule.distanciaAbsoluta / obj.rule.medida;
+                obj.points.rule.medida = medida;
+                obj.points.rule.distanciaAbsoluta = getDistanciaAbsoluta(obj.points.rule.init.canvasPoint,obj.points.rule.end.canvasPoint);
+                obj.points.rule.unidad = obj.points.rule.distanciaAbsoluta / obj.points.rule.medida;
             }
         }
     }
@@ -410,7 +453,7 @@
     function getPuntoMedio(obj,pointInit,pointEnd){
         let x = ( pointInit.canvasPoint.position.x + pointEnd.canvasPoint.position.x ) / 2;
         let y = ( pointInit.canvasPoint.position.y + pointEnd.canvasPoint.position.y ) / 2;
-        return new CanvasPosition(x,y,obj.rule);
+        return new CanvasPosition(x,y,obj.points.rule);
     }
 
     $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active');
@@ -424,12 +467,14 @@
     lateral.tipo = 'lateral';
     var currentCanvas = frontal;
     var fotodiagnostico_id = '';
+    var pointUpload = true;
 
     $(document).ready(function(){
         widthParent =  $('body').width();
         frontal.draw();
         lateral.draw();
         lisentPoint(pointSelectId);
+        getDiagnosticos(<%= @foto.id %>);
     });
 
     function setCoordenadasPoint(x,y,dx,dy){
@@ -547,132 +592,133 @@
     }
 
     function drawPoints(obj,position,widthPoint,heightPoint){
-        position = new CanvasPosition(Math.round(position.x),Math.round(position.y),obj.rule);
+
+        if($('#js_tabs_canvas .active').attr('data-tipo') == 'frontal')
+        {
+            currentCanvas = frontal;
+        }
+        else if($('#js_tabs_canvas .active').attr('data-tipo') == 'lateral')
+        {
+            currentCanvas = lateral;
+        }
+        let large = $('#oro-metrics__rule-large').val();
+        if( large !== '' ){
+            obj.setRule(parseFloat(large));
+        }
+        else if(obj.points.rule.end.canvasPoint != null && obj.points.rule.end.canvasPoint.large != null){
+            if($('#js_tabs_canvas .active').attr('data-tipo') == obj.tipo)
+            {
+                large = obj.points.rule.end.canvasPoint.large;
+                $('#oro-metrics__rule-large').val( large );
+                obj.setRule(parseFloat(large));
+                validarCalibracion();
+            }
+        }
+
+        position = new CanvasPosition(Math.round(position.x),Math.round(position.y),obj.points.rule);
         let promise = new Promise((resolve, reject) => {
             obj.draw();
             setTimeout(()=>resolve(obj),200)
         });
         promise.then((obj) => {
-            let large = $('#oro-metrics__rule-large').val();
-            if( large !== '' ){
-                obj.setRule(parseFloat(large));
-            }
+
 
             if(pointSelectId === 'genatio'){
-                obj.genatio.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.genatio,pointSelectId);
-                obj.genatio.id = uploadPoint(pointSelectId,obj,obj.genatio.canvasPoint);
-            }else if(obj.genatio.canvasPoint != null) {
-                drawPoint(obj,obj.genatio,'');
+                obj.points.genatio.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.genatio,pointSelectId);
+            }else if(obj.points.genatio.canvasPoint != null) {
+                drawPoint(obj,obj.points.genatio,'');
             }
             if(pointSelectId === 'trichion'){
-                obj.trichion.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.trichion,pointSelectId);
-                obj.trichion.id = uploadPoint(pointSelectId,obj,obj.trichion.canvasPoint);
-            }else if(obj.trichion.canvasPoint != null){
-                drawPoint(obj,obj.trichion,'');
+                obj.points.trichion.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.trichion,pointSelectId);
+            }else if(obj.points.trichion.canvasPoint != null){
+                drawPoint(obj,obj.points.trichion,'');
             }
             if(pointSelectId === 'glabela'){
-                obj.glabela.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.glabela,pointSelectId)
-                obj.glabela.id = uploadPoint(pointSelectId,obj,obj.glabela.canvasPoint);
-            }else if(obj.glabela.canvasPoint != null){
-                drawPoint(obj,obj.glabela,'')
+                obj.points.glabela.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.glabela,pointSelectId)
+            }else if(obj.points.glabela.canvasPoint != null){
+                drawPoint(obj,obj.points.glabela,'')
             }
             if(pointSelectId === 'subnasal'){
-                obj.subnasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.subnasal,pointSelectId)
-                obj.subnasal.id = uploadPoint(pointSelectId,obj,obj.subnasal.canvasPoint);
-            }else if(obj.subnasal.canvasPoint != null){
-                drawPoint(obj,obj.subnasal,'')
+                obj.points.subnasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.subnasal,pointSelectId)
+            }else if(obj.points.subnasal.canvasPoint != null){
+                drawPoint(obj,obj.points.subnasal,'')
             }
             if(pointSelectId === 'pronasal'){
-                obj.pronasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.pronasal,pointSelectId)
-                obj.pronasal.id = uploadPoint(pointSelectId,obj,obj.pronasal.canvasPoint);
-            }else if(obj.pronasal.canvasPoint != null){
-                drawPoint(obj,obj.pronasal,'')
+                obj.points.pronasal.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.pronasal,pointSelectId)
+            }else if(obj.points.pronasal.canvasPoint != null){
+                drawPoint(obj,obj.points.pronasal,'')
             }
             if(pointSelectId === 'labialesuperior'){
-                obj.labialesuperior.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.labialesuperior,pointSelectId)
-                obj.labialesuperior.id = uploadPoint(pointSelectId,obj,obj.labialesuperior.canvasPoint);
-            }else if(obj.labialesuperior.canvasPoint != null){
-                drawPoint(obj,obj.labialesuperior,'')
+                obj.points.labialesuperior.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.labialesuperior,pointSelectId)
+            }else if(obj.points.labialesuperior.canvasPoint != null){
+                drawPoint(obj,obj.points.labialesuperior,'')
             }
             if(pointSelectId === 'canto__externo-derecho'){
-                obj.canto.externo.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.externo.derecho,pointSelectId);
-                obj.canto.externo.derecho.id = uploadPoint(pointSelectId,obj,obj.canto.externo.derecho.canvasPoint);
-            } else if(obj.canto.externo.derecho.canvasPoint != null){
-                drawPoint(obj,obj.canto.externo.derecho,'');
+                obj.points.canto.externo.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.canto.externo.derecho,pointSelectId);
+            } else if(obj.points.canto.externo.derecho.canvasPoint != null){
+                drawPoint(obj,obj.points.canto.externo.derecho,'');
             }
             if(pointSelectId === 'canto__externo-izquierdo'){
-                obj.canto.externo.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.externo.izquierdo,pointSelectId);
-                obj.canto.externo.izquierdo.id = uploadPoint(pointSelectId,obj,obj.canto.externo.izquierdo.canvasPoint);
-            }else if(obj.canto.externo.izquierdo.canvasPoint != null){
-                drawPoint(obj,obj.canto.externo.izquierdo,'');
+                obj.points.canto.externo.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.canto.externo.izquierdo,pointSelectId);
+            }else if(obj.points.canto.externo.izquierdo.canvasPoint != null){
+                drawPoint(obj,obj.points.canto.externo.izquierdo,'');
             }
             if(pointSelectId === 'canto__interno-derecho'){
-                obj.canto.interno.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.interno.derecho,pointSelectId );
-                obj.canto.interno.derecho.id = uploadPoint(pointSelectId,obj,obj.canto.interno.derecho.canvasPoint);
-            }else if(obj.canto.interno.derecho.canvasPoint != null){
-                drawPoint(obj,obj.canto.interno.derecho,'' );
+                obj.points.canto.interno.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.canto.interno.derecho,pointSelectId );
+            }else if(obj.points.canto.interno.derecho.canvasPoint != null){
+                drawPoint(obj,obj.points.canto.interno.derecho,'' );
             }
             if(pointSelectId === 'canto__interno-izquierdo'){
-                obj.canto.interno.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.canto.interno.izquierdo,pointSelectId );
-                obj.canto.interno.izquierdo.id = uploadPoint(pointSelectId,obj,obj.canto.interno.izquierdo.canvasPoint);
-            }else if( obj.canto.interno.izquierdo.canvasPoint != null){
-                drawPoint(obj,obj.canto.interno.izquierdo,'' );
+                obj.points.canto.interno.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.canto.interno.izquierdo,pointSelectId );
+            }else if( obj.points.canto.interno.izquierdo.canvasPoint != null){
+                drawPoint(obj,obj.points.canto.interno.izquierdo,'' );
             }
             if(pointSelectId === 'cigomatica__derecho'){
-                obj.cigomatica.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.cigomatica.derecho,pointSelectId )
-                obj.cigomatica.derecho.id = uploadPoint(pointSelectId,obj,obj.cigomatica.derecho.canvasPoint);
-            }else if(obj.cigomatica.derecho.canvasPoint != null){
-                drawPoint(obj,obj.cigomatica.derecho,'' );
+                obj.points.cigomatica.derecho.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.cigomatica.derecho,pointSelectId )
+            }else if(obj.points.cigomatica.derecho.canvasPoint != null){
+                drawPoint(obj,obj.points.cigomatica.derecho,'' );
             }
             if(pointSelectId === 'cigomatica__izquierdo' ){
-                obj.cigomatica.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.cigomatica.izquierdo,pointSelectId)
-                obj.cigomatica.izquierdo.id = uploadPoint(pointSelectId,obj,obj.cigomatica.izquierdo.canvasPoint);
-            }else if(obj.cigomatica.izquierdo.canvasPoint != null){
-                drawPoint(obj,obj.cigomatica.izquierdo,'' )
+                obj.points.cigomatica.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.cigomatica.izquierdo,pointSelectId)
+            }else if(obj.points.cigomatica.izquierdo.canvasPoint != null){
+                drawPoint(obj,obj.points.cigomatica.izquierdo,'' )
             }
             if(pointSelectId === 'comisuralabial__izquierdo'){
-                obj.comisuralabial.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.comisuralabial.izquierdo,pointSelectId )
-                obj.comisuralabial.izquierdo.id = uploadPoint(pointSelectId,obj,obj.comisuralabial.izquierdo.canvasPoint);
-            }else if(obj.comisuralabial.izquierdo.canvasPoint != null){
-                drawPoint(obj,obj.comisuralabial.izquierdo,'' )
+                obj.points.comisuralabial.izquierdo.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.comisuralabial.izquierdo,pointSelectId )
+            }else if(obj.points.comisuralabial.izquierdo.canvasPoint != null){
+                drawPoint(obj,obj.points.comisuralabial.izquierdo,'' )
             }
             if(pointSelectId === 'comisuralabial__derecho'){
-                obj.comisuralabial.derecha.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.comisuralabial.derecha,pointSelectId )
-                obj.comisuralabial.derecha.id = uploadPoint(pointSelectId,obj,obj.comisuralabial.derecha.canvasPoint);
-            }else if(obj.comisuralabial.derecha.canvasPoint != null){
-                drawPoint(obj,obj.comisuralabial.derecha,'' )
+                obj.points.comisuralabial.derecha.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.comisuralabial.derecha,pointSelectId )
+            }else if(obj.points.comisuralabial.derecha.canvasPoint != null){
+                drawPoint(obj,obj.points.comisuralabial.derecha,'' )
             }
             if(pointSelectId === 'oro-metrics__rule-init'){
-                obj.rule.init.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.rule.init,pointSelectId )
-                obj.rule.init.id = uploadPoint(pointSelectId,obj,obj.rule.init.canvasPoint);
-            }else if(obj.rule.init.canvasPoint != null){
-                drawPoint(obj,obj.rule.init,'')
+                obj.points.rule.init.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                drawPoint(obj,obj.points.rule.init,pointSelectId );
+            }else if(obj.points.rule.init.canvasPoint != null){
+                drawPoint(obj,obj.points.rule.init,'');
             }
             if(pointSelectId === 'oro-metrics__rule-end'){
-                obj.rule.end.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
-                drawPoint(obj,obj.rule.end,pointSelectId);
-                obj.rule.end.id = uploadPoint(pointSelectId,obj,obj.rule.end.canvasPoint);
-            }else if(obj.rule.end.canvasPoint != null){
-                drawPoint(obj,obj.rule.end,'')
-            }
-
-            if( large !== '' ){
-                obj.setRule(parseFloat(large));
+                obj.points.rule.end.canvasPoint = new CanvasPoint(position,widthPoint,heightPoint);
+                obj.points.rule.end.canvasPoint.large =  $('#oro-metrics__rule-large').val();
+                drawPoint(obj,obj.points.rule.end,pointSelectId);
+            }else if(obj.points.rule.end.canvasPoint != null){
+                drawPoint(obj,obj.points.rule.end,'');
             }
 
             enlazarCigomatica(obj);
@@ -685,59 +731,59 @@
 
     function getPoint(obj,pointSelect){
         if(pointSelect === 'genatio'){
-            return obj.genatio;
+            return obj.points.genatio;
         }
         if(pointSelect === 'trichion'){
-            return obj.trichion;
+            return obj.points.trichion;
         }
         if(pointSelect === 'glabela'){
-            return obj.glabela;
+            return obj.points.glabela;
         }
         if(pointSelect === 'subnasal'){
-            return obj.subnasal;
+            return obj.points.subnasal;
         }
         if(pointSelect === 'pronasal'){
-            return obj.pronasal;
+            return obj.points.pronasal;
         }
         if(pointSelect === 'labialesuperior'){
-            return obj.labialesuperior;
+            return obj.points.labialesuperior;
         }
         if(pointSelect === 'canto__externo-derecho'){
-            return obj.canto.externo.derecho;
+            return obj.points.canto.externo.derecho;
         }
         if(pointSelect === 'canto__externo-izquierdo'){
-            return obj.canto.externo.izquierdo;
+            return obj.points.canto.externo.izquierdo;
         }
         if(pointSelect === 'canto__interno-derecho'){
-            return obj.canto.interno.derecho;
+            return obj.points.canto.interno.derecho;
         }
         if(pointSelect === 'canto__interno-izquierdo'){
-            return obj.canto.interno.izquierdo;
+            return obj.points.canto.interno.izquierdo;
         }
         if(pointSelect === 'cigomatica__derecho'){
-            return obj.cigomatica.derecho;
+            return obj.points.cigomatica.derecho;
         }
         if(pointSelect === 'cigomatica__izquierdo' ){
-            return obj.cigomatica.izquierdo;
+            return obj.points.cigomatica.izquierdo;
         }
         if(pointSelect === 'comisuralabial__izquierdo'){
-            return obj.comisuralabial.izquierdo;
+            return obj.points.comisuralabial.izquierdo;
         }
         if(pointSelect === 'comisuralabial__derecho'){
-            return obj.comisuralabial.derecha;
+            return obj.points.comisuralabial.derecha;
         }
         if(pointSelect === 'oro-metrics__rule-init'){
-            return obj.rule.init;
+            return obj.points.rule.init;
         }
         if(pointSelect === 'oro-metrics__rule-end'){
-            return obj.rule.end;
+            return obj.points.rule.end;
         }
     }
 
     function drawPoint(obj,point,currentPointId){
         if( (pointDelect !== '' && currentPointId === pointDelect ) || point.canvasPoint == null ){
             if( point.canvasPoint == null ){
-                point.canvasPoint = new CanvasPoint( new CanvasPosition(0,0), 0,0, obj.rule);
+                point.canvasPoint = new CanvasPoint( new CanvasPosition(0,0), 0,0, obj.points.rule);
             }
             if( currentPointId === pointDelect ){
                 pointDelect = '';
@@ -750,9 +796,11 @@
         if( currentPointId === pointSelectId ){
             setCoordenadasPoint(point.canvasPoint.position.x,point.canvasPoint.position.y,point.canvasPoint.position.dx,point.canvasPoint.position.dy);
             $($('.oro-metrics__point[data-point='+currentPointId+']')[0]).addClass('oro-metrics__point--check');
-            $($($('.oro-metrics__point[data-point='+currentPointId+']')[0]).find('.oro-metrics__point-info')[0])[0].innerHTML ='('+point.canvasPoint.position.x+','+point.canvasPoint.position.y+')';
+            if(pointUpload){
+                uploadPoint(point.codigo,obj,getPoint(obj,point.codigo).canvasPoint);
+            }
         }
-
+        $($($('.oro-metrics__point[data-point='+point.codigo+']')[0]).find('.oro-metrics__point-info')[0])[0].innerHTML ='('+point.canvasPoint.position.x+','+point.canvasPoint.position.y+')';
         drawIndicator(obj,point.canvasPoint);
     }
 
@@ -778,10 +826,10 @@
     }
 
     function enlazarCigomatica(obj){
-      if(obj.cigomatica != null){
-          if(obj.cigomatica.izquierdo.canvasPoint != null && obj.cigomatica.derecho.canvasPoint != null){
-              let izquierda = obj.cigomatica.izquierdo;
-              let derecha = obj.cigomatica.derecho;
+      if(obj.points.cigomatica != null){
+          if(obj.points.cigomatica.izquierdo.canvasPoint != null && obj.points.cigomatica.derecho.canvasPoint != null){
+              let izquierda = obj.points.cigomatica.izquierdo;
+              let derecha = obj.points.cigomatica.derecho;
               let posicionMedio = getPuntoMedio(obj,izquierda,derecha);
               let punto = new CanvasPoint(posicionMedio,15,15);
 
@@ -793,20 +841,20 @@
     }
 
     function enlazarCalibracion(obj){
-        if(obj.rule != null){
-            if(obj.rule.init.canvasPoint != null && obj.rule.end.canvasPoint != null){
-                drawLine(obj,obj.rule.init,obj.rule.end,'#ff0000');
+        if(obj.points.rule != null){
+            if(obj.points.rule.init.canvasPoint != null && obj.points.rule.end.canvasPoint != null){
+                drawLine(obj,obj.points.rule.init,obj.points.rule.end,'#ff0000');
             }
         }
     }
 
     function enlazarAsimetriaFacial(obj){
-        if(obj.canto != null && obj.comisuralabial != null){
-            if(obj.canto.externo.izquierdo.canvasPoint != null && obj.comisuralabial.izquierdo.canvasPoint != null){
-                drawLine(obj,obj.canto.externo.izquierdo,obj.comisuralabial.izquierdo,'#0000ff');
+        if(obj.points.canto != null && obj.points.comisuralabial != null){
+            if(obj.points.canto.externo.izquierdo.canvasPoint != null && obj.points.comisuralabial.izquierdo.canvasPoint != null){
+                drawLine(obj,obj.points.canto.externo.izquierdo,obj.points.comisuralabial.izquierdo,'#0000ff');
             }
-            if(obj.canto.externo.derecho.canvasPoint != null && obj.comisuralabial.derecha.canvasPoint != null){
-                drawLine(obj,obj.canto.externo.derecho,obj.comisuralabial.derecha,'#0000ff');
+            if(obj.points.canto.externo.derecho.canvasPoint != null && obj.points.comisuralabial.derecha.canvasPoint != null){
+                drawLine(obj,obj.points.canto.externo.derecho,obj.points.comisuralabial.derecha,'#0000ff');
             }
         }
     }
@@ -817,11 +865,11 @@
      * largo del rosto, sobre el ancho del rosto que la distancia de Glabela y Genatio
      */
     function calcularRostro(obj){
-          console.log('Validar Calculo Rostro Paso 1')
-         let pointCigomaticaIzquierda = obj.cigomatica.izquierdo.canvasPoint;
-         let pointCigoamticaDerecha = obj.cigomatica.derecho.canvasPoint;
-         let pointGlabela = obj.glabela.canvasPoint;
-         let pointGenatio = obj.genatio.canvasPoint;
+          console.log('Validar Calculo Rostro Paso 1');
+         let pointCigomaticaIzquierda = obj.points.cigomatica.izquierdo.canvasPoint;
+         let pointCigoamticaDerecha = obj.points.cigomatica.derecho.canvasPoint;
+         let pointGlabela = obj.points.glabela.canvasPoint;
+         let pointGenatio = obj.points.genatio.canvasPoint;
 
          if(pointCigomaticaIzquierda != null && pointCigoamticaDerecha != null && pointGlabela != null && pointGenatio != null ){
              console.log("CalcularRostro Paso 2");
@@ -830,8 +878,8 @@
 
              console.log('distanciaAbsolutaLargo : ' + distanciaAbsolutaLargo);
              console.log('distanciaAbsolutaAncho : ' + distanciaAbsolutaAncho);
-             let distanciaLargo = distanciaAbsolutaLargo / obj.rule.unidad;
-             let distanciaAncho = distanciaAbsolutaAncho / obj.rule.unidad;
+             let distanciaLargo = distanciaAbsolutaLargo / obj.points.rule.unidad;
+             let distanciaAncho = distanciaAbsolutaAncho / obj.points.rule.unidad;
              let resultado = 0;
              if(distanciaLargo > distanciaAncho){
                  resultado = distanciaLargo - distanciaAncho;
@@ -907,7 +955,7 @@
     }
 
     function validarCalibracion(){
-        if(currentCanvas.rule.unidad > 0){
+        if(currentCanvas.points.rule.unidad > 0){
             $('.oro-metrics__points').removeClass('hidden');
             $('li[data-point=genatio]').click();
         }
@@ -924,36 +972,159 @@
           id_foto = <%= @foto.id %>;
           let id_usuario = "";
           id_usuario = <%= @foto.usuario_id %>;
+          console.log("puede subir puntos:");
+          console.log(canvasPoint);
+          if( (canvasPoint.position.x != null  && canvasPoint.position.x != 0)
+              || (canvasPoint.position.y != null  && canvasPoint.position.y != 0) ){
+            if(pointUpload == true){
+                $.ajax({
+                    url: '/fotodiagnosticos.json',
+                    type: 'GET',
+                    contentType: "application/json",
+                    data: JSON.stringify( {
+                        'foto_id': id_foto
+                    }),
+                    success: function(data){
+                        console.log('buscando diagnosticos');
+                        if(fotodiagnostico_id == null || fotodiagnostico_id == ''){
+                            let diagnosticoExist = false;
+                            /*for (let i in data){
+                                if(data[i].foto_id == id_foto){
+                                    diagnosticoExist = true;
+                                }
+                            }*/
+                            if(!diagnosticoExist){
+                                createFotoDiagnostico(tipo_grupo,0);
+                            }
+                        }
+                        createCampoDiagnostico(obj,tipo_grupo,nombre,id_usuario,fotodiagnostico_id,valor);
+                    }
+                });
 
-          $.ajax({
-              url: '/fotodiagnosticos.json',
-              type: 'GET',
-              contentType: "application/json",
-              data: JSON.stringify( {
-                  'foto_id': id_foto
-              }),
-              success: function(data){
-                  console.log('buscando diagnosticos');
-                  console.log(data);
-                  let diagnosticoExist = false;
-                  for (let i in data){
-                      if(data[i].foto_id == id_foto){
-                          fotodiagnostico_id = data[i].id;
-                          diagnosticoExist = true;
-                      }
-                  }
-                  if(!diagnosticoExist){
-                      createFotoDiagnostico(tipo_grupo,0);
-                  }
-                  createCampoDiagnostico(obj,tipo_grupo,nombre,id_usuario,fotodiagnostico_id,valor);
-              }
-          });
+            }
+          }
+
         <% end %>
         return null;
     }
 
-    function createCampoDiagnostico(obj,tipo_grupo,nombre,id_usuario,fotodiagnostico_id,valor){
+    function getDiagnosticos(id_foto){
+
         $.ajax({
+            url: '/fotodiagnosticos.json',
+            type: 'GET',
+            contentType: "application/json",
+            data: JSON.stringify( {
+                'foto_id': id_foto
+            }),
+            success: function(data){
+                for (let i in data){
+                    if(data[i].foto_id == id_foto){
+                        $('#diagnosticos').append('<tr><td>'+data[i].f_evaluacion+'</td><td><a class="btn btn-link" onclick="loadCamposDiagnostico('+data[i].id+')">Ver</a></td></tr>');
+                    }
+                }
+            }
+        });
+    }
+
+    function loadCamposDiagnostico(id){
+        fotodiagnostico_id = id;
+        // inicializo los puntos conservadn el contexto canvas
+        frontal.points = new Points();
+        lateral.points = new Points();
+
+        $.ajax({
+            url: '/campodiagnosticos.json',
+            type: 'GET',
+            contentType: "application/json",
+            data: JSON.stringify( {
+                'fotodiagnostico_id': fotodiagnostico_id
+            }),
+            success: function(data){
+                pointUpload = false;
+                // busco primero los puntos de calibracion
+                for (let i in data){
+                    if(data[i].fotodiagnostico_id == fotodiagnostico_id){
+                        let valor = JSON.parse(data[i].valor);
+                        if(( data[i].name === 'oro-metrics__rule-init'
+                             || data[i].name === 'oro-metrics__rule-init' )){
+                            if(data[i].tipo_grupo === 'frontal' ){
+                                console.log('descargado ['+data[i].nombre+']');
+                                let valor = JSON.parse(data[i].valor);
+                                getPoint(frontal,data[i].nombre).id = data[i].id;
+                                getPoint(frontal,data[i].nombre).canvasPoint =valor;
+                                let position = new CanvasPosition(0,0,frontal.rule);
+                                drawPoints(frontal,position,0,0);
+                            }
+                            if(data[i].tipo_grupo === 'lateral'){
+                                console.log('descargado ['+data[i].nombre+']');
+                                let valor = JSON.parse(data[i].valor);
+                                getPoint(lateral,data[i].nombre).id = data[i].id;
+                                getPoint(lateral,data[i].nombre).canvasPoint =valor;
+                                let position = new CanvasPosition(0,0,lateral.rule);
+                                drawPoints(lateral,position,0,0);
+                            }
+
+                        }
+
+                    }
+                }
+                // busco ahora el resto de puntos
+                for (let i in data){
+                    if(data[i].fotodiagnostico_id == fotodiagnostico_id){
+                        let valor = JSON.parse(data[i].valor);
+                        if(data[i].tipo_grupo === 'frontal'){
+                            if(data[i].nombre == 'genatio'){
+                                console.log(data[i]);
+                            }
+                            console.log('descargado ['+data[i].nombre+']');
+                            getPoint(frontal,data[i].nombre).id = data[i].id;
+                            getPoint(frontal,data[i].nombre).canvasPoint =valor;
+                            let position = new CanvasPosition(0,0,frontal.rule);
+                            drawPoints(frontal,position,0,0);
+                        }
+                        if(data[i].tipo_grupo === 'lateral'){
+                            let valor = JSON.parse(data[i].valor);
+                            getPoint(lateral,data[i].nombre).id = data[i].id;
+                            getPoint(lateral,data[i].nombre).canvasPoint =valor;
+                            let position = new CanvasPosition(0,0,lateral.rule);
+                            drawPoints(lateral,position,0,0);
+                        }
+                    }
+                }
+                pointUpload = true;
+            }
+        });
+    }
+
+    function createCampoDiagnostico(obj,tipo_grupo,nombre,id_usuario,fotodiagnostico_id,valor){
+        if(getPoint(obj,nombre).id !== null){
+            console.log("encontrado para actualizar");
+            console.log(getPoint(obj,nombre));
+            $.ajax({
+                url: '/campodiagnosticos/'+getPoint(obj,nombre).id+'.json',
+                type: 'PUT',
+                contentType: "application/json",
+                data: JSON.stringify( {
+                    'id': getPoint(obj,nombre).id,
+                    'tipo_grupo': tipo_grupo,
+                    'nombre': nombre,
+                    'usuario_id': id_usuario,
+                    'fotodiagnostico_id': fotodiagnostico_id,
+                    'valor': valor
+                }),
+                success: function(data){
+                    console.log('actualizado al servidor  el punto ['+nombre+']');
+                    console.log(data);
+                    console.log(getPoint(obj,nombre));
+                    console.log(obj);
+                    getPoint(obj,nombre).id = data.id;
+                }
+            });
+        }
+        else
+        {
+          $.ajax({
             url: '/campodiagnosticos.json',
             type: 'POST',
             contentType: "application/json",
@@ -972,6 +1143,9 @@
                 getPoint(obj,nombre).id = data.id;
             }
         });
+        }
+
+
     }
 
     function createFotoDiagnostico(tipo_campo,count){
@@ -996,13 +1170,24 @@
             success: function(data){
                 console.log('SUBIDO FOTO DIAGNOSTIVO ['+id_evaluacion+']');
                 console.log(data);
-                fotodiagnostico_id = data[0].id;
+                fotodiagnostico_id = data.id;
+                $('#diagnosticos').append('<tr><td>'+data.f_evaluacion+'</td><td><a class="btn btn-sm" onclick="loadCamposDiagnostico('+data.id+')">Ver</a></td></tr>');
+
             }
         });
     }
 
-    function downloadPoint(){
-
+    function nuevoCampoDiagnostico(){
+        fotodiagnostico_id = null;
+        if($('#js_tabs_canvas .active').attr('data-tipo') == 'frontal')
+        {
+            frontal.points = new Points();
+        }
+        else if($('#js_tabs_canvas .active').attr('data-tipo') == 'lateral')
+        {
+            lateral.points = new Points();
+        }
+        validarCalibracion();
     }
 </script>
 

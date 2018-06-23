@@ -1,9 +1,47 @@
 .hero_home {
   width: 100%;
   height: 100vh;
-  background-size: contain;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: inline-block;
   text-align: center;
   color: white;
-  padding-top: 25px;
+  padding-top: 20vh;
+}
+
+@media ( max-width: 800px){
+  .hero_home {
+    background-size: contain;
+  }
+}
+
+.hero_home:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 77, 220, 0.8);
+  left: 0;
+  top: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.hero_home__title, .hero_home__subtitle {
+  z-index: 100;
+  font-size: 6rem;
+  position: relative;
+}
+.hero_home__subtitle{
+  font-size: 2.5rem;
+  line-height: 4rem;
+}
+
+.hero_home__btn {
+  margin-top: 30px;
+  color: white;
+  background: rgba(255, 255, 255, 0.10);
+  border: white 1px solid;
+  font-size: 2rem;
 }
