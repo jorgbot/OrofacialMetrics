@@ -7,7 +7,15 @@
       <ul class="nav nav-tabs" id="js_tabs_canvas">
         <li class="active" data-tipo="frontal"><a data-toggle="tab" href="#home">FRONTAL</a></li>
         <li data-tipo="lateral"><a data-toggle="tab" href="#menu1">LATERAL</a></li>
+        <li class="btn-group" style="width: 100%">
+            <buttom class="btn btn-small">Herramientas</buttom>
+            <button onclick="toolsZoomIn()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-in"></i></button>
+            <button onclick="toolsZoomOut()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-out"></i></button>
+            <button class="btn btn-lg"><i class="glyphicon glyphicon-download"></i></button>
+            <button class="btn btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+        </li>
       </ul>
+
       <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
           <div class="oro-metrics__media" id="media_frontal">
@@ -299,6 +307,13 @@
 <scirpt src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.0.0/fabric.min.js"></scirpt>
 <script type="text/javascript" charset="utf-8">
     function Points(){
+        this.scale = {
+           name: 'Escala primera Medida',
+           codigo: 'oro-metrics__scale',
+           width: 0,
+           height: 0,
+           oldscale: 0
+        };
         this.rule = {
             init: {
                 name: 'Punto Inicial',
@@ -315,7 +330,8 @@
             medida: 0,
             distanciaAbsoluta: 0,
             distancia: 0,
-            unidad: 0
+            unidad: 0,
+
         };
         this.trichion = {
             name: 'Trichion',
@@ -416,6 +432,7 @@
     function Canvas(id, src, parent){
         this.id = id;
         this.parent = parent;
+        this.escala = 1;
         this.canvas = null;
         this.width = 0;
         this.height = 0;
@@ -505,10 +522,12 @@
         thisPoint = getPoint(currentCanvas,pointSelectId);
         $('.oro-metrics__point').removeClass('oro-metrics__point--select');
         $($('.oro-metrics__point[data-point='+pointId+']')[0]).addClass('oro-metrics__point--select');
+        // si el punto no pertenece la canvas actual me cambios de canvas
         let dataParent = $($('.oro-metrics__point[data-point='+pointId+']')[0]).attr('data-parent');
         if( undefined != dataParent || "" != dataParent){
             changeCanvas(dataParent);
         }
+        // ahora busco le punto y sus visualizo sus coordenas
         $($('#oro-metrics__nombre-punto')[0]).val(thisPoint.name);
         if(thisPoint.canvasPoint != null){
             setCoordenadasPoint(thisPoint.canvasPoint.position.x,thisPoint.canvasPoint.position.y,thisPoint.canvasPoint.position.dx,thisPoint.canvasPoint.position.dy);
@@ -520,6 +539,41 @@
     function lisentPointEnter(e,point){
         if(e.keyCode === 13){
             lisentPoint(point);
+        }
+    }
+
+    function toolsZoomIn(){
+        toolsZoom(0.05,0.05 , currentCanvas);
+    }
+
+    function toolsZoomOut(){
+        toolsZoom(-0.05, -0.05 , currentCanvas);
+    }
+
+    function toolsZoom(scaleX,scaleY,obj){
+        let promise = new Promise((resolve) => {
+            drawZoom(scaleX, scaleY , obj);
+            setTimeout(()=>resolve(obj),100);
+        });
+        promise.then(function(resolve){
+            let position = new CanvasPosition(0,0,currentCanvas.rule);
+            drawPoints(currentCanvas,position,0,0);
+        })
+    }
+
+    function drawZoom(scaleX,scaleY,obj){
+        obj.canvas.width *= 1+scaleX;
+        obj.canvas.height *= 1+scaleY;
+        obj.escala = calcularEscala();
+        obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height);
+        if (obj.canvas.getContext){
+            obj.ctx = obj.canvas.getContext('2d');
+            initEventsCanvas(obj);
+            insertImage(obj);
+            obj.ctx.scale(obj.escala,obj.escala);
+            obj.ctx.save();
+        } else {
+            // canvas-unsupported code here
         }
     }
 
@@ -613,14 +667,14 @@
 
     function drawPoints(obj,position,widthPoint,heightPoint){
 
-        if($('#js_tabs_canvas .active').attr('data-tipo') == 'frontal')
+        if($('#js_tabs_canvas .active').attr('data-tipo') == obj.tipo)
         {
-            currentCanvas = frontal;
+            currentCanvas = obj;
         }
-        else if($('#js_tabs_canvas .active').attr('data-tipo') == 'lateral')
+        /*else if($('#js_tabs_canvas .active').attr('data-tipo') == 'lateral')
         {
             currentCanvas = lateral;
-        }
+        }*/
         let large = $('#oro-metrics__rule-large').val();
         if( large !== '' ){
             obj.setRule(parseFloat(large));
@@ -635,7 +689,12 @@
             }
         }
 
-        position = new CanvasPosition(Math.round(position.x),Math.round(position.y),obj.points.rule);
+        let positionX;
+        let positionY;
+        calcularEscala();
+
+
+        position = new CanvasPosition(Math.round(position.x * calcularEscala() ),Math.round(position.y),obj.points.rule);
         let promise = new Promise((resolve, reject) => {
             obj.draw();
             setTimeout(()=>resolve(obj),200)
@@ -828,24 +887,27 @@
     }
 
     function drawIndicator(obj,canvasPoint){
-        obj.ctx.fillRect(canvasPoint.position.x - (canvasPoint.widthPoint/4),canvasPoint.position.y - (canvasPoint.heightPoint/4) ,canvasPoint.widthPoint/2,canvasPoint.heightPoint/2);
+        let x = canvasPoint.position.x * calcularEscala()[0]; // x coordinate
+        let y = canvasPoint.position.y *  calcularEscala()[1]; // y coordinate
+        let widthPoint = /*obj.escala > 15 ?*/ 12 /*: canvasPoint.widthPoint */;
+        let  heightPoint  =  /*obj.escala > 15 ?*/ 12 /*: canvasPoint.heightPoint */;
+        obj.ctx.fillRect(x - (widthPoint/4), y - (heightPoint/4) ,widthPoint/2,heightPoint/2);
         obj.ctx.strokeStyle = "#333";
         obj.ctx.beginPath();
-        let x = canvasPoint.position.x; // x coordinate
-        let y = canvasPoint.position.y; // y coordinate
-        let radius = canvasPoint.widthPoint; // Arc radius
+        let radius = widthPoint; // Arc radius
         let startAngle = 0; // Starting point on circle
         let endAngle = Math.PI * 2; // End point on circle
         let anticlockwise = true; // clockwise or anticlockwise
-
         obj.ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
         obj.ctx.stroke();
     }
 
     function  drawTextIndicator(obj,point,text,aling = 'center', fontsize = '15', fontfamily = "Comic Sans MS") {
+        let x = point.position.x * calcularEscala(); // x coordinate
+        let y = point.position.y * calcularEscala(); // y coordinate
         obj.ctx.font = fontsize+"px "+fontfamily;
         obj.ctx.textAlign = aling;
-        obj.ctx.fillText(text, point.position.x+15, point.position.y-15);
+        obj.ctx.fillText(text, x+15, y-15);
     }
 
     function enlazarCigomatica(obj){
@@ -1091,8 +1153,22 @@
         drawPoints(frontal,position,0,0);
     }
 
+    function calcularEscala(){
+        if(currentCanvas.points.scale.width > 0){
+            let scaleWidth= currentCanvas.canvas.width / currentCanvas.points.scale.width;
+            let scaleHeight = currentCanvas.canvas.height / currentCanvas.points.scale.height;
+            return [scaleWidth,scaleHeight];
+        }else{
+            return [1,1];
+        }
+    }
+
     function validarCalibracion(){
         if(currentCanvas.points.rule.unidad > 0){
+            if(currentCanvas.points.scale.width == 0){
+                currentCanvas.points.scale.width = currentCanvas.canvas.width;
+                currentCanvas.points.scale.height = currentCanvas.canvas.height;
+            }
             $('.oro-metrics__points').removeClass('hidden');
             $('li[data-point='+currentCanvas.tipo+']').click();
         }else{
@@ -1172,6 +1248,11 @@
         // inicializo los puntos conservadn el contexto canvas
         frontal.points = new Points();
         lateral.points = new Points();
+        //let initScala = frontal.escala /  frontal.escala * 1;
+        /*drawZoom(1, 1 , frontal);
+        frontal.escala = 1;
+        drawZoom(1, 1 , lateral);
+        lateral.escala = 1;*/
         tipo_rostro.innerText = 'Sin Resultado';
         simetria.innerText = 'Sin Resultado';
 
@@ -1236,6 +1317,9 @@
                     }
                 }
                 pointUpload = true;
+            },
+            complete: function(){
+                validarCalibracion();
             }
         });
     }
@@ -1319,7 +1403,6 @@
                 console.log(data);
                 fotodiagnostico_id = data.id;
                 $('#diagnosticos').append('<tr><td>'+data.f_evaluacion+'</td><td><a class="btn btn-sm" onclick="loadCamposDiagnostico('+data.id+')">Ver</a></td></tr>');
-
             }
         });
     }
