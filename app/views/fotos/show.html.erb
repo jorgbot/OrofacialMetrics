@@ -271,7 +271,7 @@
             Nasal:
           </div>
           <div class="col-md-6">
-            <h4 id="simetria">Sin Resultado</h4>
+            <h4 id="nasal">Sin Resultado</h4>
           </div>
           <div class="col-md-12">
             <small>Completa Labiale Superior, Subnasal y Pronasal para ver resultado</small>
@@ -312,7 +312,9 @@
            codigo: 'oro-metrics__scale',
            width: 0,
            height: 0,
-           oldscale: 0
+           oldscale: 0,
+           id : null,
+           canvasPoint: null
         };
         this.rule = {
             init: {
@@ -691,10 +693,7 @@
 
         let positionX;
         let positionY;
-        calcularEscala();
-
-
-        position = new CanvasPosition(Math.round(position.x * calcularEscala() ),Math.round(position.y),obj.points.rule);
+        position = new CanvasPosition(Math.round(position.x * calcularEscala()[0] ),Math.round(position.y * calcularEscala()[1]),obj.points.rule);
         let promise = new Promise((resolve, reject) => {
             obj.draw();
             setTimeout(()=>resolve(obj),200)
@@ -812,6 +811,9 @@
     }
 
     function getPoint(obj,pointSelect){
+        if(pointSelect === 'oro-metrics__scale'){
+            return obj.points.scale;
+        }
         if(pointSelect === 'genatio'){
             return obj.points.genatio;
         }
@@ -889,6 +891,22 @@
     function drawIndicator(obj,canvasPoint){
         let x = canvasPoint.position.x * calcularEscala()[0]; // x coordinate
         let y = canvasPoint.position.y *  calcularEscala()[1]; // y coordinate
+        let widthPoint = /*obj.escala > 15 ?*/ 12 /*: canvasPoint.widthPoint */;
+        let  heightPoint  =  /*obj.escala > 15 ?*/ 12 /*: canvasPoint.heightPoint */;
+        obj.ctx.fillRect(x - (widthPoint/4), y - (heightPoint/4) ,widthPoint/2,heightPoint/2);
+        obj.ctx.strokeStyle = "#333";
+        obj.ctx.beginPath();
+        let radius = widthPoint; // Arc radius
+        let startAngle = 0; // Starting point on circle
+        let endAngle = Math.PI * 2; // End point on circle
+        let anticlockwise = true; // clockwise or anticlockwise
+        obj.ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+        obj.ctx.stroke();
+    }
+
+    function drawCurrentIndicator(obj,canvasPoint){
+        let x = canvasPoint.position.x / calcularEscala()[0]; // x coordinate
+        let y = canvasPoint.position.y /  calcularEscala()[1]; // y coordinate
         let widthPoint = /*obj.escala > 15 ?*/ 12 /*: canvasPoint.widthPoint */;
         let  heightPoint  =  /*obj.escala > 15 ?*/ 12 /*: canvasPoint.heightPoint */;
         obj.ctx.fillRect(x - (widthPoint/4), y - (heightPoint/4) ,widthPoint/2,heightPoint/2);
@@ -1134,8 +1152,8 @@
     function drawLine(obj,since,until,style){
         try {
             obj.ctx.beginPath();
-            obj.ctx.moveTo(since.canvasPoint.position.x, since.canvasPoint.position.y);
-            obj.ctx.lineTo(until.canvasPoint.position.x, until.canvasPoint.position.y);
+            obj.ctx.moveTo(since.canvasPoint.position.x * calcularEscala()[0], since.canvasPoint.position.y *  calcularEscala()[1]);
+            obj.ctx.lineTo(until.canvasPoint.position.x *  calcularEscala()[0], until.canvasPoint.position.y *  calcularEscala()[1]);
             obj.ctx.strokeStyle = style;
             obj.ctx.stroke();
         }
@@ -1168,6 +1186,14 @@
             if(currentCanvas.points.scale.width == 0){
                 currentCanvas.points.scale.width = currentCanvas.canvas.width;
                 currentCanvas.points.scale.height = currentCanvas.canvas.height;
+                let position = new CanvasPosition(1,1,frontal.rule);
+                currentCanvas.points.scale.canvasPoint = new CanvasPoint(position,currentCanvas.canvas.width, currentCanvas.canvas.height);
+                console.log('Subir Escala ');
+                console.log(currentCanvas.points.scale);
+                uploadPoint(currentCanvas.points.scale.codigo,
+                          currentCanvas,currentCanvas.points.scale.canvasPoint);
+
+                console.log('Arriba escala');
             }
             $('.oro-metrics__points').removeClass('hidden');
             $('li[data-point='+currentCanvas.tipo+']').click();
