@@ -33,22 +33,22 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :genero, class: 'form-label' %>
-                <%= f.select :genero, [["Masculino", "masculino"], ["Femenino", "femenino"]],{}, 'class': "form-control" %>
+                <%= f.label :tipo_documento, class: 'form-label' %>
+                <%= f.select :tipo_documento,[['Cedula Ciudadania', 'cedula ciudadania'], ['Tarjeta Identidad', 'tarjeta identidad'], ['Cedula Extranjería', 'cedula extranjería'], ['Registro Civil','registro civil'],['Pasaporte','pasaporte']], {},{ class: 'form-control'}  %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :tipo_documento, class: 'form-label' %>
-                <%= f.select :tipo_documento,[['Cedula Ciudadania', 'cedula ciudadania'], ['Tarjeta Identidad', 'tarjeta identidad'], ['Cedula Extrangeria', 'cedula extrangeria'], ['Partidad Nacimieno','partidad nacimiento'],['Pasaporte','pasaporte']], {},{ class: 'form-control'}  %>
+                <%= f.label :documento, class: 'form-label' %>
+                <%= f.text_field :documento, class: 'form-control' %>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :documento, class: 'form-label' %>
-                <%= f.text_field :documento, class: 'form-control' %>
+                <%= f.label :genero, class: 'form-label' %>
+                <%= f.select :genero, [["Masculino", "masculino"], ["Femenino", "femenino"]],{}, 'class': "form-control" %>
               </div>
             </div>
             <div class="col-md-4">
@@ -126,7 +126,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :'Departamento Recidencia', class: 'form-label' %>
+                <%= f.label :'Departamento Residencia', class: 'form-label' %>
                 <%= f.text_field :r_departamento , class: 'form-control' %>
               </div>
             </div>
@@ -134,13 +134,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :'Ciudad Recidencia', class: 'form-label' %>
+                <%= f.label :'Ciudad Residencia', class: 'form-label' %>
                 <%= f.text_field :r_ciudad , class: 'form-control' %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <%= f.label :'Direccion Recidencia', class: 'form-label' %>
+                <%= f.label :'Direccion Residencia', class: 'form-label' %>
                 <%= f.text_field :r_direccion , class: 'form-control' %>
               </div>
             </div>
@@ -174,12 +174,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <!--<div class="col-md-6">
               <div class="form-group">
-                <%= f.label :religion, class: 'form-label' %>
-                <%= f.text_field :religion , class: 'form-control' %>
+                <%# <%= f.label :religion, class: 'form-label' %>
+                <%# <%= f.text_field :religion , class: 'form-control' %>
               </div>
-            </div>
+            </div>  -->
             <div class="col-md-6">
               <div class="form-group">
                 <%= f.label :celular, class: 'form-label' %>

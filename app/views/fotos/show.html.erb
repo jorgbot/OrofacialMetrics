@@ -38,7 +38,7 @@
     </div>
     <div class="oro-metrics__nav col-md-9">
       <ul class="oro-metrics__points hidden row">
-        <li  tabindex="0" class="oro-metrics__point" data-toggle="tooltip" title="Genatio" data-parent="frontal" data-point="genatio" onclick="lisentPoint('genatio');" onkeypress="lisentPointEnter(event,'genatio')">
+        <li  tabindex="0" class="oro-metrics__point" data-toggle="tooltip" title="Gnatio" data-parent="frontal" data-point="genatio" onclick="lisentPoint('genatio');" onkeypress="lisentPointEnter(event,'genatio')">
           <span class="oro-metrics__point-info"></span>
           <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
           <img src="<%= asset_path 'genatio.png' %>" alt="genatio" class="img-responsive center-block">
@@ -342,7 +342,7 @@
             canvasPoint: null
         };
         this.genatio = {
-            name: 'Genatio',
+            name: 'Gnatio',
             codigo: 'genatio',
             id: null,
             canvasPoint: null
@@ -805,7 +805,7 @@
             enlazarNasalFacial(obj);
             calcularSimetria(obj);
             calcularRostro(obj);
-            // calcularNasalFacial(obj);
+            calcularNasalFacial(obj);
 
         });
     }
@@ -994,17 +994,27 @@
                     angSl = Math.atan(tagSl);
                     tagPl = calcTangente(sp,pl);
                     angPl = Math.atan(tagPl);
+                    tagSp = calcTangente(sl,pl);
+                    angSp = Math.atan(tagSp);
                     console.log('calculado');
                     console.log('radianes  ang Sl' + angSl);
                     console.log('grados ang sl'+ calcGrados(angSl));
                     console.log('radianes  ang Pl' + angPl);
                     console.log('grados ang Pl'+ calcGrados(angPl));
+                    console.log('radianes  ang Sp ' + angSp);
+                    console.log('grados ang Sp '+ calcGrados(angSp));
 
-                    if( resultado > 0 && resultado <= 3 ){
+                    let resultado = ( (calcGrados(angSl) >= 0 ? calcGrados(angSl) : calcGrados(angSl)*-1) + (calcGrados(angPl) >= 0 ? calcGrados(angPl) : calcGrados(angPl)*-1) ) - 180;
+
+                    let resultado2 = (( (calcGrados(angPl) >= 0 ? calcGrados(angPl) : calcGrados(angPl)*-1) + (calcGrados(angSp) >= 0 ? calcGrados(angSp) : calcGrados(angSp)*-1) ) - 90)-180;
+
+                    console.log('Angulo encontrado : '+ resultado);
+                    console.log('Angulo encontrado 2 : '+ resultado2);
+                    /*if( resultado > 0 && resultado <= 3 ){
                         console.log('Rostro Simetrico');
                         nasal.innerText = 'Rostro Simetrico';
                         return 'Rostro Simetrico';
-                    }
+                    }*/
                 }
             }
             // aqui hago unos calculo para el angulo

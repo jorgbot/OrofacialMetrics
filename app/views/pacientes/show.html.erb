@@ -180,9 +180,7 @@
           <%= link_to 'Regresar', pacientes_path, 'class': 'btn btn-default' %>
         </div>
         <div class="col-md-2 pull-right">
-          <form action="/edit/<% @paciente %>">
-            <input type="submit" class="btn btn-primary" value="Editar">
-          </form>
+          <%= link_to 'Editar', edit_paciente_path(@paciente) %>
         </div>
       </div>
     </div>
