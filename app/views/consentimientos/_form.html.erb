@@ -36,14 +36,14 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :f_nacimiento, class: 'form-label' %>
+            <%= f.label :'Fecha de Nacimiento', class: 'form-label' %>
             <br>
             <%= f.date_field :f_nacimiento , class: 'form-control'%>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :c_menor, class: 'form-label' %>
+            <%= f.label :'Es Menor de Edad', class: 'form-label' %>
             <%= f.select(:c_menor, ['No', 'Si'], {}, { :class => 'form-control' }) %>
           </div>
         </div>
@@ -65,13 +65,13 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :na_representante, class: 'form-label' %>
+            <%= f.label :'Nombre Representante', class: 'form-label' %>
             <%= f.text_field(:na_representante, { :class => 'form-control' }) %>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :r_tipo_documento, class: 'form-label' %>
+            <%= f.label :'Tipo Documento del Representante', class: 'form-label' %>
             <%= f.select(:r_tipo_documento, ['Cedula Ciudadania', 'Cedula Extranjeria', 'Tarjeta Identidad', 'Registro de Nacimiento'], {}, { :class => 'form-control' }) %>
           </div>
         </div>
@@ -79,7 +79,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :r_documento, class: 'form-label' %>
+            <%= f.label :'Documento del Representante', class: 'form-label' %>
             <%= f.text_field(:r_documento, { :class => 'form-control' }) %>
           </div>
         </div>
@@ -91,12 +91,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <!--<div class="col-md-6">
           <div class="form-group">
-            <%= f.label :v_contenido, class: 'form-label' %>
-            <%= f.text_field(:v_contenido, { :class => 'form-control' }) %>
+            <%# <%= f.label :v_contenido, class: 'form-label' %>
+            <%# <%= f.text_field(:v_contenido, { :class => 'form-control' }) %>
           </div>
-        </div>
+        </div>-->
         <div class="col-md-6">
 
         </div>
@@ -181,8 +181,8 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :na_clinico, class: 'form-label' %>
-            <%= f.text_field(:na_clinico, { :class => 'form-control' }) %>
+            <%# <%= f.label :na_clinico, class: 'form-label' %>
+            <%# <%= f.text_field(:na_clinico, { :class => 'form-control' }) %>
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@
 <div class="col-md-4 oro-form__control">
   <ul class="nav navbar">
     <li class="navbar-link oro-form__check"><a href="#basicos" onclick="return false"><i class="glyphicon glyphicon-check"></i> Datos Basicos</a></li>
-    <li class="navbar-link oro-form__check"><a href="#tipos" onclick="return false"><i class="glyphicon glyphicon-check"></i> Datos Demograficos</a></li>
+    <li class="navbar-link oro-form__check"><a href="#tipos" onclick="return false"><i class="glyphicon glyphicon-check"></i> Consentimientos</a></li>
     <li class="navbar-link oro-form__check"><a href="#contacto" onclick="return false"><i class="glyphicon glyphicon-check"></i> Datos Contacto</a></li>
   </ul>
 </div>
