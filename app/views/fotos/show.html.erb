@@ -11,7 +11,7 @@
             <buttom class="btn btn-small">Herramientas</buttom>
             <button onclick="toolsZoomIn()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-in"></i></button>
             <button onclick="toolsZoomOut()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-out"></i></button>
-            <button class="btn btn-lg"><i class="glyphicon glyphicon-download"></i></button>
+            <button class="btn btn-lg"><i class="glyphicon glyphicon-download" onclick="descargarImagenes()"></i></button>
             <button class="btn btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i></button>
         </li>
       </ul>
@@ -1480,6 +1480,25 @@
             lateral.points = new Points();
         }
         validarCalibracion();
+    }
+
+    function descargarImagenes(){
+        decargarFrontal();
+        decargarLateral();
+    }
+
+    function decargarFrontal() {
+        console.log("descargando frontal");
+        let dato = frontal.canvas.toDataURL("image/jpeg");
+        dato = dato.replace("image/jpeg", "image/octet-stream");
+        document.location.href = dato;
+    }
+
+    function decargarLateral() {
+        console.log("descargando lateral");
+        let dato = lateral.canvas.toDataURL("image/jpeg");
+        dato = dato.replace("image/jpeg", "image/octet-stream");
+        document.location.href = dato;
     }
 </script>
 
