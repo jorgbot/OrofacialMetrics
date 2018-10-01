@@ -8,11 +8,11 @@
         <li class="active" data-tipo="frontal"><a data-toggle="tab" href="#home">FRONTAL</a></li>
         <li data-tipo="lateral"><a data-toggle="tab" href="#menu1">LATERAL</a></li>
         <li class="btn-group" style="width: 100%">
-            <buttom class="btn btn-small">Herramientas</buttom>
-            <button onclick="toolsZoomIn()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-in"></i></button>
-            <button onclick="toolsZoomOut()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-out"></i></button>
-            <button class="btn btn-lg"><i class="glyphicon glyphicon-download"></i></button>
-            <button class="btn btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+          <buttom class="btn btn-small">Herramientas</buttom>
+          <button onclick="toolsZoomIn()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-in"></i></button>
+          <button onclick="toolsZoomOut()" class="btn btn-lg"><i class="glyphicon glyphicon-zoom-out"></i></button>
+          <button class="btn btn-lg"><i class="glyphicon glyphicon-download"></i></button>
+          <button class="btn btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i></button>
         </li>
       </ul>
 
@@ -40,78 +40,78 @@
       <ul class="oro-metrics__points hidden row">
         <li  tabindex="0" class="oro-metrics__point" data-toggle="tooltip" title="Gnatio" data-parent="frontal" data-point="genatio" onclick="lisentPoint('genatio');" onkeypress="lisentPointEnter(event,'genatio')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'genatio');"><i class="glyphicon glyphicon-trash"></i></span>
-          <img src="<%= asset_path 'genatio.svg' %>" alt="genatio" class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img src="<%= asset_path 'genatio.png' %>" alt="genatio" class="img-responsive center-block">
         </li>
         <li  tabindex="1" class="oro-metrics__point" data-toggle="tooltip" title="Trichion" data-parent="frontal" data-point="trichion" onclick="lisentPoint('trichion');" onkeypress="lisentPointEnter(event,'trichion')">
           <span class="oro-metrics__point-info"></span>
           <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'trichion');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img src="<%= asset_path 'trichion.svg' %>" alt="trichion" class="img-responsive center-block">
+          <img src="<%= asset_path 'trichion.png' %>" alt="trichion" class="img-responsive center-block">
         </li>
         <li tabindex="2" class="oro-metrics__point" data-toggle="tooltip" title="Glabela" data-parent="frontal" data-point="glabela" onclick="lisentPoint('glabela');" onkeypress="lisentPointEnter(event,'glabela')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'glabela');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img  alt="glabela" src="<%= asset_path 'glabela.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img  alt="glabela" src="<%= asset_path 'glabela.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="3" class="oro-metrics__point" data-toggle="tooltip" title="Subnasal" data-parent="lateral" data-point="subnasal" onclick="lisentPoint('subnasal');" onkeypress="lisentPointEnter(event,'subnasal')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'subnasal');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="subnasal" src="<%= asset_path 'subnasal.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="subnasal" src="<%= asset_path 'subnasal.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="4" class="oro-metrics__point" data-toggle="tooltip" title="Pronasal" data-parent="lateral" data-point="pronasal" onclick="lisentPoint('pronasal');" onkeypress="lisentPointEnter(event,'pronasal')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'pronasal');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="pronasal" src="<%= asset_path 'pronasal.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="pronasal" src="<%= asset_path 'pronasal.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="5" class="oro-metrics__point" data-toggle="tooltip" title="Labiale Superior" data-parent="lateral" data-point="labialesuperior" onclick="lisentPoint('labialesuperior');" onkeypress="lisentPointEnter(event,'labialesuperior')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'labialesuperior');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="labialesuperior" src="<%= asset_path 'labiale_superior.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="labialesuperior" src="<%= asset_path 'labiale_superior.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="6" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Izquierdo" data-parent="frontal" data-point="comisuralabial__izquierdo" onclick="lisentPoint('comisuralabial__izquierdo');" onkeypress="lisentPointEnter(event,'comisuralabial__izquierdo')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'comisuralabial__izquierdo');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="comisuralabial__izquierdo" src="<%= asset_path 'comisura_labial-izquierdo.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="comisuralabial__izquierdo" src="<%= asset_path 'comisura_labial-izquierdo.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="7" class="oro-metrics__point" data-toggle="tooltip" title="Comisura Labial Derecho" data-parent="frontal"  data-point="comisuralabial__derecho" onclick="lisentPoint('comisuralabial__derecho');" onkeypress="lisentPointEnter(event,'comisuralabial__derecho')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'comisuralabial__derecho');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="comisuralabial__derecho" src="<%= asset_path 'comisura_labial-derecho.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="comisuralabial__derecho" src="<%= asset_path 'comisura_labial-derecho.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="8" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Derecho" data-parent="frontal" data-point="canto__externo-derecho" onclick="lisentPoint('canto__externo-derecho');" onkeypress="lisentPointEnter(event,'canto__externo-derecho')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'canto__externo-derecho');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="canto__externo-derecho" src="<%= asset_path 'canto__externo-derecho.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="canto__externo-derecho" src="<%= asset_path 'canto__externo-derecho.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="9" class="oro-metrics__point" data-toggle="tooltip" title="Canto Externo Izquierdo" data-parent="frontal" data-point="canto__externo-izquierdo" onclick="lisentPoint('canto__externo-izquierdo');" onkeypress="lisentPointEnter(event,'canto__externo-izquierdo')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'canto__externo-izquierdo');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="canto__externo-izquierdo" src="<%= asset_path 'canto__externo-izquierdo.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="canto__externo-izquierdo" src="<%= asset_path 'canto__externo-izquierdo.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="10" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Derecho" data-parent="frontal" data-point="canto__interno-derecho" onclick="lisentPoint('canto__interno-derecho');" onkeypress="lisentPointEnter(event,'canto__interno-derecho')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'canto__interno-derecho');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="canto__interno-derecho" src="<%= asset_path 'canto__interno-derecho.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="canto__interno-derecho" src="<%= asset_path 'canto__interno-derecho.png' %>"  class="img-responsive center-block">
         </li>
         <li tabindex="11" class="oro-metrics__point" data-toggle="tooltip" title="Canto Interno Izquierdo" data-parent="frontal" data-point="canto__interno-izquierdo" onclick="lisentPoint('canto__interno-izquierdo');" onkeypress="lisentPointEnter(event,'canto__interno-izquierdo')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'canto__interno-izquierdo');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="canto__interno-izquierdo" src="<%= asset_path 'canto__interno-izquierdo.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="canto__interno-izquierdo" src="<%= asset_path 'canto__interno-izquierdo.png' %>"  class="img-responsive center-block">
         </li>
-        <li tabindex="12" class="oro-metrics__point" data-toggle="tooltip" title="Cigomática Derecho" data-parent="frontal" data-point="cigomatica__derecho" onclick="lisentPoint('cigomatica__derecho');" onkeypress="lisentPointEnter(event,'cigomatica__derecho')">
+        <li tabindex="12" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Derecho" data-parent="frontal" data-point="cigomatica__derecho" onclick="lisentPoint('cigomatica__derecho');" onkeypress="lisentPointEnter(event,'cigomatica__derecho')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'cigomatica__derecho');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="cigomatica__derecho" src="<%= asset_path 'cigomatica_izquierda.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="cigomatica__derecho" src="<%= asset_path 'cigomatica_derecha.png' %>"  class="img-responsive center-block">
         </li>
-        <li tabindex="13" class="oro-metrics__point" data-toggle="tooltip" title="Cigomática Izquierdo" data-parent="frontal" data-point="cigomatica__izquierdo" onclick="lisentPoint('cigomatica__izquierdo');" onkeypress="lisentPointEnter(event,'cigomatica__izquierdo')">
+        <li tabindex="13" class="oro-metrics__point" data-toggle="tooltip" title="Cigomatica Izquierdo" data-parent="frontal" data-point="cigomatica__izquierdo" onclick="lisentPoint('cigomatica__izquierdo');" onkeypress="lisentPointEnter(event,'cigomatica__izquierdo')">
           <span class="oro-metrics__point-info"></span>
-          <span class="oro-metrics__point-deleted" onclick="deletedPoint(event,'cigomatica__izquierdo');" ><i class="glyphicon glyphicon-trash"></i></span>
-          <img alt="cigomatica__izquierdo" src="<%= asset_path 'cigomatica_izquierda.svg' %>"  class="img-responsive center-block">
+          <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+          <img alt="cigomatica__izquierdo" src="<%= asset_path 'cigomatica_izquierda.png' %>"  class="img-responsive center-block">
         </li>
       </ul>
     </div>
   </div>
-  <div class="col-md-3 oro-metrics__options">
+  <div class="col-md-3">
     <div class="oro-metrics__info">
       <div class="oro-metrics__rule">
         <div class="row">
@@ -119,117 +119,117 @@
             <small><strong>Completa la calibración para iniciar la ubicación de puntos.</strong></small>
           </div>
         </div>
-          <details>
-            <summary class="btn btn-primary" style="margin-left: 15px">Inicar Calibración</summary>
-            <div class="row">
-              <div class="col-md-12" style="padding:15px">
-                <small> <i class="oro-metrics__info-icon glyphicon glyphicon-info-sign"> </i> <strong>Calibrar:</strong>Establece una medida entre dos puntos para calibrar la pantalla ( completa el campo <strong>Medida CM</strong>), luego marca punto <strong>inicial</strong> y punto <strong>final</strong>.</small>
-              </div>
-              <div class="col-md-12">
-                <img src="<%= asset_path 'rule.png' %>" alt="" class="center-block img-responsive">
+        <details>
+          <summary class="btn btn-primary" style="margin-left: 15px">Inicar Calibración</summary>
+          <div class="row">
+            <div class="col-md-12" style="padding:15px">
+              <small> <i class="oro-metrics__info-icon glyphicon glyphicon-info-sign"> </i> <strong>Calibrar:</strong>Establece una medida entre dos puntos para calibrar la pantalla ( completa el campo <strong>Medida CM</strong>), luego marca punto <strong>inicial</strong> y punto <strong>final</strong>.</small>
+            </div>
+            <div class="col-md-12">
+              <img src="<%= asset_path 'rule.png' %>" alt="" class="center-block img-responsive">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group" >
+                <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-init" data-point="oro-metrics__rule-init" onclick="lisentPoint('oro-metrics__rule-init');">
+                  <span class="oro-metrics__point-info"></span>
+                  <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+                  INICIAL
+                </li>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group" >
-                  <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-init" data-point="oro-metrics__rule-init" onclick="lisentPoint('oro-metrics__rule-init');">
-                    <span class="oro-metrics__point-info"></span>
-                    <!--<span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>-->
-                    INICIAL
-                  </li>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                    <input class="form-control" id="oro-metrics__rule-large" type="text" name="oro-metrics__rule-large">
-                  <label class="form-label" for="point-name">Media CM</label>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-end" data-point="oro-metrics__rule-end" onclick="lisentPoint('oro-metrics__rule-end');">
-                    <span class="oro-metrics__point-info"></span>
-                    <!--<span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>-->
-                    FINAL
-                  </li>
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input class="form-control" id="oro-metrics__rule-large" type="text" name="oro-metrics__rule-large">
+                <label class="form-label" for="point-name">Media CM</label>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <button class="btn btn-primary" onclick="validarCalibracion()">Aplicar Calibración</button>
+            <div class="col-md-3">
+              <div class="form-group">
+                <li class="oro-metrics__point oro-metrics__point--btn btn btn-default btn-xs" id="oro-metrics__rule-end" data-point="oro-metrics__rule-end" onclick="lisentPoint('oro-metrics__rule-end');">
+                  <span class="oro-metrics__point-info"></span>
+                  <span class="oro-metrics__point-deleted"><i class="glyphicon glyphicon-trash"></i></span>
+                  FINAL
+                </li>
               </div>
             </div>
-          </details>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-primary" onclick="validarCalibracion()">Aplicar Calibración</button>
+            </div>
+          </div>
+        </details>
       </div>
     </div>
     <div class="oro-metrics__info">
       <details>
         <summary class="btn btn-sm" style="margin-left: 15px">Información</summary>
-      <p>
-        <strong>Foto subida:</strong>
-        <%= @foto.f_subida %>
-      </p>
-      <p>
-        <strong>Foto titulo:</strong>
-        <%= @foto.foto_titulo %>
-      </p>
-      <p>
-        <strong>Usuario:</strong>
-        <%= @foto.usuario.nombres %>
-      </p>
-      <p>
-        <strong>Paciente:</strong>
-        <%= @foto.paciente.nombre %>
-      </p>
+        <p>
+          <strong>Foto subida:</strong>
+          <%= @foto.f_subida %>
+        </p>
+        <p>
+          <strong>Foto titulo:</strong>
+          <%= @foto.foto_titulo %>
+        </p>
+        <p>
+          <strong>Usuario:</strong>
+          <%= @foto.usuario.nombres %>
+        </p>
+        <p>
+          <strong>Paciente:</strong>
+          <%= @foto.paciente.nombre %>
+        </p>
 
-      <%= link_to 'Editar', edit_foto_path(@foto) %> |
-      <%= link_to 'Regresar', fotos_path %>
+        <%= link_to 'Editar', edit_foto_path(@foto) %> |
+        <%= link_to 'Regresar', fotos_path %>
       </details>
     </div>
     <div class="oro-metrics__info">
       <details>
         <summary class="btn btn-sm" style="margin-left: 15px">Información del Punto</summary>
-      <div class="oro-metrics__info-point">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group" >
-              <label class="form-label" for="point-name">Nombre Punto</label>
-              <input class="form-control" id="oro-metrics__nombre-punto" type="text" name="oro-metrics__nombre-punto" disabled>
+        <div class="oro-metrics__info-point">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group" >
+                <label class="form-label" for="point-name">Nombre Punto</label>
+                <input class="form-control" id="oro-metrics__nombre-punto" type="text" name="oro-metrics__nombre-punto" disabled>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group" >
-              <label class="form-label" for="eje-dx"><small>Eje X</small> - Distancia <span>cm</span></label>
-              <input class="form-control" type="number" id="oro-metrics__eje-dx" min="0.000" step="1" name="oro-metrics__eje-dx">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" >
+                <label class="form-label" for="eje-dx"><small>Eje X</small> - Distancia <span>cm</span></label>
+                <input class="form-control" type="number" id="oro-metrics__eje-dx" min="0.000" step="1" name="oro-metrics__eje-dx">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label" for="eje-dy"><small>Eje Y</small> - Distancia <span>cm</span></label>
+                <input class="form-control" id="oro-metrics__eje-dy" type="number" min="0.000" step="1" name="oro-metrics__eje-dy">
+              </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="form-label" for="eje-dy"><small>Eje Y</small> - Distancia <span>cm</span></label>
-              <input class="form-control" id="oro-metrics__eje-dy" type="number" min="0.000" step="1" name="oro-metrics__eje-dy">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" >
+                <label class="form-label" for="eje-x">Eje X</label>
+                <input class="form-control" type="number" id="oro-metrics__eje-x" min="0.000" step="1" name="oro-metrics__eje-x">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-label" for="eje-y">Eje Y</label>
+                <input class="form-control" id="oro-metrics__eje-y" type="number" min="0.000" step="1" name="oro-metrics__eje-y">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group" >
-              <label class="form-label" for="eje-x">Eje X</label>
-              <input class="form-control" type="number" id="oro-metrics__eje-x" min="0.000" step="1" name="oro-metrics__eje-x">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="form-label" for="eje-y">Eje Y</label>
-              <input class="form-control" id="oro-metrics__eje-y" type="number" min="0.000" step="1" name="oro-metrics__eje-y">
-            </div>
-          </div>
-        </div>
 
-      </div>
-    </details>
+        </div>
+      </details>
     </div>
     <div class="oro-metrics__info" style="background-color: #2b8adc21;">
       <details>
@@ -308,15 +308,13 @@
 <script type="text/javascript" charset="utf-8">
     function Points(){
         this.scale = {
-           name: 'Escala primera Medida',
-           codigo: 'oro-metrics__scale',
-           width: 0,
-           height: 0,
-           oldscale: 0,
-           id : null,
-           canvasPoint: null,
-           oldwidth: null,
-           oldheight: null
+            name: 'Escala primera Medida',
+            codigo: 'oro-metrics__scale',
+            width: 0,
+            height: 0,
+            oldscale: 0,
+            id : null,
+            canvasPoint: null
         };
         this.rule = {
             init: {
@@ -335,8 +333,6 @@
             distanciaAbsoluta: 0,
             distancia: 0,
             unidad: 0,
-            cw: null,
-            ch: null,
 
         };
         this.trichion = {
@@ -399,7 +395,7 @@
                 },
                 izquierdo  : {
                     name: 'Canto Interno Izquierdo',
-                    codigo: 'canto__interno-izquierdo',
+                    codigo: 'canto__externo-izquierdo',
                     id: null,
                     canvasPoint: null
                 }
@@ -463,8 +459,6 @@
     function CanvasPosition(positionX,positionY,rule){
         this.x = positionX;
         this.y = positionY;
-        this.cw = 0;
-        this.ch = 0;
         if(rule != null && rule.unidad > 0){
             this.dx = positionX / rule.unidad;
             this.dy = positionY / rule.unidad;
@@ -477,8 +471,6 @@
     function setRule(obj,medida){
         //console.log("setRule()");
         if(obj.points.rule != null){
-            obj.points.rule.cw = obj.canvas.width;
-            obj.points.rule.ch = obj.canvas.height;
             //console.log("setRule() paso 2");
             if(obj.points.rule.init.canvasPoint != null && obj.points.rule.end.canvasPoint != null){
                 //console.log("setRule() paso 3");
@@ -502,7 +494,7 @@
     $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active');
     $('#nav-matrics').addClass('oro-subnavbar__link--active');
     var widthParent =  360;
-    var pointSelectId =  '';
+    var pointSelectId =  'trichion';
     var pointDelect = '';
     var frontal = new Canvas('canvas-frontal','<%= @foto.img_frontal %>', 'media_frontal');
     frontal.tipo = 'frontal';
@@ -532,23 +524,18 @@
         thisPoint = getPoint(currentCanvas,pointSelectId);
         $('.oro-metrics__point').removeClass('oro-metrics__point--select');
         $($('.oro-metrics__point[data-point='+pointId+']')[0]).addClass('oro-metrics__point--select');
-        // si el punto no pertenece al canvas actual me cambios de canvas
+        // si el punto no pertenece la canvas actual me cambios de canvas
         let dataParent = $($('.oro-metrics__point[data-point='+pointId+']')[0]).attr('data-parent');
         if( undefined != dataParent || "" != dataParent){
             changeCanvas(dataParent);
         }
-        // ahora busco el punto y sus visualizo sus coordenas
-        try{
-            $($('#oro-metrics__nombre-punto')[0]).val(thisPoint.name);
-            if(thisPoint.canvasPoint != null){
-                setCoordenadasPoint(thisPoint.canvasPoint.position.x,thisPoint.canvasPoint.position.y,thisPoint.canvasPoint.position.dx,thisPoint.canvasPoint.position.dy);
-            }else{
-                //setCoordenadasPoint(0,0,0,0);
-            }
-        }catch (ex){
-
+        // ahora busco le punto y sus visualizo sus coordenas
+        $($('#oro-metrics__nombre-punto')[0]).val(thisPoint.name);
+        if(thisPoint.canvasPoint != null){
+            setCoordenadasPoint(thisPoint.canvasPoint.position.x,thisPoint.canvasPoint.position.y,thisPoint.canvasPoint.position.dx,thisPoint.canvasPoint.position.dy);
+        }else{
+            setCoordenadasPoint(0,0,0,0);
         }
-
     }
 
     function lisentPointEnter(e,point){
@@ -577,13 +564,11 @@
     }
 
     function drawZoom(scaleX,scaleY,obj){
-        obj.escala.oldheight = obj.canvas.height;
-        obj.escala.oldwidth = obj.canvas.width;
         obj.canvas.width *= 1+scaleX;
         obj.canvas.height *= 1+scaleY;
         obj.escala = calcularEscala();
-        //obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height);
-        /*if (obj.canvas.getContext){
+        obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height);
+        if (obj.canvas.getContext){
             obj.ctx = obj.canvas.getContext('2d');
             initEventsCanvas(obj);
             insertImage(obj);
@@ -591,7 +576,7 @@
             obj.ctx.save();
         } else {
             // canvas-unsupported code here
-        }*/
+        }
     }
 
     function drawCanvas(obj){
@@ -820,7 +805,7 @@
             enlazarNasalFacial(obj);
             calcularSimetria(obj);
             calcularRostro(obj);
-            //calcularNasalFacial(obj);
+            calcularNasalFacial(obj);
 
         });
     }
@@ -944,18 +929,18 @@
     }
 
     function enlazarCigomatica(obj){
-      if(obj.points.cigomatica != null){
-          if(obj.points.cigomatica.izquierdo.canvasPoint != null && obj.points.cigomatica.derecho.canvasPoint != null){
-              let izquierda = obj.points.cigomatica.izquierdo;
-              let derecha = obj.points.cigomatica.derecho;
-              let posicionMedio = getPuntoMedio(obj,izquierda,derecha);
-              let punto = new CanvasPoint(posicionMedio,15,15);
+        if(obj.points.cigomatica != null){
+            if(obj.points.cigomatica.izquierdo.canvasPoint != null && obj.points.cigomatica.derecho.canvasPoint != null){
+                let izquierda = obj.points.cigomatica.izquierdo;
+                let derecha = obj.points.cigomatica.derecho;
+                let posicionMedio = getPuntoMedio(obj,izquierda,derecha);
+                let punto = new CanvasPoint(posicionMedio,15,15);
 
-              drawIndicator(obj,punto);
-              drawTextIndicator(obj,punto,"Distancia Cigomaticas");
-              drawLine(obj,izquierda,derecha,'#ff0000');
-          }
-      }
+                drawIndicator(obj,punto);
+                drawTextIndicator(obj,punto,"Distancia Cigomaticas");
+                drawLine(obj,izquierda,derecha,'#ff0000');
+            }
+        }
     }
 
     function enlazarCalibracion(obj){
@@ -1011,11 +996,6 @@
                     angPl = Math.atan(tagPl);
                     tagSp = calcTangente(sl,pl);
                     angSp = Math.atan(tagSp);
-
-                    let tangSp = calcTangente(sl,sp);
-                    let angulo =  Math.atan(tangSp);
-                    console.log("Angulo 1 es :" + angulo + "°");
-
                     console.log('calculado');
                     console.log('radianes  ang Sl' + angSl);
                     console.log('grados ang sl'+ calcGrados(angSl));
@@ -1047,13 +1027,13 @@
 
 
     function calcPendiente(position1, position2){
-          let residuoY = position2.y - position1.y;
-          let residuoX = position2.x - position1.x;
-          return  residuoY / residuoX;
+        let residuoY = position2.y - position1.y;
+        let residuoX = position2.x - position1.x;
+        return  residuoY / residuoX;
     }
 
     function calcTangente(m1, m2){
-          return ( m2 - m1) / (1 + ( m1 * m2));
+        return ( m2 - m1) / 1 + ( m1 * m2);
     }
 
     /**
@@ -1062,31 +1042,31 @@
      * largo del rosto, sobre el ancho del rosto que la distancia de Glabela y Genatio
      */
     function calcularRostro(obj){
-          console.log('Validar Calculo Rostro Paso 1');
-         let pointCigomaticaIzquierda = obj.points.cigomatica.izquierdo.canvasPoint;
-         let pointCigoamticaDerecha = obj.points.cigomatica.derecho.canvasPoint;
-         let pointGlabela = obj.points.glabela.canvasPoint;
-         let pointGenatio = obj.points.genatio.canvasPoint;
+        console.log('Validar Calculo Rostro Paso 1');
+        let pointCigomaticaIzquierda = obj.points.cigomatica.izquierdo.canvasPoint;
+        let pointCigoamticaDerecha = obj.points.cigomatica.derecho.canvasPoint;
+        let pointGlabela = obj.points.glabela.canvasPoint;
+        let pointGenatio = obj.points.genatio.canvasPoint;
 
-         if(pointCigomaticaIzquierda != null && pointCigoamticaDerecha != null && pointGlabela != null && pointGenatio != null ){
-             console.log("CalcularRostro Paso 2");
-             let distanciaAbsolutaAncho = getDistanciaAbsoluta(pointCigomaticaIzquierda,pointCigoamticaDerecha);
-             let distanciaAbsolutaLargo = getDistanciaAbsoluta(pointGlabela,pointGenatio);
+        if(pointCigomaticaIzquierda != null && pointCigoamticaDerecha != null && pointGlabela != null && pointGenatio != null ){
+            console.log("CalcularRostro Paso 2");
+            let distanciaAbsolutaAncho = getDistanciaAbsoluta(pointCigomaticaIzquierda,pointCigoamticaDerecha);
+            let distanciaAbsolutaLargo = getDistanciaAbsoluta(pointGlabela,pointGenatio);
 
-             console.log('distanciaAbsolutaLargo : ' + distanciaAbsolutaLargo);
-             console.log('distanciaAbsolutaAncho : ' + distanciaAbsolutaAncho);
-             let distanciaLargo = distanciaAbsolutaLargo / obj.points.rule.unidad;
-             let distanciaAncho = distanciaAbsolutaAncho / obj.points.rule.unidad;
-             let resultado = 0;
-             if(distanciaLargo > distanciaAncho){
-                 resultado = distanciaLargo - distanciaAncho;
-             }else{
-                 resultado = distanciaAncho - distanciaLargo;
-             }
-             calcularRostroNormal(resultado);
-             calcularRostroAlargado(resultado);
-             calcularRostroAcortado(resultado);
-         }
+            console.log('distanciaAbsolutaLargo : ' + distanciaAbsolutaLargo);
+            console.log('distanciaAbsolutaAncho : ' + distanciaAbsolutaAncho);
+            let distanciaLargo = distanciaAbsolutaLargo / obj.points.rule.unidad;
+            let distanciaAncho = distanciaAbsolutaAncho / obj.points.rule.unidad;
+            let resultado = 0;
+            if(distanciaLargo > distanciaAncho){
+                resultado = distanciaLargo - distanciaAncho;
+            }else{
+                resultado = distanciaAncho - distanciaLargo;
+            }
+            calcularRostroNormal(resultado);
+            calcularRostroAlargado(resultado);
+            calcularRostroAcortado(resultado);
+        }
     }
 
 
@@ -1203,8 +1183,8 @@
 
     function calcularEscala(){
         if(currentCanvas.points.scale.width > 0){
-            let scaleWidth= currentCanvas.canvas.width / currentCanvas.points.scale.oldwidth;
-            let scaleHeight = currentCanvas.canvas.height / currentCanvas.points.scale.oldheight;
+            let scaleWidth= currentCanvas.canvas.width / currentCanvas.points.scale.width;
+            let scaleHeight = currentCanvas.canvas.height / currentCanvas.points.scale.height;
             return [scaleWidth,scaleHeight];
         }else{
             return [1,1];
@@ -1221,7 +1201,7 @@
                 console.log('Subir Escala ');
                 console.log(currentCanvas.points.scale);
                 uploadPoint(currentCanvas.points.scale.codigo,
-                          currentCanvas,currentCanvas.points.scale.canvasPoint);
+                    currentCanvas,currentCanvas.points.scale.canvasPoint);
 
                 console.log('Arriba escala');
             }
@@ -1237,17 +1217,17 @@
 
     function uploadPoint(name,obj,canvasPoint ){
         <% if (usuario_signed_in?) %>
-          let tipo_grupo = obj.tipo;
-          let nombre = name;
-          let valor =  JSON.stringify(canvasPoint);
-          let id_foto = "";
-          id_foto = <%= @foto.id %>;
-          let id_usuario = "";
-          id_usuario = <%= @foto.usuario_id %>;
-          console.log("puede subir puntos:");
-          console.log(canvasPoint);
-          if( (canvasPoint.position.x != null  && canvasPoint.position.x != 0)
-              || (canvasPoint.position.y != null  && canvasPoint.position.y != 0) ){
+        let tipo_grupo = obj.tipo;
+        let nombre = name;
+        let valor =  JSON.stringify(canvasPoint);
+        let id_foto = "";
+        id_foto = <%= @foto.id %>;
+        let id_usuario = "";
+        id_usuario = <%= @foto.usuario_id %>;
+        console.log("puede subir puntos:");
+        console.log(canvasPoint);
+        if( (canvasPoint.position.x != null  && canvasPoint.position.x != 0)
+            || (canvasPoint.position.y != null  && canvasPoint.position.y != 0) ){
             if(pointUpload == true){
                 $.ajax({
                     url: '/fotodiagnosticos.json',
@@ -1274,7 +1254,7 @@
                 });
 
             }
-          }
+        }
 
         <% end %>
         return null;
@@ -1327,7 +1307,7 @@
                     if(data[i].fotodiagnostico_id == fotodiagnostico_id){
                         let valor = JSON.parse(data[i].valor);
                         if(( data[i].name === 'oro-metrics__rule-init'
-                             || data[i].name === 'oro-metrics__rule-init' )){
+                                || data[i].name === 'oro-metrics__rule-init' )){
                             if(data[i].tipo_grupo === 'frontal' ){
                                 console.log('descargado ['+data[i].nombre+']');
                                 let valor = JSON.parse(data[i].valor);
@@ -1407,25 +1387,25 @@
         }
         else
         {
-          $.ajax({
-            url: '/campodiagnosticos.json',
-            type: 'POST',
-            contentType: "application/json",
-            data: JSON.stringify( {
-                'tipo_grupo': tipo_grupo,
-                'nombre': nombre,
-                'usuario_id': id_usuario,
-                'fotodiagnostico_id': fotodiagnostico_id,
-                'valor': valor
-            }),
-            success: function(data){
-                console.log('subido al servidor  el punto ['+nombre+']');
-                console.log(data);
-                console.log(getPoint(obj,nombre));
-                console.log(obj);
-                getPoint(obj,nombre).id = data.id;
-            }
-        });
+            $.ajax({
+                url: '/campodiagnosticos.json',
+                type: 'POST',
+                contentType: "application/json",
+                data: JSON.stringify( {
+                    'tipo_grupo': tipo_grupo,
+                    'nombre': nombre,
+                    'usuario_id': id_usuario,
+                    'fotodiagnostico_id': fotodiagnostico_id,
+                    'valor': valor
+                }),
+                success: function(data){
+                    console.log('subido al servidor  el punto ['+nombre+']');
+                    console.log(data);
+                    console.log(getPoint(obj,nombre));
+                    console.log(obj);
+                    getPoint(obj,nombre).id = data.id;
+                }
+            });
         }
     }
 

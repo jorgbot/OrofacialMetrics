@@ -90,6 +90,17 @@ body, html {
 
 }
 
+.navbar-brand img {
+  display: block;
+  height: calc(100% + 20px);
+  margin-top: -10px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  color: white;
+  background-color: white;
+}
+
 .oro-navbar {
   background-color: #2b8adc;
   color: #F7F7F7;
@@ -146,7 +157,7 @@ body, html {
 
     &--active a
     {
-      color: #2b8adc !important;
+      //color: #2b8adc !important;
     }
   }
 

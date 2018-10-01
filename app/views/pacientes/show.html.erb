@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="oro-paciente__media">
-          <img src="" alt="<%= @paciente.nombre %>" class="oro-paciente__image">
+          <img src="" alt="<%= @paciente.nombre %>" class="oro-paciente__image" id="oro-paciente__image">
         </div>
       </div>
       <div class="col-md-4">
@@ -42,7 +42,7 @@
       </div>
       <div class="col-md-4">
         <p>
-          <strong>F nacimiento:</strong>
+          <strong>Fecha nacimiento:</strong>
           <%= @paciente.f_nacimiento %>
         </p>
       </div>
@@ -56,21 +56,21 @@
       </div>
       <div class="col-md-4">
         <p>
-          <strong>Pais nacimiento:</strong>
+          <strong>País nacimiento:</strong>
           <%= @paciente.pais_nacimiento %>
         </p>
       </div>
-      <div class="col-md-4">
+      <!--<div class="col-md-4">
         <p>
-          <strong>N departamento:</strong>
-          <%= @paciente.n_departamento %>
+          <strong>Nombre departamento:</strong>
+          <%#<%= @paciente.n_departamento %>
         </p>
-      </div>
+      </div>-->
     </div>
     <div class="row">
       <div class="col-md-4">
         <p>
-          <strong>N ciudad:</strong>
+          <strong>Ciudad:</strong>
           <%= @paciente.n_ciudad %>
         </p>
       </div>
@@ -88,71 +88,71 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <!--<div class="col-md-4">
         <p>
           <strong>Etnia:</strong>
-          <%= @paciente.etnia %>
+          <%# <%= @paciente.etnia %>
         </p>
-      </div>
-      <div class="col-md-4">
+      </div>-->
+      <!--<div class="col-md-4">
         <p>
-          <strong>Pais residencia:</strong>
-          <%= @paciente.pais_residencia %>
+          <strong>País residencia:</strong>
+          <%#<%= @paciente.pais_residencia %>
         </p>
-      </div>
-      <div class="col-md-4">
+      </div>-->
+      <!--<div class="col-md-4">
         <p>
           <strong>R departamento:</strong>
-          <%= @paciente.r_departamento %>
+          <%#<%= @paciente.r_departamento %>
         </p>
-      </div>
+      </div>-->
     </div>
     <div class="row">
       <div class="col-md-4">
         <p>
-          <strong>R ciudad:</strong>
+          <strong>Ciudad residencia:</strong>
           <%= @paciente.r_ciudad %>
         </p>
       </div>
       <div class="col-md-4">
         <p>
-          <strong>R direccion:</strong>
+          <strong>Dirección residencia:</strong>
           <%= @paciente.r_direccion %>
         </p>
       </div>
       <div class="col-md-4">
         <p>
-          <strong>Estado:</strong>
+          <strong>Estado Civil:</strong>
           <%= @paciente.estado %>
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <!--<div class="col-md-4">
         <p>
           <strong>Pais estancia:</strong>
-          <%= @paciente.pais_estancia %>
+          <%#<%= @paciente.pais_estancia %>
         </p>
       </div>
       <div class="col-md-4">
         <p>
           <strong>E departamento:</strong>
-          <%= @paciente.e_departamento %>
+          <%#<%= @paciente.e_departamento %>
         </p>
       </div>
       <div class="col-md-4">
         <p>
           <strong>E ciudad:</strong>
-          <%= @paciente.e_ciudad %>
+          <%#<%= @paciente.e_ciudad %>
         </p>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col-md-4">
-        <p>
+        <!--<p>
           <strong>Religion:</strong>
-          <%= @paciente.religion %>
-        </p>
+          <%# <%= @paciente.religion %>
+        </p>-->
       </div>
       <div class="col-md-4">
         <p>
@@ -162,7 +162,7 @@
       </div>
       <div class="col-md-4">
         <p>
-          <strong>Telefono:</strong>
+          <strong>Teléfono:</strong>
           <%= @paciente.telefono %>
         </p>
       </div>
@@ -170,7 +170,7 @@
     <div class="row">
       <div class="col-md-4">
         <p>
-          <strong>Correo:</strong>
+          <strong>Email:</strong>
           <%= @paciente.correo %>
         </p>
       </div>
@@ -186,7 +186,8 @@
     </div>
   </div>
 </div>
-<div class="container">
+</div>
+  <div class="container">
   <div class="oro-paciente__card oro-paciente__card--fluid">
     <div class="oro-metrics__actions">
       <%= link_to 'Nueva Foto', new_foto_path , 'class': 'btn btn-primary' %>
@@ -229,4 +230,9 @@
     </div>
   </div>
 </div>
-
+<script>
+  function  getLastFotoPaciente() {
+      $('#oro-paciente__image').attr('src',$($('.oro-metrics__foto-min')[$('.oro-metrics__foto-min').length - 1]).attr('src'));
+  }
+  getLastFotoPaciente();
+</script>

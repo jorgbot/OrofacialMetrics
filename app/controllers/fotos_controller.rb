@@ -1,6 +1,6 @@
 class FotosController < ApplicationController
-  before_action :set_foto, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!, except: [:index, :show]
+  before_action :set_foto, only: [:show,:showkonva, :edit, :update, :destroy]
+  before_action :authenticate_usuario!, except: [:index, :show, :showkonva]
 
   # GET /fotos
   # GET /fotos.json
@@ -11,6 +11,12 @@ class FotosController < ApplicationController
   # GET /fotos/1
   # GET /fotos/1.json
   def show
+  end
+
+
+  # GET /fotos/1
+  # GET /fotos/1.json
+  def showkonva
   end
 
   # GET /fotos/new

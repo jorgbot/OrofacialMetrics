@@ -33,15 +33,18 @@
 }
 
 .oro-metrics__points {
-  width: 100%;
-  height: 115px;
+  width: calc(100% + 30px);
+  height: 150px;
   margin: 0;
   overflow: hidden;
   overflow-x: auto;
   white-space: nowrap;
+  background: linear-gradient(to top, #2b8adc, rgba(0, 149, 255, 0));
 }
 
 .oro-metrics__point {
+  padding: 5px;
+  border-radius: 5px;
   list-style: none;
   width: 80px;
   height: 80px;
@@ -49,8 +52,10 @@
   float: none;
   cursor: pointer;
   position: relative;
-  top: 10px;
-  opacity: 0.8;
+  top: 45px;
+  background: white;
+  opacity: 1;
+  transition: 400ms;
 
   &:hover,&:focus{
     top: 0;
@@ -58,7 +63,12 @@
     box-shadow: 0px 5px 10px -4px;
     border-radius: 15px;
     opacity: 1;
+    transition: 150ms;
   }
+}
+
+.oro-metrics__point.btn-xs {
+  top: 20px;
 }
 
 
@@ -114,6 +124,7 @@
 .oro-metrics__nav {
   position: fixed;
   bottom: 0px;
+  padding-left: 0;
 }
 
 @media ( max-width: 800px){
@@ -130,6 +141,11 @@
   border-radius: 15px;
   box-shadow: 0px 3px 10px -2px;
   opacity: 1;
+  width: 120px;
+  height: 120px;
+  margin-bottom: -50px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .oro-metrics__point--btn {
@@ -187,4 +203,13 @@
 
 .oro-metrics__info-icon {
   color: #00000085;
+}
+
+
+.oro-metrics__options {
+  position: fixed;
+  right: 0;
+  max-height: calc(100% - 50px);
+  overflow-y: overlay;
+  overflow-x: hidden;
 }
