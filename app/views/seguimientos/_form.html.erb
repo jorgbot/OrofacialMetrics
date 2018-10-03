@@ -1,0 +1,57 @@
+<%= form_for(seguimiento) do |f| %>
+  <% if seguimiento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(seguimiento.errors.count, "error") %> prohibited this seguimiento from being saved:</h2>
+
+      <ul>
+      <% seguimiento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :n_tecnica %>
+    <%= f.text_field :n_tecnica %>
+  </div>
+
+  <div class="field">
+    <%= f.label :n_procedimiento %>
+    <%= f.text_field :n_procedimiento %>
+  </div>
+
+  <div class="field">
+    <%= f.label :n_frecuencia_aplicacion %>
+    <%= f.text_field :n_frecuencia_aplicacion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :img_frontal %>
+    <%= f.file_field :img_frontal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :img_lateral %>
+    <%= f.file_field :img_lateral %>
+  </div>
+
+  <div class="field">
+    <%= f.label :evolucion_foto %>
+    <%= f.text_field :evolucion_foto %>
+  </div>
+
+  <div class="field">
+    <%= f.label :resultado %>
+    <%= f.text_field :resultado %>
+  </div>
+
+  <div class="field">
+    <%= f.label :paciente_id %>
+    <%= f.collection_select :paciente_id, Paciente.all, :id, :nombre %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

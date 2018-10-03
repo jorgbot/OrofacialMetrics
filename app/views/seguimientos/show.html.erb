@@ -1,0 +1,37 @@
+<p>
+  <strong>N tecnica:</strong>
+  <%= @seguimiento.n_tecnica %>
+</p>
+
+<p>
+  <strong>N procedimiento:</strong>
+  <%= @seguimiento.n_procedimiento %>
+</p>
+
+<p>
+  <strong>N frecuencia aplicacion:</strong>
+  <%= @seguimiento.n_frecuencia_aplicacion %>
+</p>
+
+<p>
+  <strong>Evolucion foto:</strong>
+  <%= @seguimiento.evolucion_foto %>
+</p>
+
+<p>
+  <strong>Resultado:</strong>
+  <%= @seguimiento.resultado %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @seguimiento.usuario %>
+</p>
+
+<p>
+  <strong>Paciente:</strong>
+  <%= @seguimiento.paciente %>
+</p>
+
+<%= link_to 'Editar', edit_seguimiento_path(@seguimiento) %> |
+<%= link_to 'Regresar', seguimientos_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  f_subida: 2018-01-12
+  foto_titulo: MyString
+  usuario: one
+  paciente: one
+
+two:
+  f_subida: 2018-01-12
+  foto_titulo: MyString
+  usuario: two
+  paciente: two

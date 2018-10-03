@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  apellido: MyString
+  f_nacimiento: 2017-11-19
+  c_menor: MyString
+  tipo_documento: MyString
+  documento: MyString
+  na_representante: MyString
+  r_tipo_documento: MyString
+  r_documento: MyString
+  direccion: MyString
+  v_contenido: MyString
+  c_tipo1: MyString
+  c_tipo2: MyString
+  c_tipo3: MyString
+  c_tipo4: MyString
+  c_tipo: MyString
+  fecha: 2017-11-19
+  correo: MyString
+  telefono: MyString
+  na_clinico: MyString
+  correo_clinico: MyString
+  usuario: one
+
+two:
+  nombre: MyString
+  apellido: MyString
+  f_nacimiento: 2017-11-19
+  c_menor: MyString
+  tipo_documento: MyString
+  documento: MyString
+  na_representante: MyString
+  r_tipo_documento: MyString
+  r_documento: MyString
+  direccion: MyString
+  v_contenido: MyString
+  c_tipo1: MyString
+  c_tipo2: MyString
+  c_tipo3: MyString
+  c_tipo4: MyString
+  c_tipo: MyString
+  fecha: 2017-11-19
+  correo: MyString
+  telefono: MyString
+  na_clinico: MyString
+  correo_clinico: MyString
+  usuario: two
