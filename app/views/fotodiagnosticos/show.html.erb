@@ -1,0 +1,27 @@
+<p>
+  <strong>F evaluacion:</strong>
+  <%= @fotodiagnostico.f_evaluacion %>
+</p>
+
+<p>
+  <strong>Id evaluacion:</strong>
+  <%= @fotodiagnostico.id_evaluacion %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @fotodiagnostico.usuario.nombres %>
+</p>
+
+<p>
+  <strong>Foto:</strong>
+  <%= @fotodiagnostico.foto.foto_titulo %>
+</p>
+
+<p>
+  <strong>Paciente:</strong>
+  <%= @fotodiagnostico.paciente.nombre %>
+</p>
+
+<%= link_to 'Editar', edit_fotodiagnostico_path(@fotodiagnostico) %> |
+<%= link_to 'Regresar', fotodiagnosticos_path %>

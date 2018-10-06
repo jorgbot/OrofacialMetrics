@@ -1,0 +1,19 @@
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.12/ext/mri
+/home/jorgbot/.rbenv/versions/2.3.0/bin/ruby -r ./siteconf20180601-26192-1pj8zox.rb extconf.rb
+creating Makefile
+
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" clean
+
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR="
+compiling crypt.c
+compiling bcrypt_ext.c
+compiling crypt_gensalt.c
+compiling crypt_blowfish.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20180601-26192-1rk9exd

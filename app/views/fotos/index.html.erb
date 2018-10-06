@@ -1,0 +1,46 @@
+<div class="oro-metrics">
+  <div class="oro-metrics__actions">
+    <%= link_to 'Nueva Foto', new_foto_path , 'class': 'btn btn-primary' %>
+  </div>
+  <div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Foto</th>
+      <th>Fecha subida</th>
+      <th>Foto titulo</th>
+      <th>Usuario</th>
+      <th>Paciente</th>
+      <th>Opciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @fotos.each do |foto| %>
+      <tr>
+        <td>
+          <img class="oro-metrics__foto-min" src="<%= foto.img_lateral %>" alt="">
+          <img class="oro-metrics__foto-min" src="<%= foto.img_frontal %>" alt="">
+        </td>
+        <td><%= foto.foto_titulo %></td>
+        <td><%= foto.foto_titulo %></td>
+        <td><%= foto.usuario.nombres %></td>
+        <td><%= foto.paciente.nombre %></td>
+        <td>
+          <%= link_to 'Ver', foto %> |
+          <%= link_to 'Editar', edit_foto_path(foto) %> |
+          <%= link_to 'Eliminar', foto, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        </td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+  <br>
+  <script type="text/javascript" charset="utf-8">
+      $('.oro-subnavbar__link').removeClass('oro-subnavbar__link--active')
+      $('#nav-matrics').addClass('oro-subnavbar__link--active')
+  </script>
+</div>
+

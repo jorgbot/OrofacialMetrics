@@ -1,0 +1,234 @@
+<%= form_for(paciente) do |f| %>
+  <% if paciente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(paciente.errors.count, "error") %> prohibited this paciente from being saved:</h2>
+
+      <ul>
+      <% paciente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-md-8 oro-form__content">
+      <div class="container-fluid">
+        <div  id="basicos" class="oro-form__group">
+          <div class="row">
+            <h4 class="oro-form__breack">Datos Básicos</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :nombre, class: 'form-label' %>
+                <%= f.text_field :nombre , class: 'form-control'%>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :apellido, class: 'form-label' %>
+                <%= f.text_field :apellido, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :tipo_documento, class: 'form-label' %>
+                <%= f.select :tipo_documento,[['Cédula Ciudadania', 'cedula ciudadania'], ['Tarjeta Identidad', 'tarjeta identidad'], ['Cédula Extranjería', 'cedula extranjería'], ['Registro Civil','registro civil'],['Pasaporte','pasaporte']], {},{ class: 'form-control'}  %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :documento, class: 'form-label' %>
+                <%= f.text_field :documento, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :genero, class: 'form-label' %>
+                <%= f.select :genero, [["Masculino", "masculino"], ["Femenino", "femenino"]],{}, 'class': "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <%= f.label :'fecha nacimiento', class: 'form-label' %>
+                <%= f.date_field :f_nacimiento, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <%= f.label :edad, class: 'form-label'  %>
+                <%= f.text_field :edad, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="demograficos" class="oro-form__group">
+          <div class="row">
+            <h4 class="oro-form__breack">Datos Demográficos</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :país_nacimiento, class: 'form-label' %>
+                <%= f.text_field :pais_nacimiento , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :'Departamento', class: 'form-label' %>
+                <%= f.text_field :n_departamento , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :'Ciudad', class: 'form-label' %>
+                <%= f.text_field :n_ciudad , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :aseguradora, class: 'form-label' %>
+                <%= f.text_field :aseguradora , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :raza, class: 'form-label' %>
+                <%= f.text_field :raza , class: 'form-control' %>
+              </div>
+            </div>
+            <!--
+            <div class="col-md-6">
+              <div class="form-group">
+                <%# <%= f.label :etnia, class: 'form-label' %>
+                <%# <%= f.text_field :etnia , class: 'form-control' %>
+              </div>
+            </div>-->
+          </div>
+
+        </div>
+        <div id="contacto" class="oro-form__group">
+          <div class="row">
+            <h4 class="oro-form__breack">Datos Contacto</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :'país_residencia', class: 'form-label' %>
+                <%= f.text_field :pais_residencia , class: 'form-control' %>
+              </div>
+            </div>
+            <!--<div class="col-md-6">
+              <div class="form-group">
+                <%# <%= f.label :'Departamento Residencia', class: 'form-label' %>
+                <%# <%= f.text_field :r_departamento , class: 'form-control' %>
+              </div>
+            </div>-->
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :'Ciudad Residencia', class: 'form-label' %>
+                <%= f.text_field :r_ciudad , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :'Dirección Residencia', class: 'form-label' %>
+                <%= f.text_field :r_direccion , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!--
+            <div class="col-md-6">
+              <div class="form-group">
+               <%# <%= f.label :estado, class: 'form-label' %>
+               <%# <%= f.text_field :estado , class: 'form-control' %>
+              </div>
+            </div>-->
+            <!--<div class="col-md-6">
+              <div class="form-group">
+                <%# <%= f.label :pais_estancia, class: 'form-label' %>
+                <%# <%= f.text_field :pais_estancia , class: 'form-control' %>
+              </div>
+            </div> -->
+          </div>
+          <div class="row">
+           <!-- <div class="col-md-6">
+              <div class="form-group">
+                <%# <%= f.label :'Departamento Estancia', class: 'form-label' %>
+                <%# <%= f.text_field :e_departamento , class: 'form-control' %>
+              </div>
+            </div> -->
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <%# <%= f.label :'Ciudad de Estancia', class: 'form-label' %>
+                <%# <%= f.text_field :e_ciudad , class: 'form-control' %>
+              </div>
+            </div> -->
+          </div>
+          <div class="row">
+            <!--<div class="col-md-6">
+              <div class="form-group">
+                <%# <%= f.label :religion, class: 'form-label' %>
+                <%# <%= f.text_field :religion , class: 'form-control' %>
+              </div>
+            </div>  -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :celular, class: 'form-label' %>
+                <%= f.text_field :celular , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :teléfono, class: 'form-label' %>
+                <%= f.text_field :telefono , class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= f.label :email, class: 'form-label' %>
+                <%= f.text_field :correo , class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="actions">
+                  <input type="submit" class="btn btn-primary btn-block" value="Finalizar">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-4 oro-form__control">
+    <ul class="nav navbar">
+      <li class="navbar-link oro-form__check"><a href="#basicos" onclick=""><i class="glyphicon glyphicon-check"></i> Datos Básicos</a></li>
+      <li class="navbar-link oro-form__check"><a href="#demograficos" onclick=""><i class="glyphicon glyphicon-check"></i> Datos Demográficos</a></li>
+      <li class="navbar-link oro-form__check"><a href="#contacto" onclick=""><i class="glyphicon glyphicon-check"></i> Datos Contacto</a></li>
+    </ul>
+  </div>
+  <script !src="">
+    $(document).ready(function(){
+        loadDatosBasicos();
+    })
+  </script>
+<% end %>

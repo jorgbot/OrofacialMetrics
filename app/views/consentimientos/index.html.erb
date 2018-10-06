@@ -1,0 +1,57 @@
+<%= render 'shared/sidebar/pacientes' %>
+<div class="oro-main-ui container-fluid">
+  <div class="oro-main__actions">
+    <div class="btn-group pull-right">
+      <%if @consentimientos.count == 0 %>
+        <div class="oro-help oro-help--nuevo-paciente">
+          <p class="oro-help__texto">
+            Aún no exiten consentimentos creados. <br>
+            Haz click en <strong>Nuevo Consentimiento</strong>
+          </p>
+        </div>
+      <% end %>
+      <form action="/consentimientos/new" >
+        <input type="submit" value="Nuevo Consentimiento" class="btn btn-default">
+      </form>
+    </div>
+  </div>
+  <br>
+<h1>Consentimientos</h1>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Tipo documento</th>
+        <th>Documento</th>
+        <th>Fecha</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Correo clinico</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @consentimientos.each do |consentimiento| %>
+        <tr>
+          <td><%= consentimiento.nombre %></td>
+          <td><%= consentimiento.apellido %></td>
+          <td><%= consentimiento.tipo_documento %></td>
+          <td><%= consentimiento.documento %></td>
+          <td><%= consentimiento.fecha %></td>
+          <td><%= consentimiento.correo %></td>
+          <td><%= consentimiento.telefono %></td>
+          <td><%= consentimiento.correo_clinico %></td>
+          <td><%= link_to 'Ver', consentimiento %></td>
+          <td><%= link_to 'Editar', edit_consentimiento_path(consentimiento) %></td>
+          <td><%= link_to 'Eliminar', consentimiento, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<br>
+</div>
+<%= link_to 'Nuevo Consentimiento', new_consentimiento_path %>

@@ -1,0 +1,19 @@
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/byebug-10.0.2/ext/byebug
+/home/jorgbot/.rbenv/versions/2.3.0/bin/ruby -r ./siteconf20180601-26192-zaor2o.rb extconf.rb
+creating Makefile
+
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR="
+compiling byebug.c
+compiling threads.c
+compiling breakpoint.c
+compiling context.c
+compiling locker.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/jorgbot/Escritorio/OrofacialMetrics/vendor/bundle/ruby/2.3.0/gems/byebug-10.0.2/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20180601-26192-1coacam/byebug

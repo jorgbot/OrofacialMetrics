@@ -1,0 +1,37 @@
+<div class="row oro-login">
+  <div class="col-md-12">
+    <h2 class="text-center oro-login__title">Bienvenido, Inicia sesión</h2>
+    <br/>
+  </div>
+  <div class="col-md-4 col-md-offset-4 oro-login__form">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <div class="form-group oro-login__email">
+        <%= f.email_field :email, autofocus: true, placeholder: "Correo", class: "form-control" %>
+      </div>
+
+      <div class="form-group oro-login__password">
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Contraseña", class: "form-control" %>
+      </div>
+
+      <div class="oro-login__remember">
+        <% if devise_mapping.rememberable? -%>
+          <span>
+          <%= f.check_box :remember_me, class: "oro-login__remember" %> Recordarme
+          </span>
+        <% end %>
+        <span class="pull-right oro-login__lost">
+          <%= link_to "Olvidé mi contraseña", new_usuario_password_path %>
+        </span>
+      </div>
+      <div class="oro-login__action">
+        <%= f.submit "Ingresar", class: "btn btn-primary btn-block oro-btn--primary oro-login__submit" %>
+      </div>
+    <% end %>
+
+  </div>
+  <div class="col-md-4 col-md-offset-4">
+      <h5 class="text-center ">¿ No Tienes una cuenta orofacil ? <span class="text-center ">Ingresa en <a href="" class="btn">Crear Cuenta</a></span>
+      </h5>
+  </div>
+</div>

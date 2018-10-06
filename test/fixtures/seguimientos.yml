@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  n_tecnica: MyString
+  n_procedimiento: MyString
+  n_frecuencia_aplicacion: MyString
+  evolucion_foto: MyString
+  resultado: MyString
+  usuario: one
+  paciente: one
+
+two:
+  n_tecnica: MyString
+  n_procedimiento: MyString
+  n_frecuencia_aplicacion: MyString
+  evolucion_foto: MyString
+  resultado: MyString
+  usuario: two
+  paciente: two

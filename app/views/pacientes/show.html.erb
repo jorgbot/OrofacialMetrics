@@ -1,0 +1,238 @@
+<div class="container">
+  <div class="oro-paciente__card oro-paciente__card--fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="oro-paciente__media">
+          <img src="" alt="<%= @paciente.nombre %>" class="oro-paciente__image" id="oro-paciente__image">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Nombre:</strong>
+          <%= @paciente.nombre %>
+        </p>
+        <p>
+          <strong>Apellido:</strong>
+          <%= @paciente.apellido %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Documento:</strong>
+          <%= @paciente.documento %>
+        </p>
+        <p>
+          <strong>Usuario:</strong>
+          <%= @paciente.usuario.nombres %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <p>
+          <strong>Tipo documento:</strong>
+          <%= @paciente.tipo_documento %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Genero:</strong>
+          <%= @paciente.genero %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Fecha nacimiento:</strong>
+          <%= @paciente.f_nacimiento %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <p>
+          <strong>Edad:</strong>
+          <%= @paciente.edad %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>País nacimiento:</strong>
+          <%= @paciente.pais_nacimiento %>
+        </p>
+      </div>
+      <!--<div class="col-md-4">
+        <p>
+          <strong>Nombre departamento:</strong>
+          <%#<%= @paciente.n_departamento %>
+        </p>
+      </div>-->
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <p>
+          <strong>Ciudad:</strong>
+          <%= @paciente.n_ciudad %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Aseguradora:</strong>
+          <%= @paciente.aseguradora %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Raza:</strong>
+          <%= @paciente.raza %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <!--<div class="col-md-4">
+        <p>
+          <strong>Etnia:</strong>
+          <%# <%= @paciente.etnia %>
+        </p>
+      </div>-->
+      <!--<div class="col-md-4">
+        <p>
+          <strong>País residencia:</strong>
+          <%#<%= @paciente.pais_residencia %>
+        </p>
+      </div>-->
+      <!--<div class="col-md-4">
+        <p>
+          <strong>R departamento:</strong>
+          <%#<%= @paciente.r_departamento %>
+        </p>
+      </div>-->
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <p>
+          <strong>Ciudad residencia:</strong>
+          <%= @paciente.r_ciudad %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Dirección residencia:</strong>
+          <%= @paciente.r_direccion %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Estado Civil:</strong>
+          <%= @paciente.estado %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <!--<div class="col-md-4">
+        <p>
+          <strong>Pais estancia:</strong>
+          <%#<%= @paciente.pais_estancia %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>E departamento:</strong>
+          <%#<%= @paciente.e_departamento %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>E ciudad:</strong>
+          <%#<%= @paciente.e_ciudad %>
+        </p>
+      </div> -->
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <!--<p>
+          <strong>Religion:</strong>
+          <%# <%= @paciente.religion %>
+        </p>-->
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Celular:</strong>
+          <%= @paciente.celular %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Teléfono:</strong>
+          <%= @paciente.telefono %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <p>
+          <strong>Email:</strong>
+          <%= @paciente.correo %>
+        </p>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="oro-show__actions col-md-6">
+        <div class="col-md-2 pull-right">
+          <%= link_to 'Regresar', pacientes_path, 'class': 'btn btn-default' %>
+        </div>
+        <div class="col-md-2 pull-right">
+          <%= link_to 'Editar', edit_paciente_path(@paciente) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <div class="container">
+  <div class="oro-paciente__card oro-paciente__card--fluid">
+    <div class="oro-metrics__actions">
+      <%= link_to 'Nueva Foto', new_foto_path , 'class': 'btn btn-primary' %>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <thead>
+        <tr>
+          <th>Foto</th>
+          <th>Fecha subida</th>
+          <th>Foto titulo</th>
+          <th>Usuario</th>
+          <th>Paciente</th>
+          <th>Opciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @paciente.fotos.each do |foto| %>
+          <tr>
+            <td>
+              <img class="oro-metrics__foto-min" src="<%= foto.img_lateral %>" alt="">
+              <img class="oro-metrics__foto-min" src="<%= foto.img_frontal %>" alt="">
+            </td>
+            <td><%= foto.foto_titulo %></td>
+            <td><%= foto.foto_titulo %></td>
+            <td><%= foto.usuario.nombres %></td>
+            <td><%= foto.paciente.nombre %></td>
+            <td>
+              <%= link_to 'Ver', foto %> |
+              <%= link_to 'Editar', edit_foto_path(foto) %> |
+              <%= link_to 'Eliminar', foto, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+            </td>
+
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  function  getLastFotoPaciente() {
+      $('#oro-paciente__image').attr('src',$($('.oro-metrics__foto-min')[$('.oro-metrics__foto-min').length - 1]).attr('src'));
+  }
+  getLastFotoPaciente();
+</script>

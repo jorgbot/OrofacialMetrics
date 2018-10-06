@@ -1,0 +1,215 @@
+// Place all the styles related to the Fotos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.oro-metrics
+{
+  padding: 15px;
+}
+
+.oro-metrics--bread {
+  line-height: 4rem;
+  padding-left: 15px;
+  color: #777777;
+}
+.oro-metrics__foto-min {
+  width: 80px;
+  padding: 5px;
+}
+
+.oro-metrics__marco {
+  position: relative;
+}
+
+.oro-metrics__glass
+{
+
+}
+
+%oro-media
+{
+  width: 100%;
+  overflow: hidden;
+}
+
+.oro-metrics__points {
+  width: calc(100% + 30px);
+  height: 150px;
+  margin: 0;
+  overflow: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: linear-gradient(to top, #2b8adc, rgba(0, 149, 255, 0));
+}
+
+.oro-metrics__point {
+  padding: 5px;
+  border-radius: 5px;
+  list-style: none;
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  float: none;
+  cursor: pointer;
+  position: relative;
+  top: 45px;
+  background: white;
+  opacity: 1;
+  transition: 400ms;
+
+  &:hover,&:focus{
+    top: 0;
+    outline: none;
+    box-shadow: 0px 5px 10px -4px;
+    border-radius: 15px;
+    opacity: 1;
+    transition: 150ms;
+  }
+}
+
+.oro-metrics__point.btn-xs {
+  top: 20px;
+}
+
+
+.oro-metrics__media {
+  @extend %oro-media;
+}
+
+.oro-metrics__media-upload {
+  @extend %oro-media;
+  border-radius: 15px;
+  border: 1px dashed #2b8adc;
+  background-color: white;
+  padding: 15px;
+  max-height: calc( 40vh - 100px);
+}
+
+.oro-metrics__info
+{
+  padding: 15px;
+  background-color: white;
+  box-shadow: 1px 0 5px -3px, 0px 0px 1px -0.5px;
+
+  table.table.table-responsive.table-hover {
+    margin-top: 35px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px -1px #bbb;
+  }
+
+  table.table.table-responsive.table-hover thead tr th {
+    padding: 15px;
+  }
+
+}
+
+.oro-metrics__marco {
+  .nav.nav-tabs {
+    position: absolute;
+    width: 115px;
+    background-color: white;
+  }
+
+  .nav.nav-tabs li.active a {
+    border: none;
+    color: #2b8adc;
+  }
+
+  .nav.nav-tabs li a {
+    color: #555555;
+  }
+}
+
+.oro-metrics__nav {
+  position: fixed;
+  bottom: 0px;
+  padding-left: 0;
+}
+
+@media ( max-width: 800px){
+  .oro-metrics__nav {
+    width: 100%;
+  }
+}
+
+
+.oro-metrics__point--select {
+  top: 0;
+  border: 5px solid white;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 3px 10px -2px;
+  opacity: 1;
+  width: 120px;
+  height: 120px;
+  margin-bottom: -50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.oro-metrics__point--btn {
+  width: 100%;
+  max-width: 100px;
+  padding: 10px 5px;
+  display: inline;
+  padding-bottom: 25px;
+}
+
+.oro-metrics__point--btn .oro-metrics__point-deleted {
+  right: -1px;
+  border-radius: 2px;
+  background-color: white;
+  color: red;
+  border: 1px solid #bbb;
+  bottom: -1px;
+}
+.oro-metrics__point--btn .oro-metrics__point-deleted:hover {
+  color: white;
+}
+
+.oro-metrics__point:hover {
+  border-radius: 5px;
+}
+
+.oro-metrics__point-info {
+  position: absolute;
+  bottom: -5px;
+  font-size: 10px;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 2px 7px;
+  left: -6px;
+  border-bottom-left-radius: 15px;
+  color: #333;
+}
+
+.oro-metrics__point-deleted {
+  position: absolute;
+  color: white;
+  bottom: 0;
+  right: 2px;
+  background-color: #2b8adc;
+  padding: 5px;
+  line-height: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.oro-metrics__point-deleted:hover {
+  background-color: #ff0023;
+}
+
+.oro-metrics__info-icon {
+  color: #00000085;
+}
+
+
+.oro-metrics__options {
+  position: fixed;
+  right: 0;
+  max-height: calc(100% - 50px);
+  overflow-y: overlay;
+  overflow-x: hidden;
+}
